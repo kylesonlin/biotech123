@@ -164,8 +164,8 @@ export const ManagementSection = () => {
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
                 Proven leadership team with track record of value creation and strategic partnerships
               </p>
-              <Button className="bg-gradient-primary hover:opacity-90">
-                Meet the Team
+              <Button className="bg-gradient-primary hover:opacity-90" asChild>
+                <a href="/team">Meet the Team</a>
               </Button>
             </CardContent>
           </Card>

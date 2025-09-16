@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Users, Microscope, FileText, TrendingUp, Brain, Dna, BookOpen, BarChart3, FileCheck, Shield } from 'lucide-react';
+import { Menu, X, ChevronDown, Users, Microscope, FileText, TrendingUp, Brain, Dna, BookOpen, BarChart3, FileCheck, Shield, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
@@ -158,10 +158,22 @@ export const Navigation = () => {
                     description="Building a GI tumor immunotherapy platform"
                   />
                   <DropdownItem
-                    to="/#management"
+                    to="/team"
                     icon={Users}
                     title="Leadership Team"
                     description="Experienced dealmakers and scientists"
+                  />
+                  <DropdownItem
+                    to="/faq"
+                    icon={Shield}
+                    title="FAQ"
+                    description="Common questions and answers"
+                  />
+                  <DropdownItem
+                    to="/contact"
+                    icon={Mail}
+                    title="Contact Us"
+                    description="Partnership and inquiry hub"
                   />
                   <DropdownItem
                     to="/scientific-advisory-board"
