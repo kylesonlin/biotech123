@@ -62,7 +62,11 @@ export const HeroSection = () => {
 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="bg-gradient-accent hover:opacity-90 text-primary font-semibold px-8 py-6 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-gradient-accent hover:opacity-90 text-primary font-semibold px-8 py-6 text-lg"
+              onClick={() => document.getElementById('science')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Learn About Our Science
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

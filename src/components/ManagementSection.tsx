@@ -178,7 +178,11 @@ export const ManagementSection = () => {
                 </p>
               </div>
             </div>
-            <Button variant="outline" className="border-secondary text-secondary hover:bg-secondary/10">
+            <Button 
+              variant="outline" 
+              className="border-secondary text-secondary hover:bg-secondary/10"
+              onClick={() => window.location.href = '/scientific-advisory-board'}
+            >
               Meet Our Advisory Board
             </Button>
           </CardContent>

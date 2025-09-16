@@ -45,11 +45,11 @@ export const FooterSection = () => {
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#mission" className="text-primary-foreground/80 hover:text-accent transition-colors">Our Mission</a></li>
-              <li><a href="#science" className="text-primary-foreground/80 hover:text-accent transition-colors">Science</a></li>
-              <li><a href="#pipeline" className="text-primary-foreground/80 hover:text-accent transition-colors">Pipeline</a></li>
-              <li><a href="#management" className="text-primary-foreground/80 hover:text-accent transition-colors">Management</a></li>
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">Advisory Board</a></li>
+              <li><a href="#mission" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('mission')?.scrollIntoView({ behavior: 'smooth' }); }}>Our Mission</a></li>
+              <li><a href="#science" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('science')?.scrollIntoView({ behavior: 'smooth' }); }}>Science</a></li>
+              <li><a href="#pipeline" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('pipeline')?.scrollIntoView({ behavior: 'smooth' }); }}>Pipeline</a></li>
+              <li><a href="#management" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('management')?.scrollIntoView({ behavior: 'smooth' }); }}>Management</a></li>
+              <li><a href="/scientific-advisory-board" className="text-primary-foreground/80 hover:text-accent transition-colors">Advisory Board</a></li>
             </ul>
           </div>
 
@@ -57,11 +57,11 @@ export const FooterSection = () => {
           <div>
             <h4 className="font-semibold mb-4">Investors</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">Stock Information</a></li>
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">SEC Filings</a></li>
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">Press Releases</a></li>
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">Financial Reports</a></li>
-              <li><a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">Corporate Governance</a></li>
+              <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">Stock Information</a></li>
+              <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">SEC Filings</a></li>
+              <li><a href="/media" className="text-primary-foreground/80 hover:text-accent transition-colors">Press Releases</a></li>
+              <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">Financial Reports</a></li>
+              <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">Corporate Governance</a></li>
             </ul>
           </div>
         </div>
@@ -77,11 +77,20 @@ export const FooterSection = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button variant="secondary" size="sm">
+            <Button 
+              variant="secondary" 
+              size="sm"
+              onClick={() => window.location.href = '/investors'}
+            >
               <FileText className="w-4 h-4 mr-2" />
               Investor Kit
             </Button>
-            <Button variant="outline" size="sm" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={() => window.location.href = '/investors'}
+            >
               <TrendingUp className="w-4 h-4 mr-2" />
               Stock Quote
             </Button>
