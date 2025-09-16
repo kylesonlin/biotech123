@@ -11,7 +11,13 @@ export const Navigation = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   
   const toggleDropdown = (dropdown: string) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+    // If clicking the same dropdown that's already open, close it
+    if (activeDropdown === dropdown) {
+      setActiveDropdown(null);
+    } else {
+      // Otherwise, open the clicked dropdown (direct switch)
+      setActiveDropdown(dropdown);
+    }
   };
 
   // Click outside to close dropdowns
