@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,7 +21,7 @@ export const Navigation = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo & Company Name */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
               <div className="w-6 h-6 border-2 border-primary-foreground rounded-full relative">
                 <div className="absolute inset-1 border border-primary-foreground rounded-full animate-pulse-glow"></div>
@@ -30,7 +31,7 @@ export const Navigation = () => {
               <h1 className="text-xl font-bold gradient-text">Oncolytics Biotech</h1>
               <p className="text-xs text-muted-foreground font-mono">NASDAQ: ONCY</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
@@ -40,13 +41,23 @@ export const Navigation = () => {
                 <NavigationMenuContent>
                   <div className="w-80 p-4">
                     <div className="grid gap-3">
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Our Mission</div>
-                        <p className="text-xs text-muted-foreground mt-1">Building a GI tumor immunotherapy platform</p>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#mission" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Our Mission</div>
+                          <p className="text-xs text-muted-foreground mt-1">Building a GI tumor immunotherapy platform</p>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Leadership Team</div>
-                        <p className="text-xs text-muted-foreground mt-1">Experienced dealmakers and scientists</p>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#management" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Leadership Team</div>
+                          <p className="text-xs text-muted-foreground mt-1">Experienced dealmakers and scientists</p>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link to="/scientific-advisory-board" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Scientific Advisory Board</div>
+                          <p className="text-xs text-muted-foreground mt-1">World-class scientific expertise</p>
+                        </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
@@ -58,17 +69,23 @@ export const Navigation = () => {
                 <NavigationMenuContent>
                   <div className="w-96 p-4">
                     <div className="grid gap-3">
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Mechanism of Action</div>
-                        <p className="text-xs text-muted-foreground mt-1">ds-RNA oncolytic virus targeting RAS pathway</p>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#science" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Mechanism of Action</div>
+                          <p className="text-xs text-muted-foreground mt-1">ds-RNA oncolytic virus targeting RAS pathway</p>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Safety Profile</div>
-                        <p className="text-xs text-muted-foreground mt-1">Proven in 1,100+ patients over 15 years</p>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#science" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Safety Profile</div>
+                          <p className="text-xs text-muted-foreground mt-1">Proven in 1,100+ patients over 15 years</p>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Clinical Pipeline</div>
-                        <p className="text-xs text-muted-foreground mt-1">GOBLET study ongoing in GI cancers</p>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#pipeline" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Clinical Pipeline</div>
+                          <p className="text-xs text-muted-foreground mt-1">GOBLET study ongoing in GI cancers</p>
+                        </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
@@ -76,8 +93,10 @@ export const Navigation = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                  Pipeline
+                <NavigationMenuLink asChild>
+                  <Link to="/#pipeline" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                    Pipeline
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
@@ -86,14 +105,20 @@ export const Navigation = () => {
                 <NavigationMenuContent>
                   <div className="w-80 p-4">
                     <div className="grid gap-3">
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Press Releases</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Press Releases</div>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Publications</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Publications</div>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Presentations</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Presentations</div>
+                        </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
@@ -105,25 +130,41 @@ export const Navigation = () => {
                 <NavigationMenuContent>
                   <div className="w-80 p-4">
                     <div className="grid gap-3">
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Stock Information</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Stock Information</div>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">SEC Filings</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">SEC Filings</div>
+                        </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                        <div className="font-medium text-sm">Corporate Governance</div>
+                      <NavigationMenuLink asChild>
+                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
+                          <div className="font-medium text-sm">Corporate Governance</div>
+                        </Link>
                       </NavigationMenuLink>
                     </div>
                   </div>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/faq" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+                    FAQs
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
           {/* Contact CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline" size="sm">Investor Relations</Button>
+            <Link to="/investors">
+              <Button variant="outline" size="sm">Investor Relations</Button>
+            </Link>
             <Button size="sm" className="bg-gradient-primary hover:opacity-90">Contact</Button>
           </div>
 
@@ -142,13 +183,16 @@ export const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 py-4 border-t border-border/50">
             <div className="space-y-3">
-              <a href="#about" className="block py-2 text-sm font-medium hover:text-primary transition-colors">About</a>
-              <a href="#science" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Science</a>
-              <a href="#pipeline" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Pipeline</a>
-              <a href="#media" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Media</a>
-              <a href="#investors" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Investors</a>
+              <Link to="/#about" className="block py-2 text-sm font-medium hover:text-primary transition-colors">About</Link>
+              <Link to="/#science" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Science</Link>
+              <Link to="/#pipeline" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Pipeline</Link>
+              <Link to="/media" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Media</Link>
+              <Link to="/investors" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Investors</Link>
+              <Link to="/faq" className="block py-2 text-sm font-medium hover:text-primary transition-colors">FAQs</Link>
               <div className="pt-4 space-y-2">
-                <Button variant="outline" size="sm" className="w-full">Investor Relations</Button>
+                <Link to="/investors" className="block">
+                  <Button variant="outline" size="sm" className="w-full">Investor Relations</Button>
+                </Link>
                 <Button size="sm" className="w-full bg-gradient-primary hover:opacity-90">Contact</Button>
               </div>
             </div>
