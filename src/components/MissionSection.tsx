@@ -66,45 +66,23 @@ export const MissionSection = () => {
           </Card>
         </div>
 
-        {/* Key Differentiators */}
-        <div className="bg-card border border-border/50 rounded-2xl p-8 shadow-card">
-          <h3 className="text-2xl font-bold mb-6 text-center">What Makes Us Different</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-secondary">Unique Delivery Advantage</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Only IV ds-RNA oncolytic virus not neutralized by immune system in blood</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Reaches both primary tumors and metastatic sites effectively</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>No special handling required, easy to scale commercially</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-secondary">Market Leadership</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Only platform immunotherapy in GI tumors with proven efficacy</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Strong IP protection extending to 2044</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Made in America with experienced dealmaking leadership</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+        {/* Visual Impact Statement */}
+        <div className="text-center">
+          <Card className="inline-block border-border/50 shadow-elegant bg-gradient-subtle">
+            <CardContent className="p-8">
+              <div className="mb-6">
+                <img 
+                  src="/src/assets/molecular-structure.png" 
+                  alt="Molecular structure visualization" 
+                  className="w-32 h-32 mx-auto object-contain"
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 gradient-text">Leading GI Immunotherapy Platform</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                First-in-class ds-RNA oncolytic virus with proven safety in 1,100+ patients
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

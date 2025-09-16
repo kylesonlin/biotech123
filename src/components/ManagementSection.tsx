@@ -156,37 +156,20 @@ export const ManagementSection = () => {
           </Card>
         </div>
 
-        {/* Scientific Advisory Board Preview */}
-        <Card className="border-border/50 shadow-elegant bg-gradient-subtle">
-          <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Scientific Advisory Board</h3>
-            <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
-              Our Scientific Advisory Board includes leading experts in oncolytic virotherapy, 
-              gastrointestinal oncology, and immunotherapy, providing strategic guidance on our clinical development programs.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h4 className="font-semibold text-secondary mb-2">Full Scientific Advisory Board</h4>
-                <p className="text-sm text-muted-foreground">
-                  Distinguished researchers and clinicians across multiple therapeutic areas
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-secondary mb-2">GI-Focused SAB</h4>
-                <p className="text-sm text-muted-foreground">
-                  Specialized expertise in gastrointestinal cancer treatment and research
-                </p>
-              </div>
-            </div>
-            <Button 
-              variant="outline" 
-              className="border-secondary text-secondary hover:bg-secondary/10"
-              onClick={() => window.location.href = '/scientific-advisory-board'}
-            >
-              Meet Our Advisory Board
-            </Button>
-          </CardContent>
-        </Card>
+        {/* Simple Team Summary */}
+        <div className="text-center">
+          <Card className="inline-block border-border/50 shadow-elegant">
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold mb-4">Ready to Execute</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+                Proven leadership team with track record of value creation and strategic partnerships
+              </p>
+              <Button className="bg-gradient-primary hover:opacity-90">
+                Meet the Team
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );

@@ -1,8 +1,8 @@
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { MissionSection } from '@/components/MissionSection';
-import { ScienceSection } from '@/components/ScienceSection';
-import { PipelineSection } from '@/components/PipelineSection';
+import { SimplifiedScienceSection } from '@/components/SimplifiedScienceSection';
+import { SimplifiedPipelineSection } from '@/components/SimplifiedPipelineSection';
 import { ManagementSection } from '@/components/ManagementSection';
 import { FooterSection } from '@/components/FooterSection';
 
@@ -13,8 +13,8 @@ const Index = () => {
       <main>
         <HeroSection />
         <MissionSection />
-        <ScienceSection />
-        <PipelineSection />
+        <SimplifiedScienceSection />
+        <SimplifiedPipelineSection />
         <ManagementSection />
       </main>
       <FooterSection />
