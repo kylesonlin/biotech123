@@ -303,7 +303,3 @@
     96% { transform: translateX(128vw) translateY(46.6vh) translateZ(0px) scale(0.3) rotate(-172.8deg); opacity: 0.05; z-index: 11; }
     100% { transform: translateX(132vw) translateY(45vh) translateZ(0px) scale(0.2) rotate(-180deg); opacity: 0; z-index: 13; }
   }
-    96% { transform: translateX(128vw) translateY(45vh) translateZ(0px) scale(0.3) rotate(-172.8deg); opacity: 0.05; z-index: 0; }
-    100% { transform: translateX(132vw) translateY(45vh) translateZ(0px) scale(0.2) rotate(-180deg); opacity: 0; z-index: 0; }
-  }
-}
