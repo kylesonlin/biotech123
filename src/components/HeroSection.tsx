@@ -5,7 +5,7 @@ import { HelixTracks } from '@/components/HelixTracks';
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-start justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -21,7 +21,7 @@ export const HeroSection = () => {
       <HelixTracks />
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 py-24">
+      <div className="relative z-20 container mx-auto px-6 pt-32 pb-24">
         <div className="max-w-4xl">
           {/* Stock Ticker */}
           <div className="inline-flex items-center space-x-2 bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-full px-4 py-2 mb-8">
