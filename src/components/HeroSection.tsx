@@ -27,13 +27,14 @@ export const HeroSection = () => {
         ampMin={6} ampMax={15}
         ampEase1={0.33} ampEase2={0.33}
         cycles={2.5}
-        phase={0.1}
+        phase={1.0}
         durationSec={14}
         countPerTrack={80}
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
         showGuides={true}
+        showIntersections={true}
         className="z-10"
       />
 
