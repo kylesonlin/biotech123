@@ -137,8 +137,11 @@ export const SimplifiedPipelineSection = () => {
               </div>
             </div>
             <div className="text-center pt-6 border-t border-border mt-6">
-              <Button className="bg-gradient-primary hover:opacity-90">
-                View Full Pipeline
+              <Button 
+                className="bg-gradient-primary hover:opacity-90"
+                onClick={() => window.location.href = '/pipeline'}
+              >
+                See Clinical Development
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

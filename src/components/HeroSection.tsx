@@ -32,27 +32,48 @@ export const HeroSection = () => {
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Revolutionizing
+            First-in-class
             <span className="block gradient-text bg-gradient-accent bg-clip-text text-transparent">
-              GI Cancer Treatment
+              GI Immunotherapy Platform
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl leading-relaxed">
-            <strong>Pelareorep</strong> — the first-in-class double-stranded RNA oncolytic virus 
-            immunotherapy targeting gastrointestinal cancers through the RAS pathway.
+            <strong>Pelareorep</strong> is a double-stranded RNA oncolytic virus designed to 
+            selectively replicate in RAS-mutant tumors—delivering dual action: 
+            direct tumor cell lysis and immune activation.
           </p>
+
+          {/* Proof Bar */}
+          <div className="flex flex-wrap gap-4 text-sm text-white/90 mb-8">
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
+              IV delivery
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
+              Not neutralized in blood
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
+              Dosed in 1,200+ patients
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
+              Safety profile established
+            </span>
+          </div>
 
           {/* Key Stats */}
           <div className="flex flex-wrap gap-6 mb-10">
             <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
-              <div className="text-2xl font-bold text-accent-bright">1,100+</div>
-              <div className="text-sm text-white/80">Patients Dosed</div>
+              <div className="text-2xl font-bold text-accent-bright">1,200+</div>
+              <div className="text-sm text-white/80">Patients Treated</div>
             </div>
             <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
-              <div className="text-2xl font-bold text-accent-bright">15</div>
-              <div className="text-sm text-white/80">Years Safety Data</div>
+              <div className="text-2xl font-bold text-accent-bright">No MTD</div>
+              <div className="text-sm text-white/80">Identified</div>
             </div>
             <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
               <div className="text-2xl font-bold text-accent-bright">3</div>
@@ -65,10 +86,18 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-gradient-accent hover:opacity-90 text-primary font-semibold px-8 py-6 text-lg"
-              onClick={() => document.getElementById('science')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.location.href = '/science'}
             >
-              Learn About Our Science
+              Explore Our Science
               <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-white border-white/30 hover:bg-white/10 px-8 py-6 text-lg"
+              onClick={() => window.location.href = '/pipeline'}
+            >
+              View the Pipeline
             </Button>
           </div>
         </div>

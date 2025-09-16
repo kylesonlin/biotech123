@@ -182,25 +182,25 @@ export const Navigation = () => {
                 <Microscope className="h-4 w-4" />
                 Science
               </NavButton>
-              <DropdownContent isOpen={activeDropdown === 'science'} dropdownKey="science">
+               <DropdownContent isOpen={activeDropdown === 'science'} dropdownKey="science">
                 <div className="grid gap-2">
                   <DropdownItem
-                    to="/#science"
+                    to="/science"
                     icon={Dna}
                     title="Mechanism of Action"
-                    description="ds-RNA oncolytic virus targeting RAS pathway"
+                    description="Complete pelareorep MOA and safety data"
                   />
                   <DropdownItem
-                    to="/#science"
+                    to="/science"
                     icon={Shield}
                     title="Safety Profile"
-                    description="Proven in 1,100+ patients over 15 years"
+                    description="Proven in 1,200+ patients over 15 years"
                   />
                   <DropdownItem
-                    to="/#pipeline"
+                    to="/pipeline"
                     icon={BarChart3}
                     title="Clinical Pipeline"
-                    description="GOBLET study ongoing in GI cancers"
+                    description="Registration-enabled GI cancer programs"
                   />
                 </div>
               </DropdownContent>
