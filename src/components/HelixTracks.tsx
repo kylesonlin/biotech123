@@ -34,6 +34,8 @@ type HelixTracksProps = {
   // Debug helpers
   showGuides?: boolean;         // draw centerline + envelope lanes
   showIntersections?: boolean;  // draw 5 markers
+  debugMode?: boolean;          // enable debug view
+  showTracks?: boolean;         // show continuous track lines instead of particles
   className?: string;
 };
 
@@ -91,6 +93,8 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   colorBack  = "hsl(var(--accent) / 0.35)",
   showGuides = false,
   showIntersections = false,
+  debugMode = false,
+  showTracks = false,
   className = "",
 }) => {
   const layerRef = useRef<HTMLDivElement>(null);
@@ -100,70 +104,127 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     const layer = layerRef.current!;
     layer.innerHTML = "";
 
-    // Particles
-    const total = countPerTrack * 2;
-    const dots: HTMLDivElement[] = [];
-    for (let i = 0; i < total; i++) {
-      const d = document.createElement("div");
-      d.className = "helix-dot";
-      d.style.width = `${sizePx}px`;
-      d.style.height = `${sizePx}px`;
-      d.dataset.seed = String(makeSeed(i));
-      d.dataset.track = i < countPerTrack ? "A" : "B";
-      layer.appendChild(d);
-      dots.push(d);
-    }
+    if (debugMode && showTracks) {
+      // Create continuous track lines for debug view
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.style.position = "absolute";
+      svg.style.top = "0";
+      svg.style.left = "0";
+      svg.style.width = "100vw";
+      svg.style.height = "100vh";
+      svg.style.pointerEvents = "none";
+      svg.style.zIndex = "10";
+      
+      // Set viewBox to match viewport
+      svg.setAttribute("viewBox", "0 0 100 100");
+      svg.setAttribute("preserveAspectRatio", "none");
 
-    const T = durationSec * 1000;
-    let t0 = performance.now();
-    let raf = 0;
-
-    const loop = (now: number) => {
-      const base = ((now - t0) % T) / T;      // 0..1 sweep
-      for (const d of dots) {
-        const track = d.dataset.track as "A" | "B";
-        const p = (base + Number(d.dataset.seed)) % 1;
-        const xvw = p * 100;
-
+      // Track A path (red)
+      const trackAPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const trackBPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      
+      let pathAData = "";
+      let pathBData = "";
+      
+      // Generate continuous paths
+      for (let i = 0; i <= 200; i++) {
+        const p = i / 200;
+        const x = p * 100; // 0-100 viewBox units
+        
         // centerline y at x=p
         const yC = cubicY(p, y0, y1, c1, c2);
-
+        
         // amplitude envelope at x=p
-        const env = bezier01(p, ampEase1, ampEase2);   // 0..1
+        const env = bezier01(p, ampEase1, ampEase2);
         const A = ampMin + (ampMax - ampMin) * env;
-
+        
         // helix angle
         const theta = TAU * cycles * p + phase;
-
+        
         // tracks hugging the centerline with constant gap +/- A*sin
         const yA = yC - gapVh/2 + A * Math.sin(theta);
         const yB = yC + gapVh/2 - A * Math.sin(theta);
-
-        const yvh = track === "A" ? yA : yB;
-
-        // depth cues
-        const depth = (Math.cos(theta) + 1) / 2; // 0..1
-        const scale = 0.8 + 0.6 * depth;
-        const alpha = 0.35 + 0.65 * depth;
-        const color = depth >= 0.5 ? colorFront : colorBack;
-
-        d.style.transform = `translate(${xvw}vw, ${yvh}vh) scale(${scale})`;
-        d.style.opacity = String(alpha);
-        d.style.background = color;
-        d.style.zIndex = depth > 0.5 ? "2" : "1";
+        
+        const cmd = i === 0 ? "M" : "L";
+        pathAData += `${cmd} ${x} ${yA} `;
+        pathBData += `${cmd} ${x} ${yB} `;
+      }
+      
+      trackAPath.setAttribute("d", pathAData);
+      trackAPath.setAttribute("stroke", "#ff4444");
+      trackAPath.setAttribute("stroke-width", "0.5");
+      trackAPath.setAttribute("fill", "none");
+      trackAPath.setAttribute("opacity", "0.9");
+      trackAPath.setAttribute("vector-effect", "non-scaling-stroke");
+      
+      trackBPath.setAttribute("d", pathBData);
+      trackBPath.setAttribute("stroke", "#4444ff");
+      trackBPath.setAttribute("stroke-width", "0.5");
+      trackBPath.setAttribute("fill", "none");
+      trackBPath.setAttribute("opacity", "0.9");
+      trackBPath.setAttribute("vector-effect", "non-scaling-stroke");
+      
+      svg.appendChild(trackAPath);
+      svg.appendChild(trackBPath);
+      layer.appendChild(svg);
+      
+      return () => {};
+    } else {
+      // Regular particle animation
+      const total = countPerTrack * 2;
+      const dots: HTMLDivElement[] = [];
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement("div");
+        d.className = "helix-dot";
+        d.style.width = `${sizePx}px`;
+        d.style.height = `${sizePx}px`;
+        d.dataset.seed = String(makeSeed(i));
+        d.dataset.track = i < countPerTrack ? "A" : "B";
+        layer.appendChild(d);
+        dots.push(d);
       }
 
-      raf = requestAnimationFrame(loop);
-    };
+      const T = durationSec * 1000;
+      let t0 = performance.now();
+      let raf = 0;
 
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+      const loop = (now: number) => {
+        const base = ((now - t0) % T) / T;
+        for (const d of dots) {
+          const track = d.dataset.track as "A" | "B";
+          const p = (base + Number(d.dataset.seed)) % 1;
+          const xvw = p * 100;
+
+          const yC = cubicY(p, y0, y1, c1, c2);
+          const env = bezier01(p, ampEase1, ampEase2);
+          const A = ampMin + (ampMax - ampMin) * env;
+          const theta = TAU * cycles * p + phase;
+          const yA = yC - gapVh/2 + A * Math.sin(theta);
+          const yB = yC + gapVh/2 - A * Math.sin(theta);
+          const yvh = track === "A" ? yA : yB;
+
+          const depth = (Math.cos(theta) + 1) / 2;
+          const scale = 0.8 + 0.6 * depth;
+          const alpha = 0.35 + 0.65 * depth;
+          const color = depth >= 0.5 ? colorFront : colorBack;
+
+          d.style.transform = `translate(${xvw}vw, ${yvh}vh) scale(${scale})`;
+          d.style.opacity = String(alpha);
+          d.style.background = color;
+          d.style.zIndex = depth > 0.5 ? "2" : "1";
+        }
+        raf = requestAnimationFrame(loop);
+      };
+
+      raf = requestAnimationFrame(loop);
+      return () => cancelAnimationFrame(raf);
+    }
   }, [
     gapVh, y0, y1, c1, c2,
     ampMin, ampMax, ampEase1, ampEase2,
     cycles, phase,
     durationSec, countPerTrack, sizePx,
-    colorFront, colorBack
+    colorFront, colorBack, debugMode, showTracks
   ]);
 
   // Optional guides: centerline + envelope lanes + intersection markers
