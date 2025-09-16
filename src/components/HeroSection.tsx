@@ -5,15 +5,35 @@ import heroImage from '@/assets/hero-molecular.jpg';
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      {/* Multi-Layer DNA Background with 3D Helical Animation */}
+      <div className="absolute inset-0 z-0" style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}>
+        {/* Base DNA Layer */}
         <img 
           src={heroImage} 
           alt="Double-stranded RNA molecular structures" 
-          className="w-full h-full object-cover dna-spiral"
+          className="absolute inset-0 w-full h-full object-cover dna-helix-base"
+          style={{ transform: 'translateZ(0px)' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent"></div>
+        
+        {/* Mid DNA Layer */}
+        <img 
+          src={heroImage} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover dna-helix-mid opacity-60"
+          style={{ transform: 'translateZ(-20px) scale(1.02)' }}
+        />
+        
+        {/* Front DNA Layer */}
+        <img 
+          src={heroImage} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover dna-helix-front opacity-40"
+          style={{ transform: 'translateZ(-40px) scale(1.05)' }}
+        />
+        
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent z-10"></div>
       </div>
 
       {/* Floating Molecular Elements */}
