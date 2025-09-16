@@ -1,9 +1,7 @@
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutHeroSection } from '@/components/AboutHeroSection';
-import { ScienceHeroSection } from '@/components/ScienceHeroSection';
-import { PipelineHeroSection } from '@/components/PipelineHeroSection';
-import { LeadershipHeroSection } from '@/components/LeadershipHeroSection';
+import { SciencePipelineSection } from '@/components/SciencePipelineSection';
 import { FooterSection } from '@/components/FooterSection';
 
 const Index = () => {
@@ -13,9 +11,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutHeroSection />
-        <ScienceHeroSection />
-        <PipelineHeroSection />
-        <LeadershipHeroSection />
+        <SciencePipelineSection />
       </main>
       <FooterSection />
     </div>
