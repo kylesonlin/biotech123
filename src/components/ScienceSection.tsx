@@ -18,15 +18,15 @@ export const ScienceSection = () => {
     },
     {
       title: "Cold Tumor",
-      subtitle: "Selective Infection",
-      description: "Pelareorep selectively infects tumor cells via RAS mutations and introduces its dsRNA genome.",
+      subtitle: "Selective ds-RNA Infection",
+      description: "Pelareorep selectively infects tumor cells via RAS pathway mutations and introduces its double-stranded RNA genome, which is recognized as foreign by the cell.",
       icon: <Target className="w-6 h-6" />,
       color: "bg-gradient-secondary"
     },
     {
       title: "Hot Tumor",
-      subtitle: "Inflammatory Response",
-      description: "Pelareorep kills tumor cells via cell lysis and initiates inflammatory response, increasing type I interferons and activating chemokines.",
+      subtitle: "ds-RNA Immune Response",
+      description: "The ds-RNA genome triggers both direct cell lysis and powerful immune cascade, increasing type I interferons and activating chemokines to create a 'hot' tumor environment.",
       icon: <Zap className="w-6 h-6" />,
       color: "bg-gradient-accent"
     },
@@ -51,9 +51,9 @@ export const ScienceSection = () => {
             Mechanism of Action
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Pelareorep is a first-in-class <strong>double-stranded RNA oncolytic virus</strong> that 
-            selectively replicates in RAS-mutated cells, creating both direct cell lysis and a powerful 
-            immune cascade response.
+            Pelareorep is a first-in-class <strong>ds-RNA oncolytic virus</strong> that 
+            selectively replicates in RAS-mutated cells through its <strong>double-stranded RNA genome</strong>, 
+            creating both direct cell lysis and a powerful immune cascade response that works exactly as designed.
           </p>
         </div>
 
@@ -132,24 +132,30 @@ export const ScienceSection = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">
-                  Pelareorep exploits the RAS pathway mutations found in:
+                  Pelareorep's ds-RNA exploits the RAS pathway mutations found in:
                 </p>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-4 bg-muted/50 rounded-lg text-center">
-                    <div className="text-3xl font-bold text-accent mb-2">90%</div>
+                    <div className="text-3xl font-bold text-accent mb-2">95%</div>
                     <div className="text-sm">Pancreatic Cancers</div>
                   </div>
                   <div className="p-4 bg-muted/50 rounded-lg text-center">
-                    <div className="text-3xl font-bold text-accent mb-2">50%</div>
+                    <div className="text-3xl font-bold text-accent mb-2">43%</div>
                     <div className="text-sm">Colorectal Cancers</div>
                   </div>
                   <div className="p-4 bg-muted/50 rounded-lg text-center">
-                    <div className="text-3xl font-bold text-accent mb-2">35%</div>
+                    <div className="text-3xl font-bold text-accent mb-2">20%</div>
                     <div className="text-sm">Anal Carcinomas</div>
                   </div>
                 </div>
+                <div className="p-4 bg-accent/5 border border-accent/20 rounded-lg mt-4">
+                  <p className="text-sm">
+                    <strong>Clinical Proof of Concept:</strong> Pelareorep found in almost all tumor biopsies, 
+                    demonstrating successful viral delivery and replication in target cancer cells.
+                  </p>
+                </div>
                 <p className="text-sm text-muted-foreground">
-                  This selective targeting ensures healthy cells remain unaffected while cancer cells are specifically attacked.
+                  This selective ds-RNA targeting ensures healthy cells remain unaffected while cancer cells are specifically attacked.
                 </p>
               </CardContent>
             </Card>
@@ -166,15 +172,15 @@ export const ScienceSection = () => {
               <CardContent className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold mb-3 text-accent">Key Advantages</h4>
+                    <h4 className="font-semibold mb-3 text-accent">IV ds-RNA Advantages</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
-                        Not neutralized by immune system in blood
+                        ds-RNA virus not neutralized in blood
                       </li>
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
-                        Reaches primary and metastatic tumors
+                        Systemically reaches all tumor sites
                       </li>
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
@@ -182,7 +188,7 @@ export const ScienceSection = () => {
                       </li>
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
-                        No special handling required
+                        Dual mechanism: lysis + immune response
                       </li>
                     </ul>
                   </div>
@@ -191,7 +197,7 @@ export const ScienceSection = () => {
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
-                        Made in America (non-GMO)
+                        Made in America (non-GMO ds-RNA)
                       </li>
                       <li className="flex items-start">
                         <ArrowRight className="w-4 h-4 mt-0.5 mr-2 text-accent flex-shrink-0" />
@@ -207,6 +213,13 @@ export const ScienceSection = () => {
                       </li>
                     </ul>
                   </div>
+                </div>
+                <div className="p-4 bg-secondary/5 border border-secondary/20 rounded-lg mt-4">
+                  <p className="text-sm">
+                    <strong>GOBLET Study with Roche:</strong> Ongoing clinical trial evaluating pelareorep 
+                    in combination with standard of care in SCAC and PDAC patients, demonstrating strong 
+                    partnership validation of our ds-RNA platform.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -235,8 +248,9 @@ export const ScienceSection = () => {
                 </div>
                 <div className="p-4 bg-accent/5 border border-accent/20 rounded-lg">
                   <p className="text-sm text-center">
-                    <strong>De-risked Profile:</strong> Extensive clinical experience has established pelareorep's 
-                    safety profile, making it an attractive candidate for partnerships and regulatory approval.
+                    <strong>De-risked ds-RNA Platform:</strong> Extensive clinical experience has established 
+                    pelareorep's safety profile, with the ds-RNA mechanism working exactly as designed across 
+                    multiple studies, making it an attractive candidate for partnerships and regulatory approval.
                   </p>
                 </div>
                 <div className="flex justify-center">
