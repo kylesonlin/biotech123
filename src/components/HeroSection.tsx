@@ -24,7 +24,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-3 h-3 bg-accent rounded-full will-change-transform shadow-lg" 
           style={{ 
-            animation: 'helical-motion-a 30s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 30s ease-in-out infinite',
+            animation: 'helical-diagonal-a 30s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '0s',
             filter: 'drop-shadow(0 0 8px hsl(var(--accent)))'
           }}
@@ -32,7 +32,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-a 32s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 32s ease-in-out infinite',
+            animation: 'helical-diagonal-a 32s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '8s',
             filter: 'drop-shadow(0 0 6px hsl(var(--primary-glow)))'
           }}
@@ -40,7 +40,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-4 h-4 bg-accent-bright rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-a 28s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 28s ease-in-out infinite',
+            animation: 'helical-diagonal-a 28s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '16s',
             filter: 'drop-shadow(0 0 10px hsl(var(--accent-bright)))'
           }}
@@ -48,7 +48,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-a 35s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 35s ease-in-out infinite',
+            animation: 'helical-diagonal-a 35s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '24s',
             filter: 'drop-shadow(0 0 6px hsl(var(--secondary-glow)))'
           }}
@@ -58,7 +58,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-3 h-3 bg-primary rounded-full will-change-transform shadow-lg" 
           style={{ 
-            animation: 'helical-motion-b 31s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 31s ease-in-out infinite',
+            animation: 'helical-diagonal-b 31s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '4s',
             filter: 'drop-shadow(0 0 8px hsl(var(--primary)))'
           }}
@@ -66,7 +66,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-b 33s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 33s ease-in-out infinite',
+            animation: 'helical-diagonal-b 33s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '12s',
             filter: 'drop-shadow(0 0 6px hsl(var(--accent)))'
           }}
@@ -74,7 +74,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-3 h-3 bg-secondary-glow rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-b 29s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 29s ease-in-out infinite',
+            animation: 'helical-diagonal-b 29s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '20s',
             filter: 'drop-shadow(0 0 8px hsl(var(--secondary-glow)))'
           }}
@@ -82,7 +82,7 @@ export const HeroSection = () => {
         <div 
           className="absolute left-0 w-1 h-1 bg-accent-bright rounded-full will-change-transform" 
           style={{ 
-            animation: 'helical-motion-b 34s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 34s ease-in-out infinite',
+            animation: 'helical-diagonal-b 34s cubic-bezier(0.4, 0, 0.2, 1) infinite',
             animationDelay: '28s',
             filter: 'drop-shadow(0 0 4px hsl(var(--accent-bright)))'
           }}
