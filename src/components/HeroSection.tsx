@@ -19,29 +19,29 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* DNA Dual Helix Track Particles - Curved Centerline + Variable Amplitude */}
+      {/* DNA Dual Helix Track Particles - Precise Crossing Alignment */}
       <HelixTracks
         gapVh={10}
-        y0={80} y1={40}
-        c1={-8} c2={6}
-        ampMin={6} ampMax={15}
+        y0={82} y1={41}
+        c1={-10} c2={8}
+        ampMin={9} ampMax={9}
         ampEase1={0.33} ampEase2={0.33}
         cycles={2.5}
-        phase={1.0}
+        phase={4.5945616035}
         durationSec={14}
         countPerTrack={80}
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
-        showGuides={true}
-        showIntersections={true}
-        debugMode={true}
-        showTracks={true}
+        showGuides={false}
+        showIntersections={false}
+        debugMode={false}
+        showTracks={false}
         className="z-10"
       />
 
-      {/* Content - Hidden in Debug Mode */}
-      <div className="relative z-20 container mx-auto px-6 py-24 hidden">
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-6 py-24">
         {/* All content hidden for debug view */}
       </div>
     </section>
