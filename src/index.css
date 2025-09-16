@@ -245,7 +245,7 @@
     75% { transform: translate(-10px, -5px) rotate(270deg); }
   }
 
-  /* DNA Dual Helix Track Keyframes - Dramatic Amplitude Track Swapping */
+  /* DNA Dual Helix Track Keyframes - Mathematical Precision with Reduced Amplitude */
   @keyframes helical-diagonal-a {
     0% {
       transform: translateX(-50px) translateY(75vh); /* Track A starts at first bullet point */
@@ -253,55 +253,40 @@
       scale: 0.8;
       z-index: 2;
     }
-    8% {
-      transform: translateX(calc(-50px + 8vw)) translateY(calc(80.2vh + 5.25vh)); /* Above center, dramatic amplitude */
-      opacity: 0.6;
+    12.5% {
+      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.125) + 5vh)); /* Above center */
+      opacity: 0.8;
       z-index: 2;
-    }
-    16% {
-      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh); /* CROSSOVER 1: Both tracks at center diagonal */
-      opacity: 1;
-      z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh - 7.5vh)); /* Below center, reaches Track B baseline */
-      z-index: 1;
-    }
-    33% {
-      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh); /* CROSSOVER 2: Both tracks at center diagonal */
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.25))); /* CROSSOVER 1 */
+      opacity: 1;
+      scale: 1;
       z-index: 5;
     }
-    41% {
-      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh + 7.5vh)); /* Above center, maximum separation */
-      z-index: 2;
+    37.5% {
+      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.375) - 5vh)); /* Below center */
+      z-index: 1;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh); /* Center of diagonal path */
-      z-index: 2;
-    }
-    58% {
-      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh - 7.5vh)); /* Below center, reaches Track B baseline */
-      z-index: 1;
-    }
-    66% {
-      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh); /* CROSSOVER 3: Both tracks at center diagonal */
+      transform: translateX(calc(-50px + 50vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.5))); /* CROSSOVER 2 - Center */
       z-index: 5;
     }
-    74% {
-      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh + 7.5vh)); /* Above center, maximum separation */
+    62.5% {
+      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.625) + 5vh)); /* Above center */
       z-index: 2;
     }
-    81% {
-      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh); /* CROSSOVER 4: Both tracks at center diagonal */
+    75% {
+      transform: translateX(calc(-50px + 75vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.75))); /* CROSSOVER 3 */
       z-index: 5;
     }
-    91% {
-      transform: translateX(calc(-50px + 91vw)) translateY(calc(34.25vh - 5.25vh)); /* Below center, approaching end */
-      opacity: 0.6;
+    87.5% {
+      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.875) - 5vh)); /* Below center */
+      opacity: 0.8;
       z-index: 1;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(30vh); /* Track A ends at 30vh */
+      transform: translateX(calc(100vw + 50px)) translateY(35vh); /* Track A ends at 35vh */
       opacity: 0;
       scale: 1.2;
       z-index: 1;
@@ -310,60 +295,45 @@
 
   @keyframes helical-diagonal-b {
     0% {
-      transform: translateX(-50px) translateY(90vh); /* Track B starts at scroll indicator */
+      transform: translateX(-50px) translateY(85vh); /* Track B starts at scroll indicator */
       opacity: 0;
       scale: 1.2;
       z-index: 1;
     }
-    8% {
-      transform: translateX(calc(-50px + 8vw)) translateY(calc(84.7vh - 5.25vh)); /* Below center, dramatic amplitude */
-      opacity: 0.6;
+    12.5% {
+      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.125) - 5vh)); /* Below center */
+      opacity: 0.8;
       z-index: 1;
-    }
-    16% {
-      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh); /* CROSSOVER 1: Both tracks at center diagonal */
-      opacity: 1;
-      z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh + 7.5vh)); /* Above center, reaches Track A baseline */
-      z-index: 2;
-    }
-    33% {
-      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh); /* CROSSOVER 2: Both tracks at center diagonal */
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.25))); /* CROSSOVER 1 */
+      opacity: 1;
+      scale: 1;
       z-index: 5;
     }
-    41% {
-      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh - 7.5vh)); /* Below center, maximum separation */
-      z-index: 1;
+    37.5% {
+      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.375) + 5vh)); /* Above center */
+      z-index: 2;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh); /* Center of diagonal path */
-      z-index: 1;
-    }
-    58% {
-      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh + 7.5vh)); /* Above center, reaches Track A baseline */
-      z-index: 2;
-    }
-    66% {
-      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh); /* CROSSOVER 3: Both tracks at center diagonal */
+      transform: translateX(calc(-50px + 50vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.5))); /* CROSSOVER 2 - Center */
       z-index: 5;
     }
-    74% {
-      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh - 7.5vh)); /* Below center, maximum separation */
+    62.5% {
+      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.625) - 5vh)); /* Below center */
       z-index: 1;
     }
-    81% {
-      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh); /* CROSSOVER 4: Both tracks at center diagonal */
+    75% {
+      transform: translateX(calc(-50px + 75vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.75))); /* CROSSOVER 3 */
       z-index: 5;
     }
-    91% {
-      transform: translateX(calc(-50px + 91vw)) translateY(calc(36.75vh + 5.25vh)); /* Above center, approaching end */
-      opacity: 0.6;
+    87.5% {
+      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.875) + 5vh)); /* Above center */
+      opacity: 0.8;
       z-index: 2;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(40vh); /* Track B ends at 40vh */
+      transform: translateX(calc(100vw + 50px)) translateY(45vh); /* Track B ends at 45vh */
       opacity: 0;
       scale: 0.8;
       z-index: 2;
