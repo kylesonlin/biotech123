@@ -1,9 +1,5 @@
 import { Navigation } from '@/components/Navigation';
 import { FooterSection } from '@/components/FooterSection';
-import { SEOHead } from '@/components/SEOHead';
-import { ScrollAnimation } from '@/components/ScrollAnimations';
-import { TiltCard } from '@/components/InteractiveElements';
-import { usePageAnalytics, useBiotechAnalytics } from '@/hooks/usePageAnalytics';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,29 +12,8 @@ import giTractAnatomy from '@/assets/gi-tract-anatomy.jpg';
 import clinicalTimeline from '@/assets/clinical-timeline-viz.jpg';
 
 const Pipeline = () => {
-  usePageAnalytics();
-  const { trackPipelineInteraction } = useBiotechAnalytics();
-
-  const clinicalTrialStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "MedicalTrial",
-    "name": "GOBLET Clinical Study - Pelareorep in GI Cancers",
-    "description": "Phase 2/3 clinical trial evaluating pelareorep in combination with standard of care for gastrointestinal cancers",
-    "sponsor": {
-      "@type": "Organization", 
-      "name": "Oncolytics Biotech Inc."
-    },
-    "healthCondition": ["Pancreatic Ductal Adenocarcinoma", "Squamous Cell Anal Carcinoma"],
-    "status": "Ongoing"
-  };
-
   return (
     <div className="min-h-screen">
-      <SEOHead
-        title="Clinical Pipeline & Development Programs | Oncolytics Biotech"
-        description="Explore our registration-enabling clinical programs for pelareorep in pancreatic, colorectal, and anal cancers. Phase 3 studies planned for Q4 2025 with $16B+ total addressable market."
-        structuredData={clinicalTrialStructuredData}
-      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
