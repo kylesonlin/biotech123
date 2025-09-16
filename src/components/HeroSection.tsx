@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Play, TrendingUp } from 'lucide-react';
+import { ArrowRight, TrendingUp } from 'lucide-react';
 import heroImage from '@/assets/hero-molecular.jpg';
 import { HelixTracks } from '@/components/HelixTracks';
 
@@ -66,34 +66,6 @@ export const HeroSection = () => {
               Learn About Our Science
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-6 text-lg"
-            >
-              <Play className="mr-2 h-5 w-5" />
-              Watch Mechanism Video
-            </Button>
-
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-6 text-lg"
-            >
-              Investor Relations
-            </Button>
-          </div>
-
-          {/* Key Differentiator */}
-          <div className="mt-12 p-6 glass-effect rounded-xl border border-white/10">
-            <h3 className="text-lg font-semibold text-white mb-2">Why Pelareorep is Different</h3>
-            <ul className="text-white/90 space-y-1 text-sm">
-              <li>• Only IV oncolytic virus not neutralized in blood</li>
-              <li>• Dual mechanism: Cell lysis + immune cascade response</li>
-              <li>• Targets RAS mutations in 90% of pancreatic cancers</li>
-              <li>• Made in America with established safety profile</li>
-            </ul>
           </div>
         </div>
       </div>
