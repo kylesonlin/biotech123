@@ -13,34 +13,40 @@ export const PipelineSection = () => {
       patients: "~500,000 globally",
       cagr: "15% CAGR to 2032",
       survival: "3% 5-year survival rate",
-      status: "Phase 3 Planned",
+      clinicalBenefit: "2-year survival: ~22% vs ~9% SOC",
+      status: "Phase 3 Planned | FDA Fast Track & Orphan Drug",
       progress: 75,
       studies: "4 studies completed in 1L PDAC",
-      highlight: "Fastest growing cancer in people under 50"
+      highlight: "FDA Fast Track & Orphan Drug Designation",
+      timeline: "Phase 3 initiation planned Q4 2025"
     },
     {
       indication: "2L Metastatic Colorectal Cancer (mCRC)",
       description: "Second-line treatment for metastatic colorectal cancer",
-      market: "$2.5B TAM",
-      patients: "~180,000 globally",
-      cagr: "12% CAGR to 2032",
+      market: "$12B TAM",
+      patients: "~1,400,000 globally",
+      cagr: "4% CAGR to 2032",
       survival: "15% 5-year survival rate",
+      clinicalBenefit: "2-3x survival improvement vs SOC",
       status: "Registration Studies in Development",
       progress: 45,
       studies: "4 total studies in CRC",
-      highlight: "Large addressable market"
+      highlight: "Largest addressable market",
+      timeline: "Registration study initiation 1H 2026"
     },
     {
       indication: "Squamous Cell Anal Carcinoma (SCAC)",
       description: "Treatment for rare but aggressive anal cancer",
-      market: "$150M TAM", 
-      patients: "~9,000 globally",
-      cagr: "18% CAGR to 2032",
+      market: "$1B TAM", 
+      patients: "~50,000 globally",
+      cagr: "6% CAGR to 2032",
       survival: "65% 5-year survival rate",
-      status: "GOBLET Study Ongoing",
+      clinicalBenefit: "ORR: 33% vs 11-24% SOC",
+      status: "GOBLET Study Ongoing (Roche Partnership)",
       progress: 65,
-      studies: "1 study in SCAC (GOBLET)",
-      highlight: "High unmet medical need"
+      studies: "1 study in SCAC (GOBLET with Roche)",
+      highlight: "High unmet medical need & strong partnership",
+      timeline: "GOBLET interim data Q4 2025"
     }
   ];
 
@@ -74,7 +80,7 @@ export const PipelineSection = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
-              <div className="text-3xl font-bold text-accent mb-2">$5.6B+</div>
+              <div className="text-3xl font-bold text-accent mb-2">$16B+</div>
               <div className="text-sm text-muted-foreground">Total Addressable Market</div>
             </CardContent>
           </Card>
@@ -84,7 +90,7 @@ export const PipelineSection = () => {
               <div className="w-16 h-16 bg-gradient-secondary rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-white" />
               </div>
-              <div className="text-3xl font-bold text-accent mb-2">690K+</div>
+              <div className="text-3xl font-bold text-accent mb-2">1.9M+</div>
               <div className="text-sm text-muted-foreground">Global Patient Population</div>
             </CardContent>
           </Card>
@@ -144,9 +150,11 @@ export const PipelineSection = () => {
                   <div>
                     <div className="text-lg font-bold text-primary">{item.studies}</div>
                     <div className="text-sm text-muted-foreground">Clinical Experience</div>
+                    <div className="text-xs text-primary font-semibold mt-1">{item.clinicalBenefit}</div>
                   </div>
                   
-                  <div className="flex flex-col justify-center">
+                  <div className="flex flex-col justify-center space-y-2">
+                    <div className="text-xs text-muted-foreground font-medium">{item.timeline}</div>
                     <Button 
                       variant="outline" 
                       size="sm"
@@ -179,15 +187,15 @@ export const PipelineSection = () => {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span><strong>GOBLET Study:</strong> Ongoing in SCAC and PDAC patients</span>
+                    <span><strong>Q4 2025:</strong> GOBLET interim data & Phase 3 1L PDAC initiation</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span><strong>Phase 3 1L PDAC:</strong> Planning registration-enabling study</span>
+                    <span><strong>1H 2026:</strong> mCRC registration study initiation</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span><strong>CRC & SCAC:</strong> Early-stage registration studies in development</span>
+                    <span><strong>Ongoing:</strong> GOBLET study with Roche partnership in SCAC/PDAC</span>
                   </li>
                 </ul>
               </div>
@@ -200,15 +208,15 @@ export const PipelineSection = () => {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Registration-enabled studies only</span>
+                    <span>Registration-enabled studies with FDA Fast Track designation</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Partnership opportunities with large pharma</span>
+                    <span>Strategic partnership with Roche on GOBLET study</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>De-risked clinical and regulatory positioning</span>
+                    <span>De-risked platform: 1,100+ patients dosed with established safety</span>
                   </li>
                 </ul>
               </div>
