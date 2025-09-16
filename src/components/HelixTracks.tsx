@@ -20,7 +20,7 @@ export const HelixTracks = ({
   gapVh = 8,
   amplitude = 10,
   cycles = 2,
-  phase = 4.25,
+  phase = 0,
   durationSec = 14,
   countPerTrack = 80,
   sizePx = 5,
@@ -47,7 +47,7 @@ export const HelixTracks = ({
       dot.style.borderRadius = '50%';
       dot.style.willChange = 'transform, opacity, background-color';
       dot.dataset.track = 'A';
-      dot.dataset.seed = Math.random().toString();
+      dot.dataset.seed = (i / countPerTrack).toString();
       container.appendChild(dot);
       dots.push(dot);
     }
@@ -61,7 +61,7 @@ export const HelixTracks = ({
       dot.style.borderRadius = '50%';
       dot.style.willChange = 'transform, opacity, background-color';
       dot.dataset.track = 'B';
-      dot.dataset.seed = Math.random().toString();
+      dot.dataset.seed = ((i + countPerTrack * 0.5) / countPerTrack).toString();
       container.appendChild(dot);
       dots.push(dot);
     }
@@ -93,12 +93,23 @@ export const HelixTracks = ({
         // Depth effect
         const depth = (Math.cos(theta) + 1) / 2;
         const scale = 0.85 + 0.55 * depth;
-        const alpha = 0.35 + 0.65 * depth;
+        const depthAlpha = 0.35 + 0.65 * depth;
         const color = depth >= 0.5 ? colorFront : colorBack;
+
+        // Edge fade effect for seamless looping
+        const fadeDistance = 0.1; // 10% of screen width for fade
+        let edgeFade = 1;
+        if (p < fadeDistance) {
+          edgeFade = p / fadeDistance; // Fade in from left
+        } else if (p > 1 - fadeDistance) {
+          edgeFade = (1 - p) / fadeDistance; // Fade out to right
+        }
+
+        const finalAlpha = depthAlpha * edgeFade;
 
         // Apply styles
         dot.style.transform = `translate(${x}px, ${y}vh) scale(${scale})`;
-        dot.style.opacity = alpha.toString();
+        dot.style.opacity = finalAlpha.toString();
         dot.style.backgroundColor = color;
       });
 
