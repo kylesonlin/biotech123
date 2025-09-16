@@ -25,7 +25,6 @@ export const HeroSection = () => {
         y0={82} y1={41}
         c1={-10} c2={8}
         ampMin={9} ampMax={9}
-        ampEase1={0.33} ampEase2={0.33}
         cycles={2.5}
         phase={4.5945616035}
         durationSec={14}
@@ -33,10 +32,6 @@ export const HeroSection = () => {
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
-        showGuides={false}
-        showIntersections={false}
-        debugMode={false}
-        showTracks={false}
         className="z-10"
       />
 

@@ -299,14 +299,9 @@
   height: 10px; 
 }
 
-/* Defensive CSS - Hide guide elements */
-.helix-guides,
-.helix-guides *,
-.helix-track,
-.guide-center,
-.guide-lane {
-  display: none !important;
-}
+/* Defensive CSS to hide guide elements */
+.helix-layer { inset: 0; }
+.helix-guides, .helix-track, .guide-center, .guide-lane { display: none !important; }
 
 /* Motion safety */
 @media (prefers-reduced-motion: reduce){
