@@ -65,12 +65,19 @@
     --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -152,50 +159,6 @@
     animation: rotate-slow 20s linear infinite;
   }
 
-  /* Enhanced Molecular Animations */
-  .animate-helical-orbit {
-    animation: helical-orbit 12s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  .animate-helical-orbit-reverse {
-    animation: helical-orbit 12s ease-in-out infinite reverse;
-    will-change: transform;
-  }
-
-  .animate-sine-wave {
-    animation: sine-wave 8s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  .animate-sine-wave-vertical {
-    animation: sine-wave-vertical 10s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  .animate-orbital-path {
-    animation: orbital-path 15s linear infinite;
-    will-change: transform;
-  }
-
-  .animate-orbital-path-reverse {
-    animation: orbital-path 15s linear infinite reverse;
-    will-change: transform;
-  }
-
-  .animate-molecular-drift {
-    animation: molecular-drift 18s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-helical-orbit, .animate-helical-orbit-reverse, .animate-sine-wave, 
-    .animate-sine-wave-vertical, .animate-orbital-path, .animate-orbital-path-reverse,
-    .animate-molecular-drift {
-      animation: none;
-    }
-  }
-
   .gradient-text {
     background: var(--gradient-hero);
     -webkit-background-clip: text;
@@ -215,103 +178,25 @@
 }
 
 @layer utilities {
-  /* Utility classes only - no keyframes */
-}
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
 
-/* Keyframes outside of @layer blocks */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-}
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--accent) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--accent) / 0.6); }
+  }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(var(--accent) / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(var(--accent) / 0.6); }
-}
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes molecular-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, -10px) rotate(90deg); }
-  50% { transform: translate(-5px, 10px) rotate(180deg); }
-  75% { transform: translate(-10px, -5px) rotate(270deg); }
-}
-
-/* DNA Helix Tracks - Parametric Animation System */
-/* Overlay host */
-.helix-layer{
-  position:absolute; inset:0;
-  pointer-events:none;
-  transform: translateZ(0); /* perf */
-}
-
-/* Particles */
-.helix-dot{
-  position:absolute; left:0; top:0;
-  border-radius:50%;
-  background: hsl(var(--accent));
-  box-shadow:0 0 0 1px rgba(0,0,0,.05) inset;
-  will-change: transform, opacity, background;
-}
-
-/* Optional debug: intersection markers */
-.helix-marks{ position:absolute; inset:0; pointer-events:none; }
-.helix-mark{
-  position:absolute;
-  width:10px; height:10px; border-radius:50%;
-  background: hsl(var(--foreground));
-  outline:2px solid hsl(var(--background)); 
-  box-shadow:0 0 0 2px hsl(var(--foreground) / 0.35);
-}
-
-/* Guide system for HelixTracks alignment */
-.helix-guides { 
-  position: absolute; 
-  inset: 0; 
-  pointer-events: none; 
-}
-
-.helix-guides div { 
-  position: absolute; 
-  width: 8px; 
-  height: 8px; 
-  border-radius: 50%; 
-}
-
-.guide-center { 
-  background: rgba(17,17,17,.35); 
-  width: 6px; 
-  height: 6px; 
-}
-
-.guide-lane { 
-  background: rgba(6,182,212,.25); 
-}
-
-.guide-xing { 
-  background: #111; 
-  outline: 2px solid #fff; 
-  width: 10px; 
-  height: 10px; 
-}
-
-/* Defensive CSS to hide guide elements and legacy overlays */
-.helix-layer { inset: 0; }
-.helix-guides,
-.helix-guides *,
-.helix-track,
-.guide-center,
-.guide-lane,
-svg[data-helix-guide],
-[data-helix-version="1.0.0"] {
-  display: none !important;
-}
-
-/* Motion safety */
-@media (prefers-reduced-motion: reduce){
-  .helix-layer{ display:none; }
+  @keyframes molecular-drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -10px) rotate(90deg); }
+    50% { transform: translate(-5px, 10px) rotate(180deg); }
+    75% { transform: translate(-10px, -5px) rotate(270deg); }
+  }
 }
