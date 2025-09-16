@@ -5,14 +5,13 @@ import heroImage from '@/assets/hero-molecular.jpg';
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Multi-Layer DNA Background with 3D Helical Animation */}
-      <div className="absolute inset-0 z-0" style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}>
+      {/* Multi-Layer DNA Background with Helical Animation */}
+      <div className="absolute inset-0 z-0">
         {/* Base DNA Layer */}
         <img 
           src={heroImage} 
           alt="Double-stranded RNA molecular structures" 
           className="absolute inset-0 w-full h-full object-cover dna-helix-base"
-          style={{ transform: 'translateZ(0px)' }}
         />
         
         {/* Mid DNA Layer */}
@@ -20,7 +19,6 @@ export const HeroSection = () => {
           src={heroImage} 
           alt="" 
           className="absolute inset-0 w-full h-full object-cover dna-helix-mid opacity-60"
-          style={{ transform: 'translateZ(-20px) scale(1.02)' }}
         />
         
         {/* Front DNA Layer */}
@@ -28,7 +26,6 @@ export const HeroSection = () => {
           src={heroImage} 
           alt="" 
           className="absolute inset-0 w-full h-full object-cover dna-helix-front opacity-40"
-          style={{ transform: 'translateZ(-40px) scale(1.05)' }}
         />
         
         {/* Gradient Overlays */}
