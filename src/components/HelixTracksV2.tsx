@@ -15,25 +15,19 @@ type Props = {
 };
 
 const TAU = Math.PI * 2;
-
-function cubicY(p: number, y0: number, y1: number, c1: number, c2: number) {
-  const u = 1 - p;
-  return (
-    u*u*u * y0 +
-    3*u*u*p * (y0 + c1) +
-    3*u*p*p * (y1 + c2) +
-    p*p*p * y1
-  );
-}
-
 const seed = (i: number) => (((i * 9301 + 49297) % 233280) / 233280);
+
+function cubicY(p:number, y0:number, y1:number, c1:number, c2:number){
+  const u = 1 - p;
+  return u*u*u*y0 + 3*u*u*p*(y0+c1) + 3*u*p*p*(y1+c2) + p*p*p*y1;
+}
 
 const HelixTracksV2: React.FC<Props> = ({
   gapVh = 10,
   y0 = 82, y1 = 41, c1 = -10, c2 = 8,
   cycles = 2.5,
-  phase = 4.5945616035,     // anchors middle crossing ~54.5%
-  ampMin = 9, ampMax = 9,   // constant amplitude => stable crossings
+  phase = 4.5945616035,   // anchors middle crossing ~54.5%
+  ampMin = 9, ampMax = 9, // constant amplitude => stable crossings
   durationSec = 14,
   countPerTrack = 80,
   sizePx = 5,
@@ -47,7 +41,7 @@ const HelixTracksV2: React.FC<Props> = ({
     // hard-kill any legacy overlays still in DOM
     document.querySelectorAll(
       ".helix-guides, .helix-track, .guide-center, .guide-lane, svg[data-helix-guide]"
-    ).forEach((el) => el.remove());
+    ).forEach(el => el.remove());
 
     const layer = layerRef.current!;
     layer.innerHTML = "";
@@ -59,10 +53,8 @@ const HelixTracksV2: React.FC<Props> = ({
     for (let i = 0; i < total; i++) {
       const d = document.createElement("div");
       d.style.position = "absolute";
-      d.style.left = "0";
-      d.style.top = "0";
-      d.style.width = `${sizePx}px`;
-      d.style.height = `${sizePx}px`;
+      d.style.left = "0"; d.style.top = "0";
+      d.style.width = `${sizePx}px`; d.style.height = `${sizePx}px`;
       d.style.borderRadius = "9999px";
       d.style.willChange = "transform,opacity";
       d.style.pointerEvents = "none";
@@ -86,8 +78,8 @@ const HelixTracksV2: React.FC<Props> = ({
         const yC = cubicY(p, y0, y1, c1, c2);
         const theta = TAU * cycles * p + phase;
 
-        const yA = yC - gapVh / 2 + A * Math.sin(theta);
-        const yB = yC + gapVh / 2 - A * Math.sin(theta);
+        const yA = yC - gapVh/2 + A * Math.sin(theta);
+        const yB = yC + gapVh/2 - A * Math.sin(theta);
         const yvh = d.dataset.track === "A" ? yA : yB;
 
         const depth = (Math.cos(theta) + 1) / 2;
@@ -111,6 +103,7 @@ const HelixTracksV2: React.FC<Props> = ({
     colorFront, colorBack
   ]);
 
+  // ← IMPORTANT: actually return a node
   return <div ref={layerRef} className={`pointer-events-none absolute inset-0 ${className}`} />;
 };
 
