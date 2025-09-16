@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play, TrendingUp } from 'lucide-react';
 import heroImage from '@/assets/hero-molecular.jpg';
+import { HelixTracks } from '@/components/HelixTracks';
 
 export const HeroSection = () => {
   return (
@@ -16,13 +17,8 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent"></div>
       </div>
 
-      {/* Floating Molecular Elements */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-20 w-4 h-4 bg-accent rounded-full animate-float opacity-60"></div>
-        <div className="absolute top-40 right-32 w-6 h-6 bg-accent-bright rounded-full animate-molecular-drift opacity-40"></div>
-        <div className="absolute bottom-32 left-32 w-3 h-3 bg-secondary-glow rounded-full animate-pulse-glow opacity-50"></div>
-        <div className="absolute bottom-40 right-20 w-5 h-5 bg-primary-glow rounded-full animate-float opacity-30"></div>
-      </div>
+      {/* DNA Helix Particle Animation */}
+      <HelixTracks />
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 py-24">
