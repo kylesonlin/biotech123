@@ -253,37 +253,45 @@
       scale: 0.8;
       z-index: 2;
     }
-    12.5% {
-      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.125) + 5vh)); /* Above center */
-      opacity: 0.8;
+    8% {
+      transform: translateX(calc(-50px + 8vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.08) + 5vh)); /* Above center */
+      opacity: 0.6;
       z-index: 2;
     }
-    25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.25))); /* CROSSOVER 1 */
+    16% {
+      transform: translateX(calc(-50px + 16vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.16))); /* CROSSOVER 1 */
       opacity: 1;
       scale: 1;
       z-index: 5;
     }
-    37.5% {
-      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.375) - 5vh)); /* Below center */
+    24.5% {
+      transform: translateX(calc(-50px + 24.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.245) - 5vh)); /* Below center */
       z-index: 1;
     }
-    50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.5))); /* CROSSOVER 2 - Center */
+    33% {
+      transform: translateX(calc(-50px + 33vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.33))); /* CROSSOVER 2 */
       z-index: 5;
     }
-    62.5% {
-      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.625) + 5vh)); /* Above center */
+    49.5% {
+      transform: translateX(calc(-50px + 49.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.495) + 5vh)); /* Above center */
       z-index: 2;
     }
-    75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.75))); /* CROSSOVER 3 */
+    66% {
+      transform: translateX(calc(-50px + 66vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.66))); /* CROSSOVER 3 */
       z-index: 5;
     }
-    87.5% {
-      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.875) - 5vh)); /* Below center */
-      opacity: 0.8;
+    73.5% {
+      transform: translateX(calc(-50px + 73.5vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.735) - 5vh)); /* Below center */
       z-index: 1;
+    }
+    81% {
+      transform: translateX(calc(-50px + 81vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.81))); /* CROSSOVER 4 */
+      z-index: 5;
+    }
+    90% {
+      transform: translateX(calc(-50px + 90vw)) translateY(calc(75vh - ((75vh - 35vh) * 0.90) + 5vh)); /* Above center */
+      opacity: 0.8;
+      z-index: 2;
     }
     100% {
       transform: translateX(calc(100vw + 50px)) translateY(35vh); /* Track A ends at 35vh */
@@ -300,37 +308,45 @@
       scale: 1.2;
       z-index: 1;
     }
-    12.5% {
-      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.125) - 5vh)); /* Below center */
-      opacity: 0.8;
+    8% {
+      transform: translateX(calc(-50px + 8vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.08) - 5vh)); /* Below center */
+      opacity: 0.6;
       z-index: 1;
     }
-    25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.25))); /* CROSSOVER 1 */
+    16% {
+      transform: translateX(calc(-50px + 16vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.16))); /* CROSSOVER 1 */
       opacity: 1;
       scale: 1;
       z-index: 5;
     }
-    37.5% {
-      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.375) + 5vh)); /* Above center */
+    24.5% {
+      transform: translateX(calc(-50px + 24.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.245) + 5vh)); /* Above center */
       z-index: 2;
     }
-    50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.5))); /* CROSSOVER 2 - Center */
+    33% {
+      transform: translateX(calc(-50px + 33vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.33))); /* CROSSOVER 2 */
       z-index: 5;
     }
-    62.5% {
-      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.625) - 5vh)); /* Below center */
+    49.5% {
+      transform: translateX(calc(-50px + 49.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.495) - 5vh)); /* Below center */
       z-index: 1;
     }
-    75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.75))); /* CROSSOVER 3 */
+    66% {
+      transform: translateX(calc(-50px + 66vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.66))); /* CROSSOVER 3 */
       z-index: 5;
     }
-    87.5% {
-      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.875) + 5vh)); /* Above center */
-      opacity: 0.8;
+    73.5% {
+      transform: translateX(calc(-50px + 73.5vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.735) + 5vh)); /* Above center */
       z-index: 2;
+    }
+    81% {
+      transform: translateX(calc(-50px + 81vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.81))); /* CROSSOVER 4 */
+      z-index: 5;
+    }
+    90% {
+      transform: translateX(calc(-50px + 90vw)) translateY(calc(85vh - ((85vh - 45vh) * 0.90) - 5vh)); /* Below center */
+      opacity: 0.8;
+      z-index: 1;
     }
     100% {
       transform: translateX(calc(100vw + 50px)) translateY(45vh); /* Track B ends at 45vh */
