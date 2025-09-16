@@ -1,194 +1,235 @@
 import React, { useEffect, useRef } from "react";
 
 type HelixTracksProps = {
-  /** Track A vertical start→end in vh (default 75→35) */
-  startA?: number;
-  endA?: number;
-  /** Track B vertical start→end in vh (default 85→45) */
-  startB?: number;
-  endB?: number;
+  // Baseline "rails" gap (track A vs B). 10vh matches 75→35 vs 85→45.
+  gapVh?: number;
 
-  /** Helix amplitude in vh (≥5vh to ensure crossings). Default 9 */
-  ampVh?: number;
+  // Centerline endpoints (midpoint between the two rails).
+  // Defaults: (0 → 80vh) to (1 → 40vh)
+  y0?: number; // vh at x=0
+  y1?: number; // vh at x=1
 
-  /** Helix cycles across 0→1 (2.5 ⇒ exactly 5 intersections). Default 2.5 */
-  cycles?: number;
+  // Curvature of centerline: cubic Bézier offsets in vh.
+  // y(p) = cubic(y0, y0+c1, y1+c2, y1)
+  c1?: number; // control-1 vertical offset (vh) near start
+  c2?: number; // control-2 vertical offset (vh) near end
 
-  /** Phase offset in radians (nudge to line up with background art). Default 0 */
-  phase?: number;
+  // Amplitude envelope (vh): min/max and ease shape.
+  ampMin?: number;   // must be >= gap/2 to guarantee crossings
+  ampMax?: number;   // larger in the middle to "pop forward"
+  ampEase1?: number; // cubic-bezier (0..1)
+  ampEase2?: number; // cubic-bezier (0..1)
 
-  /** Seconds per sweep across width. Default 12 */
+  // Helix
+  cycles?: number;   // 2.5 => 5 intersections
+  phase?: number;    // radians
   durationSec?: number;
 
-  /** Particles per track. Default 64 (128 total) */
+  // Particles
   countPerTrack?: number;
-
-  /** Base dot size in px. Default 5 */
   sizePx?: number;
+  colorFront?: string;
+  colorBack?: string;
 
-  /** Front/back colors (depth cue). Defaults tuned for Oncolytics palette */
-  colorFront?: string;   // when cos(theta) >= 0
-  colorBack?: string;    // when cos(theta) < 0 (fainter)
-
-  /** Optional: render small markers at the 5 intersection points (for alignment) */
-  showIntersections?: boolean;
-
-  /** Optional className for the overlay layer */
+  // Debug helpers
+  showGuides?: boolean;         // draw centerline + envelope lanes
+  showIntersections?: boolean;  // draw 5 markers
   className?: string;
 };
 
-/**
- * Parametric dual-helix particle overlay.
- * Uses math, not keyframes. Guaranteed 5 intersections when cycles=2.5 and ampVh≥5.
- * Positions in vw/vh so it's easy to align to a full-viewport hero image.
- */
+const TAU = Math.PI * 2;
+
+// cubic Bézier (y only) with parameter p in [0,1]
+function cubicY(p: number, y0: number, y1: number, c1: number, c2: number) {
+  const u = 1 - p;
+  return (
+    u*u*u * y0 +
+    3*u*u*p * (y0 + c1) +
+    3*u*p*p * (y1 + c2) +
+    p*p*p * y1
+  );
+}
+
+// simple cubic-bezier easing (0,0)->(1,1) returning y for given x=p
+// control points (ax,ay)=(ampEase1,0), (bx,by)=(1-ampEase2,1)
+function bezier01(p: number, a: number, b: number) {
+  // invert x via 3 iterations of Newton-Raphson (good enough)
+  const ax = a, ay = 0;
+  const bx = 1 - b, by = 1;
+  const cx1 = 3 * ax;
+  const cx2 = 3 * (bx - ax) - cx1;
+  const cx3 = 1 - cx1 - cx2;
+  const cy1 = 3 * ay;
+  const cy2 = 3 * (by - ay) - cy1;
+  const cy3 = 1 - cy1 - cy2;
+
+  let t = p;
+  for (let i = 0; i < 3; i++) {
+    const x = ((cx3 * t + cx2) * t + cx1) * t;
+    const dx = (3 * cx3 * t + 2 * cx2) * t + cx1;
+    if (dx !== 0) t -= (x - p) / dx;
+    t = Math.min(1, Math.max(0, t));
+  }
+  const y = ((cy3 * t + cy2) * t + cy1) * t;
+  return y;
+}
+
+const makeSeed = (i: number) => (((i * 9301 + 49297) % 233280) / 233280);
+
 export const HelixTracks: React.FC<HelixTracksProps> = ({
-  startA = 75, endA = 35,
-  startB = 85, endB = 45,
-  ampVh = 9,
+  gapVh = 10,
+  y0 = 80, y1 = 40,
+  c1 = -6, c2 = 4,          // slight S-curve by default
+  ampMin = 6, ampMax = 14,  // envelope (min must be >= gap/2 = 5)
+  ampEase1 = 0.35, ampEase2 = 0.35, // bulge near the middle
   cycles = 2.5,
   phase = 0,
-  durationSec = 12,
-  countPerTrack = 64,
+  durationSec = 14,
+  countPerTrack = 72,
   sizePx = 5,
   colorFront = "hsl(var(--accent))",
-  colorBack = "hsl(var(--accent) / 0.35)",
+  colorBack  = "hsl(var(--accent) / 0.35)",
+  showGuides = false,
   showIntersections = false,
   className = "",
 }) => {
   const layerRef = useRef<HTMLDivElement>(null);
-  const marksRef = useRef<HTMLDivElement | null>(null);
+  const guidesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const layer = layerRef.current;
-    if (!layer) return;
-
-    // Fresh mount
+    const layer = layerRef.current!;
     layer.innerHTML = "";
 
+    // Particles
     const total = countPerTrack * 2;
     const dots: HTMLDivElement[] = [];
-    // Build particles
     for (let i = 0; i < total; i++) {
       const d = document.createElement("div");
       d.className = "helix-dot";
       d.style.width = `${sizePx}px`;
       d.style.height = `${sizePx}px`;
-      // deterministic seed based on index so hydration is stable
-      const seed = ((i * 9301 + 49297) % 233280) / 233280; // 0..1
-      d.dataset.seed = seed.toString();
+      d.dataset.seed = String(makeSeed(i));
       d.dataset.track = i < countPerTrack ? "A" : "B";
       layer.appendChild(d);
       dots.push(d);
     }
 
-    const TAU = Math.PI * 2;
-    let startTime = performance.now();
-    let rafId = 0;
+    const T = durationSec * 1000;
+    let t0 = performance.now();
+    let raf = 0;
 
     const loop = (now: number) => {
-      const T = durationSec * 1000;
-      const basePhase = ((now - startTime) % T) / T; // 0..1
-
-      // precompute constants used per-frame
-      const gapHalf = 5; // half the baseline gap (A & B are 10vh apart at any x) — from (75-40t) vs (85-40t)
-      const amp = ampVh;
-
+      const base = ((now - t0) % T) / T;      // 0..1 sweep
       for (const d of dots) {
         const track = d.dataset.track as "A" | "B";
-        const seed = Number(d.dataset.seed); // 0..1 per particle
-        const p = (basePhase + seed) % 1;    // 0..1 progress across width
+        const p = (base + Number(d.dataset.seed)) % 1;
         const xvw = p * 100;
 
-        // Baselines
-        const yA_base = startA + (endA - startA) * p;
-        const yB_base = startB + (endB - startB) * p;
+        // centerline y at x=p
+        const yC = cubicY(p, y0, y1, c1, c2);
 
-        // Helix angle
+        // amplitude envelope at x=p
+        const env = bezier01(p, ampEase1, ampEase2);   // 0..1
+        const A = ampMin + (ampMax - ampMin) * env;
+
+        // helix angle
         const theta = TAU * cycles * p + phase;
 
-        // Parametric y with opposite phase
-        const yA = yA_base + amp * Math.sin(theta);
-        const yB = yB_base - amp * Math.sin(theta);
+        // tracks hugging the centerline with constant gap +/- A*sin
+        const yA = yC - gapVh/2 + A * Math.sin(theta);
+        const yB = yC + gapVh/2 - A * Math.sin(theta);
 
         const yvh = track === "A" ? yA : yB;
 
-        // Depth cues from cos(theta)
+        // depth cues
         const depth = (Math.cos(theta) + 1) / 2; // 0..1
-        const scale = 0.8 + depth * 0.6;         // 0.8..1.4
-        const alpha = 0.35 + depth * 0.65;       // 0.35..1
+        const scale = 0.8 + 0.6 * depth;
+        const alpha = 0.35 + 0.65 * depth;
         const color = depth >= 0.5 ? colorFront : colorBack;
 
         d.style.transform = `translate(${xvw}vw, ${yvh}vh) scale(${scale})`;
-        d.style.opacity = `${alpha}`;
+        d.style.opacity = String(alpha);
         d.style.background = color;
         d.style.zIndex = depth > 0.5 ? "2" : "1";
       }
 
-      rafId = requestAnimationFrame(loop);
+      raf = requestAnimationFrame(loop);
     };
 
-    rafId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(rafId);
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
   }, [
-    startA, endA, startB, endB,
-    ampVh, cycles, phase,
+    gapVh, y0, y1, c1, c2,
+    ampMin, ampMax, ampEase1, ampEase2,
+    cycles, phase,
     durationSec, countPerTrack, sizePx,
     colorFront, colorBack
   ]);
 
-  // Optional: intersection markers (for alignment/debug)
+  // Optional guides: centerline + envelope lanes + intersection markers
   useEffect(() => {
-    if (!showIntersections) {
-      if (marksRef.current) {
-        marksRef.current.remove();
-        marksRef.current = null;
-      }
+    const host = layerRef.current!;
+    if (!showGuides && !showIntersections) {
+      if (guidesRef.current) { guidesRef.current.remove(); guidesRef.current = null; }
       return;
     }
+    if (guidesRef.current) guidesRef.current.remove();
+    const g = document.createElement("div");
+    g.className = "helix-guides";
+    host.appendChild(g);
+    guidesRef.current = g;
 
-    const host = layerRef.current;
-    if (!host) return;
-    if (marksRef.current) marksRef.current.remove();
-    const marksLayer = document.createElement("div");
-    marksLayer.className = "helix-marks";
-    host.appendChild(marksLayer);
-    marksRef.current = marksLayer;
+    const addDot = (xvw: number, yvh: number, cls: string) => {
+      const d = document.createElement("div");
+      d.className = cls;
+      d.style.transform = `translate(${xvw}vw, ${yvh}vh) translate(-50%,-50%)`;
+      g.appendChild(d);
+    };
 
-    const TAU = Math.PI * 2;
-    const c = 5 / ampVh; // baseline gap (10vh) / (2A)
-    if (Math.abs(c) <= 1) {
-      const sols: number[] = [];
-      // There are ~2K solutions for sin(TAU*K*t + phase) = c in [0,1]
-      const K = cycles;
-      const base = Math.asin(c) - phase;
-      const nMax = Math.ceil(2 * K) + 2;
-      for (let n = 0; n < nMax; n++) {
-        const t1 = (base + 2 * Math.PI * n) / (TAU * K);
-        const t2 = (Math.PI - base + 2 * Math.PI * n) / (TAU * K);
-        if (t1 >= 0 && t1 <= 1) sols.push(t1);
-        if (t2 >= 0 && t2 <= 1) sols.push(t2);
+    // centerline + envelope lanes
+    if (showGuides) {
+      for (let i = 0; i <= 100; i++) {
+        const p = i/100;
+        const xvw = p * 100;
+        const yC = cubicY(p, y0, y1, c1, c2);
+        const env = bezier01(p, ampEase1, ampEase2);
+        const A = ampMin + (ampMax - ampMin)*env;
+        addDot(xvw, yC, "guide-center");
+        addDot(xvw, yC - gapVh/2 + A, "guide-lane");
+        addDot(xvw, yC + gapVh/2 - A, "guide-lane");
       }
-      sols.sort((a, b) => a - b);
-      // De-duplicate numerically close solutions
-      const ts = sols.filter((t, i, arr) => i === 0 || Math.abs(t - arr[i - 1]) > 1e-4);
+    }
 
-      ts.forEach((t) => {
+    // exact intersections when sin(...) = gap/(2A(p))
+    if (showIntersections) {
+      const c = gapVh / 2;
+      const ts: number[] = [];
+      for (let i = 0; i <= 500; i++) { // numeric search, fine for setup
+        const p = i/500;
+        const env = bezier01(p, ampEase1, ampEase2);
+        const A = ampMin + (ampMax - ampMin)*env;
+        const s = c / A; if (s > 1) continue;
+        // solve theta = asin(s) - phase + 2πn  OR  π - asin(s) - phase + 2πn
+        const asinS = Math.asin(s);
+        const K = cycles;
+        const roots = [
+          (asinS - phase) / (TAU*K),
+          (Math.PI - asinS - phase) / (TAU*K),
+        ];
+        roots.forEach(t => { if (t >= 0 && t <= 1) ts.push(t); });
+      }
+      ts.sort((a,b)=>a-b);
+      // de-dupe
+      const uniq = ts.filter((t,i,a)=> i===0 || Math.abs(t-a[i-1])>1e-3).slice(0,5);
+      uniq.forEach(t => {
         const xvw = t * 100;
-        // Midpoint of A/B at intersection
-        const yMid = ( (startA + (endA - startA) * t) + (startB + (endB - startB) * t) ) / 2;
-        const dot = document.createElement("div");
-        dot.className = "helix-mark";
-        dot.style.transform = `translate(${xvw}vw, ${yMid}vh) translate(-50%,-50%)`;
-        marksLayer.appendChild(dot);
+        const yC = cubicY(t, y0, y1, c1, c2);
+        addDot(xvw, yC, "guide-xing");
       });
     }
 
-    return () => {
-      marksLayer.remove();
-      marksRef.current = null;
-    };
-  }, [showIntersections, ampVh, cycles, phase, startA, endA, startB, endB]);
+    return () => { g.remove(); guidesRef.current = null; };
+  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, ampEase1, ampEase2, cycles, phase]);
 
   return <div className={`helix-layer ${className}`} ref={layerRef} aria-hidden />;
 };

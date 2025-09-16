@@ -19,18 +19,21 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* DNA Dual Helix Track Particles - Mathematically Perfect 5 Intersections */}
+      {/* DNA Dual Helix Track Particles - Curved Centerline + Variable Amplitude */}
       <HelixTracks
-        startA={75} endA={35}
-        startB={85} endB={45}
-        ampVh={9}
+        gapVh={10}
+        y0={80} y1={40}
+        c1={-8} c2={6}
+        ampMin={6} ampMax={15}
+        ampEase1={0.33} ampEase2={0.33}
         cycles={2.5}
-        phase={0}
+        phase={0.1}
         durationSec={14}
-        countPerTrack={32}
+        countPerTrack={80}
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
+        showGuides={true}
         className="z-10"
       />
 
