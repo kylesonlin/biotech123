@@ -248,83 +248,106 @@
   /* DNA Dual Helix Track Keyframes */
   @keyframes helical-diagonal-a {
     0% {
-      transform: translateX(-50px) translateY(80vh) rotateZ(0deg);
+      transform: translateX(-50px) translateY(calc(80vh + 60px)) rotateZ(0deg);
       opacity: 0;
       scale: 0.8;
+      z-index: 10;
     }
     10% {
       opacity: 0.8;
+      transform: translateX(calc(-50px + 10vw)) translateY(calc(76.5vh + 45px)) rotateZ(36deg);
     }
     16% {
       transform: translateX(calc(-50px + 16vw)) translateY(72.8vh) rotateZ(57.6deg);
+      z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(68.75vh - 40px) rotateZ(90deg);
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(68.75vh - 60px)) rotateZ(90deg);
+      z-index: 1;
     }
     33% {
       transform: translateX(calc(-50px + 33vw)) translateY(65.15vh) rotateZ(118.8deg);
+      z-index: 5;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(57.5vh + 40px) rotateZ(180deg);
+      transform: translateX(calc(-50px + 50vw)) translateY(calc(57.5vh + 60px)) rotateZ(180deg);
+      z-index: 10;
     }
     66% {
       transform: translateX(calc(-50px + 66vw)) translateY(50.3vh) rotateZ(237.6deg);
+      z-index: 5;
     }
     75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(46.25vh - 40px) rotateZ(270deg);
+      transform: translateX(calc(-50px + 75vw)) translateY(calc(46.25vh - 60px)) rotateZ(270deg);
+      z-index: 1;
     }
     81% {
       transform: translateX(calc(-50px + 81vw)) translateY(43.55vh) rotateZ(291.6deg);
+      z-index: 5;
     }
     90% {
       opacity: 0.8;
-      transform: translateX(calc(-50px + 90vw)) translateY(39.5vh + 40px) rotateZ(324deg);
+      transform: translateX(calc(-50px + 90vw)) translateY(calc(39.5vh + 45px)) rotateZ(324deg);
+      z-index: 10;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(35vh) rotateZ(360deg);
+      transform: translateX(calc(100vw + 50px)) translateY(calc(35vh + 60px)) rotateZ(360deg);
       opacity: 0;
       scale: 1.2;
+      z-index: 10;
     }
   }
 
   @keyframes helical-diagonal-b {
     0% {
-      transform: translateX(-50px) translateY(calc(80vh + 40px)) rotateZ(180deg);
+      transform: translateX(-50px) translateY(calc(80vh - 60px)) rotateZ(180deg);
       opacity: 0;
       scale: 1.2;
+      z-index: 1;
     }
     10% {
       opacity: 0.8;
+      transform: translateX(calc(-50px + 10vw)) translateY(calc(76.5vh - 45px)) rotateZ(216deg);
+      z-index: 1;
     }
     16% {
       transform: translateX(calc(-50px + 16vw)) translateY(72.8vh) rotateZ(237.6deg);
+      z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(68.75vh + 40px) rotateZ(270deg);
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(68.75vh + 60px)) rotateZ(270deg);
+      z-index: 10;
     }
     33% {
       transform: translateX(calc(-50px + 33vw)) translateY(65.15vh) rotateZ(298.8deg);
+      z-index: 5;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(57.5vh - 40px) rotateZ(360deg);
+      transform: translateX(calc(-50px + 50vw)) translateY(calc(57.5vh - 60px)) rotateZ(360deg);
+      z-index: 1;
     }
     66% {
       transform: translateX(calc(-50px + 66vw)) translateY(50.3vh) rotateZ(417.6deg);
+      z-index: 5;
     }
     75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(46.25vh + 40px) rotateZ(450deg);
+      transform: translateX(calc(-50px + 75vw)) translateY(calc(46.25vh + 60px)) rotateZ(450deg);
+      z-index: 10;
     }
     81% {
       transform: translateX(calc(-50px + 81vw)) translateY(43.55vh) rotateZ(471.6deg);
+      z-index: 5;
     }
     90% {
       opacity: 0.8;
-      transform: translateX(calc(-50px + 90vw)) translateY(39.5vh - 40px) rotateZ(504deg);
+      transform: translateX(calc(-50px + 90vw)) translateY(calc(39.5vh - 45px)) rotateZ(504deg);
+      z-index: 1;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(35vh - 40px) rotateZ(540deg);
+      transform: translateX(calc(100vw + 50px)) translateY(calc(35vh - 60px)) rotateZ(540deg);
       opacity: 0;
       scale: 0.8;
+      z-index: 1;
     }
   }
 }
