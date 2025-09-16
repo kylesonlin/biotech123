@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play, TrendingUp } from 'lucide-react';
 import heroImage from '@/assets/hero-molecular.jpg';
-import HelixTracks from '@/components/HelixTracks';
+import HelixTracksV2 from '@/components/HelixTracksV2';
 
 export const HeroSection = () => {
   return (
@@ -20,7 +20,7 @@ export const HeroSection = () => {
       </div>
 
       {/* DNA Dual Helix Track Particles - Precise Crossing Alignment */}
-      <HelixTracks
+      <HelixTracksV2
         gapVh={10}
         y0={82} y1={41}
         c1={-10} c2={8}
