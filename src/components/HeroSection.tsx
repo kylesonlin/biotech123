@@ -28,9 +28,9 @@ export const HeroSection = () => {
         ampMax={16}
         swellCenter={0.40}
         swellWidth={0.62}
-        notchAt={0.52}
-        notchWidth={0.05}
-        notchDepth={0.85}
+        boostAt={0.52}         // where that small extra crossing appears now
+        boostWidth={0.05}      // ~5% of width
+        boostStrength={0.85}   // strong boost → A(p) >> 5vh locally → no crossing
         cycles={2.5}
         phase={-0.12}
         durationSec={14}

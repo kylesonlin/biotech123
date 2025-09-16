@@ -20,10 +20,10 @@ type HelixTracksProps = {
   swellCenter?: number;  // 0..1, where the bulge peaks
   swellWidth?: number;   // 0..1, how wide the bulge spans
   
-  // Optional notch to remove specific crossings
-  notchAt?: number;      // 0..1, center of the notch that removes a crossing
-  notchWidth?: number;   // 0..1, notch width
-  notchDepth?: number;   // 0..1, how deep the notch cuts (1 = full cut)
+  // remove-one-intersection boost (optional)
+  boostAt?: number;         // 0..1 position to kill a crossing by boosting amplitude
+  boostWidth?: number;      // 0..1 span of the boost
+  boostStrength?: number;   // 0..1 strength of amplitude boost
 
   // Legacy amplitude (deprecated but kept for compatibility)
   ampEase1?: number; // cubic-bezier (0..1)
@@ -72,21 +72,21 @@ type AmpParams = {
   ampMax: number;       // peak amplitude (vh)
   swellCenter: number;  // 0..1, where the bulge peaks
   swellWidth: number;   // 0..1, how wide the bulge spans
-  notchAt?: number;     // 0..1, center of the notch that removes a crossing
-  notchWidth?: number;  // 0..1, notch width
-  notchDepth?: number;  // 0..1, how deep the notch cuts (1 = full cut)
+  boostAt?: number;     // 0..1, center of the boost that removes a crossing
+  boostWidth?: number;  // 0..1, boost width
+  boostStrength?: number; // 0..1, how much to boost amplitude (removes crossing)
 };
 
 function amplitudeAt(p: number, cfg: AmpParams) {
-  const { ampMin, ampMax, swellCenter, swellWidth, notchAt, notchWidth = 0.05, notchDepth = 0 } = cfg;
+  const { ampMin, ampMax, swellCenter, swellWidth, boostAt, boostWidth = 0.05, boostStrength = 0 } = cfg;
   const bulge = tent(p, swellCenter, swellWidth);                // 0..1
   let A = ampMin + (ampMax - ampMin) * bulge;                    // vh
 
-  if (typeof notchAt === "number" && notchWidth > 0 && notchDepth > 0) {
-    // Gaussian-ish notch centered at notchAt
-    const d = (p - notchAt) / (notchWidth / 2);                  // ±2 → edge
-    const cut = Math.exp(-0.5 * d * d) * notchDepth;            // 0..notchDepth
-    A *= (1 - cut);                                             // reduce locally
+  if (typeof boostAt === "number" && boostWidth > 0 && boostStrength > 0) {
+    // Gaussian-ish boost centered at boostAt - increases amplitude to remove crossing
+    const d = (p - boostAt) / (boostWidth / 2);                  // ±2 → edge
+    const boost = Math.exp(-0.5 * d * d) * boostStrength;       // 0..boostStrength
+    A += boost * ampMax * 0.5;                                   // boost locally to kill intersection
   }
   return Math.max(0, A);
 }
@@ -121,7 +121,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   c1 = -6, c2 = 4,          // slight S-curve by default
   ampMin = 5.2, ampMax = 15,  // new defaults for better control
   swellCenter = 0.45, swellWidth = 0.60,  // swell positioning
-  notchAt, notchWidth = 0.04, notchDepth = 0,  // notch (off by default)
+  boostAt, boostWidth = 0.04, boostStrength = 0,  // boost (off by default)
   ampEase1 = 0.35, ampEase2 = 0.35, // legacy compatibility
   cycles = 2.5,
   phase = 0,
@@ -170,11 +170,11 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
         const yC = cubicY(p, y0, y1, c1, c2);
 
         // amplitude envelope at x=p
-        const A = amplitudeAt(p, {
-          ampMin, ampMax,
-          swellCenter, swellWidth,
-          notchAt, notchWidth, notchDepth
-        });
+    const A = amplitudeAt(p, {
+      ampMin, ampMax,
+      swellCenter, swellWidth,
+      boostAt, boostWidth, boostStrength
+    });
 
         // helix angle
         const theta = TAU * cycles * p + phase;
@@ -205,7 +205,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   }, [
     gapVh, y0, y1, c1, c2,
     ampMin, ampMax, swellCenter, swellWidth,
-    notchAt, notchWidth, notchDepth,
+    boostAt, boostWidth, boostStrength,
     cycles, phase,
     durationSec, countPerTrack, sizePx,
     colorFront, colorBack
@@ -240,7 +240,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
         const A = amplitudeAt(p, {
           ampMin, ampMax,
           swellCenter, swellWidth,
-          notchAt, notchWidth, notchDepth
+          boostAt, boostWidth, boostStrength
         });
         addDot(xvw, yC, "guide-center");
         addDot(xvw, yC - gapVh/2 + A, "guide-lane");
@@ -257,7 +257,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
         const A = amplitudeAt(p, {
           ampMin, ampMax,
           swellCenter, swellWidth,
-          notchAt, notchWidth, notchDepth
+          boostAt, boostWidth, boostStrength
         });
         const s = c / A; if (s > 1) continue;
         // solve theta = asin(s) - phase + 2πn  OR  π - asin(s) - phase + 2πn
@@ -293,7 +293,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     }
 
     return () => { g.remove(); guidesRef.current = null; };
-  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, swellCenter, swellWidth, notchAt, notchWidth, notchDepth, cycles, phase]);
+  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, swellCenter, swellWidth, boostAt, boostWidth, boostStrength, cycles, phase]);
 
   return <div className={`helix-layer ${className}`} ref={layerRef} aria-hidden />;
 };
