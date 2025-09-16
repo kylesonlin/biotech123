@@ -248,188 +248,124 @@
   /* DNA Dual Helix Track Keyframes - Dramatic Amplitude Track Swapping */
   @keyframes helical-diagonal-a {
     0% {
-      transform: translateX(-50px) translateY(75vh) rotateZ(0deg);
+      transform: translateX(-50px) translateY(75vh); /* Track A starts at first bullet point */
       opacity: 0;
       scale: 0.8;
-      filter: blur(0px);
       z-index: 2;
     }
     8% {
-      transform: translateX(calc(-50px + 8vw)) translateY(calc(80.2vh + 5.25vh)) rotateZ(58deg);
-      opacity: 0.4;
-      scale: 0.9;
-      filter: blur(0.5px);
+      transform: translateX(calc(-50px + 8vw)) translateY(calc(80.2vh + 5.25vh)); /* Above center, dramatic amplitude */
+      opacity: 0.6;
       z-index: 2;
     }
     16% {
-      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh) rotateZ(115deg);
+      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh); /* CROSSOVER 1: Both tracks at center diagonal */
       opacity: 1;
-      scale: 1.2;
-      filter: blur(0px);
       z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh - 7.5vh)) rotateZ(180deg);
-      opacity: 0.3;
-      scale: 0.6;
-      filter: blur(1px);
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh - 7.5vh)); /* Below center, reaches Track B baseline */
       z-index: 1;
     }
     33% {
-      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh) rotateZ(238deg);
-      opacity: 1;
-      scale: 1.1;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh); /* CROSSOVER 2: Both tracks at center diagonal */
       z-index: 5;
     }
     41% {
-      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh + 7.5vh)) rotateZ(295deg);
-      opacity: 0.8;
-      scale: 1.4;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh + 7.5vh)); /* Above center, maximum separation */
       z-index: 2;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh) rotateZ(360deg);
-      opacity: 0.9;
-      scale: 1.0;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh); /* Center of diagonal path */
       z-index: 2;
     }
     58% {
-      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh - 7.5vh)) rotateZ(418deg);
-      opacity: 0.3;
-      scale: 0.7;
-      filter: blur(0.8px);
+      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh - 7.5vh)); /* Below center, reaches Track B baseline */
       z-index: 1;
     }
     66% {
-      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh) rotateZ(475deg);
-      opacity: 1;
-      scale: 1.2;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh); /* CROSSOVER 3: Both tracks at center diagonal */
       z-index: 5;
     }
     74% {
-      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh + 7.5vh)) rotateZ(533deg);
-      opacity: 0.7;
-      scale: 1.3;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh + 7.5vh)); /* Above center, maximum separation */
       z-index: 2;
     }
     81% {
-      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh) rotateZ(583deg);
-      opacity: 1;
-      scale: 1.1;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh); /* CROSSOVER 4: Both tracks at center diagonal */
       z-index: 5;
     }
     91% {
-      transform: translateX(calc(-50px + 91vw)) translateY(calc(34.25vh - 5.25vh)) rotateZ(655deg);
-      opacity: 0.4;
-      scale: 0.8;
-      filter: blur(0.5px);
+      transform: translateX(calc(-50px + 91vw)) translateY(calc(34.25vh - 5.25vh)); /* Below center, approaching end */
+      opacity: 0.6;
       z-index: 1;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(30vh) rotateZ(720deg);
+      transform: translateX(calc(100vw + 50px)) translateY(30vh); /* Track A ends at 30vh */
       opacity: 0;
-      scale: 1.0;
-      filter: blur(0px);
+      scale: 1.2;
       z-index: 1;
     }
   }
 
   @keyframes helical-diagonal-b {
     0% {
-      transform: translateX(-50px) translateY(90vh) rotateZ(180deg);
+      transform: translateX(-50px) translateY(90vh); /* Track B starts at scroll indicator */
       opacity: 0;
-      scale: 1.0;
-      filter: blur(0px);
+      scale: 1.2;
       z-index: 1;
     }
     8% {
-      transform: translateX(calc(-50px + 8vw)) translateY(calc(84.7vh - 5.25vh)) rotateZ(238deg);
-      opacity: 0.4;
-      scale: 0.7;
-      filter: blur(0.8px);
+      transform: translateX(calc(-50px + 8vw)) translateY(calc(84.7vh - 5.25vh)); /* Below center, dramatic amplitude */
+      opacity: 0.6;
       z-index: 1;
     }
     16% {
-      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh) rotateZ(295deg);
+      transform: translateX(calc(-50px + 16vw)) translateY(77.7vh); /* CROSSOVER 1: Both tracks at center diagonal */
       opacity: 1;
-      scale: 1.2;
-      filter: blur(0px);
       z-index: 5;
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh + 7.5vh)) rotateZ(360deg);
-      opacity: 0.8;
-      scale: 1.4;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 25vw)) translateY(calc(74.38vh + 7.5vh)); /* Above center, reaches Track A baseline */
       z-index: 2;
     }
     33% {
-      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh) rotateZ(418deg);
-      opacity: 1;
-      scale: 1.1;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 33vw)) translateY(69.65vh); /* CROSSOVER 2: Both tracks at center diagonal */
       z-index: 5;
     }
     41% {
-      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh - 7.5vh)) rotateZ(475deg);
-      opacity: 0.3;
-      scale: 0.6;
-      filter: blur(1px);
+      transform: translateX(calc(-50px + 41vw)) translateY(calc(64.93vh - 7.5vh)); /* Below center, maximum separation */
       z-index: 1;
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh) rotateZ(540deg);
-      opacity: 0.9;
-      scale: 1.0;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 50vw)) translateY(58.75vh); /* Center of diagonal path */
       z-index: 1;
     }
     58% {
-      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh + 7.5vh)) rotateZ(598deg);
-      opacity: 0.8;
-      scale: 1.3;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 58vw)) translateY(calc(52.58vh + 7.5vh)); /* Above center, reaches Track A baseline */
       z-index: 2;
     }
     66% {
-      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh) rotateZ(655deg);
-      opacity: 1;
-      scale: 1.2;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 66vw)) translateY(47.85vh); /* CROSSOVER 3: Both tracks at center diagonal */
       z-index: 5;
     }
     74% {
-      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh - 7.5vh)) rotateZ(713deg);
-      opacity: 0.3;
-      scale: 0.7;
-      filter: blur(0.8px);
+      transform: translateX(calc(-50px + 74vw)) translateY(calc(43.13vh - 7.5vh)); /* Below center, maximum separation */
       z-index: 1;
     }
     81% {
-      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh) rotateZ(763deg);
-      opacity: 1;
-      scale: 1.1;
-      filter: blur(0px);
+      transform: translateX(calc(-50px + 81vw)) translateY(39.4vh); /* CROSSOVER 4: Both tracks at center diagonal */
       z-index: 5;
     }
     91% {
-      transform: translateX(calc(-50px + 91vw)) translateY(calc(36.75vh + 5.25vh)) rotateZ(835deg);
-      opacity: 0.4;
-      scale: 0.9;
-      filter: blur(0.5px);
+      transform: translateX(calc(-50px + 91vw)) translateY(calc(36.75vh + 5.25vh)); /* Above center, approaching end */
+      opacity: 0.6;
       z-index: 2;
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(40vh) rotateZ(900deg);
+      transform: translateX(calc(100vw + 50px)) translateY(40vh); /* Track B ends at 40vh */
       opacity: 0;
-      scale: 1.0;
-      filter: blur(0px);
+      scale: 0.8;
       z-index: 2;
     }
   }
