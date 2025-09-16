@@ -248,39 +248,40 @@
   /* DNA Dual Helix Track Keyframes */
   @keyframes helical-diagonal-a {
     0% {
-      transform: translateX(-50px) translateY(calc(80vh + 0px)) rotateZ(0deg);
+      transform: translateX(-50px) translateY(80vh) rotateZ(0deg);
       opacity: 0;
       scale: 0.8;
     }
     10% {
       opacity: 0.8;
     }
-    12.5% {
-      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(73.125vh - 40px)) rotateZ(45deg);
+    16% {
+      transform: translateX(calc(-50px + 16vw)) translateY(72.8vh) rotateZ(57.6deg);
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(66.25vh + 0px)) rotateZ(90deg);
+      transform: translateX(calc(-50px + 25vw)) translateY(68.75vh - 40px) rotateZ(90deg);
     }
-    37.5% {
-      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(59.375vh + 40px)) rotateZ(135deg);
+    33% {
+      transform: translateX(calc(-50px + 33vw)) translateY(65.15vh) rotateZ(118.8deg);
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(calc(52.5vh + 0px)) rotateZ(180deg);
+      transform: translateX(calc(-50px + 50vw)) translateY(57.5vh + 40px) rotateZ(180deg);
     }
-    62.5% {
-      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(45.625vh - 40px)) rotateZ(225deg);
+    66% {
+      transform: translateX(calc(-50px + 66vw)) translateY(50.3vh) rotateZ(237.6deg);
     }
     75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(calc(38.75vh + 0px)) rotateZ(270deg);
+      transform: translateX(calc(-50px + 75vw)) translateY(46.25vh - 40px) rotateZ(270deg);
     }
-    87.5% {
-      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(31.875vh + 40px)) rotateZ(315deg);
+    81% {
+      transform: translateX(calc(-50px + 81vw)) translateY(43.55vh) rotateZ(291.6deg);
     }
     90% {
       opacity: 0.8;
+      transform: translateX(calc(-50px + 90vw)) translateY(39.5vh + 40px) rotateZ(324deg);
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(calc(25vh + 0px)) rotateZ(360deg);
+      transform: translateX(calc(100vw + 50px)) translateY(35vh) rotateZ(360deg);
       opacity: 0;
       scale: 1.2;
     }
@@ -295,32 +296,33 @@
     10% {
       opacity: 0.8;
     }
-    12.5% {
-      transform: translateX(calc(-50px + 12.5vw)) translateY(calc(73.125vh + 0px)) rotateZ(225deg);
+    16% {
+      transform: translateX(calc(-50px + 16vw)) translateY(72.8vh) rotateZ(237.6deg);
     }
     25% {
-      transform: translateX(calc(-50px + 25vw)) translateY(calc(66.25vh - 40px)) rotateZ(270deg);
+      transform: translateX(calc(-50px + 25vw)) translateY(68.75vh + 40px) rotateZ(270deg);
     }
-    37.5% {
-      transform: translateX(calc(-50px + 37.5vw)) translateY(calc(59.375vh + 0px)) rotateZ(315deg);
+    33% {
+      transform: translateX(calc(-50px + 33vw)) translateY(65.15vh) rotateZ(298.8deg);
     }
     50% {
-      transform: translateX(calc(-50px + 50vw)) translateY(calc(52.5vh + 40px)) rotateZ(360deg);
+      transform: translateX(calc(-50px + 50vw)) translateY(57.5vh - 40px) rotateZ(360deg);
     }
-    62.5% {
-      transform: translateX(calc(-50px + 62.5vw)) translateY(calc(45.625vh + 0px)) rotateZ(405deg);
+    66% {
+      transform: translateX(calc(-50px + 66vw)) translateY(50.3vh) rotateZ(417.6deg);
     }
     75% {
-      transform: translateX(calc(-50px + 75vw)) translateY(calc(38.75vh - 40px)) rotateZ(450deg);
+      transform: translateX(calc(-50px + 75vw)) translateY(46.25vh + 40px) rotateZ(450deg);
     }
-    87.5% {
-      transform: translateX(calc(-50px + 87.5vw)) translateY(calc(31.875vh + 0px)) rotateZ(495deg);
+    81% {
+      transform: translateX(calc(-50px + 81vw)) translateY(43.55vh) rotateZ(471.6deg);
     }
     90% {
       opacity: 0.8;
+      transform: translateX(calc(-50px + 90vw)) translateY(39.5vh - 40px) rotateZ(504deg);
     }
     100% {
-      transform: translateX(calc(100vw + 50px)) translateY(calc(25vh - 40px)) rotateZ(540deg);
+      transform: translateX(calc(100vw + 50px)) translateY(35vh - 40px) rotateZ(540deg);
       opacity: 0;
       scale: 0.8;
     }
