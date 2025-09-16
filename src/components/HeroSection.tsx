@@ -18,9 +18,10 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* DNA Dual Helix Track Particles - Enhanced with 16 particles for smoother motion */}
+      {/* DNA Dual Helix Track Particles - Two clustered waves per track */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {/* DNA Helix Track A - Clockwise Spiral (8 particles) */}
+        {/* DNA Helix Track A - Clockwise Spiral */}
+        {/* Cluster 1 - First wave */}
         <div 
           className="absolute left-0 w-3 h-3 bg-accent rounded-full will-change-transform shadow-lg" 
           style={{ 
@@ -31,70 +32,73 @@ export const HeroSection = () => {
           }}
         ></div>
         <div 
-          className="absolute left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '1.25s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--primary-glow)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
           className="absolute left-0 w-5 h-5 bg-accent-bright rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '2.5s',
+            animationDelay: '10.5s',
             filter: 'drop-shadow(0 0 12px hsl(var(--accent-bright)))',
             opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '3.75s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--secondary-glow)))',
-            opacity: '0.8'
           }}
         ></div>
         <div 
           className="absolute left-0 w-4 h-4 bg-primary rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '5s',
+            animationDelay: '21s',
             filter: 'drop-shadow(0 0 10px hsl(var(--primary)))',
             opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-1 h-1 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '6.25s',
-            filter: 'drop-shadow(0 0 4px hsl(var(--accent)))',
-            opacity: '0.9'
           }}
         ></div>
         <div 
           className="absolute left-0 w-3 h-3 bg-primary-glow rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '7.5s',
+            animationDelay: '31.5s',
             filter: 'drop-shadow(0 0 8px hsl(var(--primary-glow)))',
             opacity: '1'
+          }}
+        ></div>
+        
+        {/* Cluster 2 - Second wave */}
+        <div 
+          className="absolute left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '5.25s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--primary-glow)))',
+            opacity: '0.9'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '15.75s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--secondary-glow)))',
+            opacity: '0.8'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-1 h-1 bg-accent rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '26.25s',
+            filter: 'drop-shadow(0 0 4px hsl(var(--accent)))',
+            opacity: '0.9'
           }}
         ></div>
         <div 
           className="absolute left-0 w-2 h-2 bg-accent-bright rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-a 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '8.75s',
+            animationDelay: '36.75s',
             filter: 'drop-shadow(0 0 6px hsl(var(--accent-bright)))',
             opacity: '0.8'
           }}
         ></div>
         
-        {/* DNA Helix Track B - Counter-clockwise Spiral (8 particles) */}
+        {/* DNA Helix Track B - Counter-clockwise Spiral */}
+        {/* Cluster 1 - First wave */}
         <div 
           className="absolute left-0 w-3 h-3 bg-secondary-glow rounded-full will-change-transform shadow-lg" 
           style={{ 
@@ -105,37 +109,10 @@ export const HeroSection = () => {
           }}
         ></div>
         <div 
-          className="absolute left-0 w-4 h-4 bg-primary rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '1.25s',
-            filter: 'drop-shadow(0 0 10px hsl(var(--primary)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '2.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
-            opacity: '0.8'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-1 h-1 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '3.75s',
-            filter: 'drop-shadow(0 0 4px hsl(var(--primary-glow)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
           className="absolute left-0 w-5 h-5 bg-accent-bright rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '5s',
+            animationDelay: '10.5s',
             filter: 'drop-shadow(0 0 12px hsl(var(--accent-bright)))',
             opacity: '1'
           }}
@@ -144,27 +121,56 @@ export const HeroSection = () => {
           className="absolute left-0 w-3 h-3 bg-secondary rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '6.25s',
+            animationDelay: '21s',
             filter: 'drop-shadow(0 0 8px hsl(var(--secondary)))',
             opacity: '0.8'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '7.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
-            opacity: '1'
           }}
         ></div>
         <div 
           className="absolute left-0 w-4 h-4 bg-primary-glow rounded-full will-change-transform" 
           style={{ 
             animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
-            animationDelay: '8.75s',
+            animationDelay: '31.5s',
             filter: 'drop-shadow(0 0 10px hsl(var(--primary-glow)))',
             opacity: '0.9'
+          }}
+        ></div>
+        
+        {/* Cluster 2 - Second wave */}
+        <div 
+          className="absolute left-0 w-4 h-4 bg-primary rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '5.25s',
+            filter: 'drop-shadow(0 0 10px hsl(var(--primary)))',
+            opacity: '0.9'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '15.75s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
+            opacity: '0.8'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-1 h-1 bg-primary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '26.25s',
+            filter: 'drop-shadow(0 0 4px hsl(var(--primary-glow)))',
+            opacity: '0.9'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-diagonal-b 42s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite',
+            animationDelay: '36.75s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
+            opacity: '1'
           }}
         ></div>
       </div>
