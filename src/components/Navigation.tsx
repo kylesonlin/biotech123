@@ -1,28 +1,127 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Users, Microscope, FileText, TrendingUp, Brain, Dna, BookOpen, BarChart3, FileCheck, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  
+  const toggleDropdown = (dropdown: string) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  // Click outside to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (activeDropdown && !Object.values(dropdownRefs.current).some(ref => 
+        ref?.contains(event.target as Node)
+      )) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [activeDropdown]);
+
+  const NavButton = ({ 
+    children, 
+    isActive, 
+    onClick 
+  }: { 
+    children: React.ReactNode; 
+    isActive: boolean; 
+    onClick: () => void;
+  }) => (
+    <button
+      onClick={onClick}
+      className={`
+        relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out
+        flex items-center gap-2 group hover:scale-105
+        ${isActive 
+          ? 'bg-gradient-primary text-primary-foreground shadow-glow' 
+          : 'text-muted-foreground hover:text-foreground hover:bg-accent/20'
+        }
+      `}
+    >
+      {children}
+      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isActive ? 'rotate-180' : ''}`} />
+    </button>
+  );
+
+  const DropdownContent = ({ 
+    isOpen, 
+    children, 
+    dropdownKey 
+  }: { 
+    isOpen: boolean; 
+    children: React.ReactNode; 
+    dropdownKey: string;
+  }) => (
+    <div
+      ref={(el) => dropdownRefs.current[dropdownKey] = el}
+      className={`
+        absolute top-full left-0 mt-2 min-w-80 z-50 transition-all duration-300 ease-out origin-top-left
+        ${isOpen 
+          ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' 
+          : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+        }
+      `}
+    >
+      <div className="glass-effect rounded-2xl shadow-elegant border border-border/50 p-6 backdrop-blur-xl">
+        {children}
+      </div>
+    </div>
+  );
+
+  const DropdownItem = ({ 
+    to, 
+    icon: Icon, 
+    title, 
+    description,
+    onClick
+  }: { 
+    to: string; 
+    icon: any; 
+    title: string; 
+    description?: string;
+    onClick?: () => void;
+  }) => (
+    <Link 
+      to={to} 
+      onClick={() => {
+        setActiveDropdown(null);
+        onClick?.();
+      }}
+      className="group flex items-start gap-4 p-4 rounded-xl hover:bg-accent/10 transition-all duration-200 hover:scale-[1.02]"
+    >
+      <div className="p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors">
+        <Icon className="h-5 w-5 text-primary" />
+      </div>
+      <div className="flex-1">
+        <div className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+          {title}
+        </div>
+        {description && (
+          <p className="text-xs text-muted-foreground mt-1 group-hover:text-muted-foreground/80">
+            {description}
+          </p>
+        )}
+      </div>
+    </Link>
+  );
 
   return (
     <header className="fixed top-0 w-full z-50 glass-effect border-b border-border/50">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo & Company Name */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
               <div className="w-6 h-6 border-2 border-primary-foreground rounded-full relative">
                 <div className="absolute inset-1 border border-primary-foreground rounded-full animate-pulse-glow"></div>
               </div>
@@ -34,145 +133,157 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="space-x-2">
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-80 p-4">
-                    <div className="grid gap-3">
-                      <NavigationMenuLink asChild>
-                        <Link to="/#mission" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Our Mission</div>
-                          <p className="text-xs text-muted-foreground mt-1">Building a GI tumor immunotherapy platform</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/#management" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Leadership Team</div>
-                          <p className="text-xs text-muted-foreground mt-1">Experienced dealmakers and scientists</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/scientific-advisory-board" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Scientific Advisory Board</div>
-                          <p className="text-xs text-muted-foreground mt-1">World-class scientific expertise</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+          <div className="hidden lg:flex items-center space-x-2">
+            {/* About Dropdown */}
+            <div className="relative">
+              <NavButton 
+                isActive={activeDropdown === 'about'} 
+                onClick={() => toggleDropdown('about')}
+              >
+                <Users className="h-4 w-4" />
+                About
+              </NavButton>
+              <DropdownContent isOpen={activeDropdown === 'about'} dropdownKey="about">
+                <div className="grid gap-2">
+                  <DropdownItem
+                    to="/#mission"
+                    icon={TrendingUp}
+                    title="Our Mission"
+                    description="Building a GI tumor immunotherapy platform"
+                  />
+                  <DropdownItem
+                    to="/#management"
+                    icon={Users}
+                    title="Leadership Team"
+                    description="Experienced dealmakers and scientists"
+                  />
+                  <DropdownItem
+                    to="/scientific-advisory-board"
+                    icon={Brain}
+                    title="Scientific Advisory Board"
+                    description="World-class scientific expertise"
+                  />
+                </div>
+              </DropdownContent>
+            </div>
 
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Science</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-96 p-4">
-                    <div className="grid gap-3">
-                      <NavigationMenuLink asChild>
-                        <Link to="/#science" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Mechanism of Action</div>
-                          <p className="text-xs text-muted-foreground mt-1">ds-RNA oncolytic virus targeting RAS pathway</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/#science" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Safety Profile</div>
-                          <p className="text-xs text-muted-foreground mt-1">Proven in 1,100+ patients over 15 years</p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/#pipeline" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Clinical Pipeline</div>
-                          <p className="text-xs text-muted-foreground mt-1">GOBLET study ongoing in GI cancers</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+            {/* Science Dropdown */}
+            <div className="relative">
+              <NavButton 
+                isActive={activeDropdown === 'science'} 
+                onClick={() => toggleDropdown('science')}
+              >
+                <Microscope className="h-4 w-4" />
+                Science
+              </NavButton>
+              <DropdownContent isOpen={activeDropdown === 'science'} dropdownKey="science">
+                <div className="grid gap-2">
+                  <DropdownItem
+                    to="/#science"
+                    icon={Dna}
+                    title="Mechanism of Action"
+                    description="ds-RNA oncolytic virus targeting RAS pathway"
+                  />
+                  <DropdownItem
+                    to="/#science"
+                    icon={Shield}
+                    title="Safety Profile"
+                    description="Proven in 1,100+ patients over 15 years"
+                  />
+                  <DropdownItem
+                    to="/#pipeline"
+                    icon={BarChart3}
+                    title="Clinical Pipeline"
+                    description="GOBLET study ongoing in GI cancers"
+                  />
+                </div>
+              </DropdownContent>
+            </div>
 
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/#pipeline" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                    Pipeline
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+            {/* Media Dropdown */}
+            <div className="relative">
+              <NavButton 
+                isActive={activeDropdown === 'media'} 
+                onClick={() => toggleDropdown('media')}
+              >
+                <FileText className="h-4 w-4" />
+                Media
+              </NavButton>
+              <DropdownContent isOpen={activeDropdown === 'media'} dropdownKey="media">
+                <div className="grid gap-2">
+                  <DropdownItem
+                    to="/media"
+                    icon={FileText}
+                    title="Press Releases"
+                    description="Latest company announcements"
+                  />
+                  <DropdownItem
+                    to="/media"
+                    icon={BookOpen}
+                    title="Publications"
+                    description="Scientific research and findings"
+                  />
+                  <DropdownItem
+                    to="/media"
+                    icon={FileCheck}
+                    title="Presentations"
+                    description="Conference presentations and posters"
+                  />
+                </div>
+              </DropdownContent>
+            </div>
 
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Media</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-80 p-4">
-                    <div className="grid gap-3">
-                      <NavigationMenuLink asChild>
-                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Press Releases</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Publications</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/media" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Presentations</div>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Investors</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-80 p-4">
-                    <div className="grid gap-3">
-                      <NavigationMenuLink asChild>
-                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Stock Information</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">SEC Filings</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link to="/investors" className="block p-3 rounded-lg hover:bg-muted transition-colors">
-                          <div className="font-medium text-sm">Corporate Governance</div>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/faq" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-                    FAQs
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+            {/* Investors Dropdown */}
+            <div className="relative">
+              <NavButton 
+                isActive={activeDropdown === 'investors'} 
+                onClick={() => toggleDropdown('investors')}
+              >
+                <TrendingUp className="h-4 w-4" />
+                Investors
+              </NavButton>
+              <DropdownContent isOpen={activeDropdown === 'investors'} dropdownKey="investors">
+                <div className="grid gap-2">
+                  <DropdownItem
+                    to="/investors"
+                    icon={BarChart3}
+                    title="Stock Information"
+                    description="Current stock price and performance"
+                  />
+                  <DropdownItem
+                    to="/investors"
+                    icon={FileCheck}
+                    title="SEC Filings"
+                    description="Regulatory filings and reports"
+                  />
+                  <DropdownItem
+                    to="/investors"
+                    icon={Shield}
+                    title="Corporate Governance"
+                    description="Board information and policies"
+                  />
+                </div>
+              </DropdownContent>
+            </div>
+          </div>
 
           {/* Contact CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <Link to="/investors">
-              <Button variant="outline" size="sm">Investor Relations</Button>
+              <Button variant="outline" size="sm" className="rounded-full border-2 hover:border-primary hover:shadow-glow transition-all duration-300">
+                Investor Relations
+              </Button>
             </Link>
-            <Button size="sm" className="bg-gradient-primary hover:opacity-90">Contact</Button>
+            <Button size="sm" className="bg-gradient-primary hover:shadow-glow rounded-full transition-all duration-300 hover:scale-105">
+              Contact
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="sm"
-            className="lg:hidden"
+            className="lg:hidden rounded-full"
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -181,19 +292,45 @@ export const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-border/50">
+          <div className="lg:hidden mt-4 py-4 border-t border-border/50 animate-accordion-down">
             <div className="space-y-3">
-              <Link to="/#about" className="block py-2 text-sm font-medium hover:text-primary transition-colors">About</Link>
-              <Link to="/#science" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Science</Link>
-              <Link to="/#pipeline" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Pipeline</Link>
-              <Link to="/media" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Media</Link>
-              <Link to="/investors" className="block py-2 text-sm font-medium hover:text-primary transition-colors">Investors</Link>
-              <Link to="/faq" className="block py-2 text-sm font-medium hover:text-primary transition-colors">FAQs</Link>
-              <div className="pt-4 space-y-2">
-                <Link to="/investors" className="block">
-                  <Button variant="outline" size="sm" className="w-full">Investor Relations</Button>
+              <Link 
+                to="/#mission" 
+                className="block py-3 px-4 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-accent/10"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                to="/#science" 
+                className="block py-3 px-4 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-accent/10"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Science
+              </Link>
+              <Link 
+                to="/media" 
+                className="block py-3 px-4 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-accent/10"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Media
+              </Link>
+              <Link 
+                to="/investors" 
+                className="block py-3 px-4 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-accent/10"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Investors
+              </Link>
+              <div className="pt-4 space-y-3">
+                <Link to="/investors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full rounded-full">
+                    Investor Relations
+                  </Button>
                 </Link>
-                <Button size="sm" className="w-full bg-gradient-primary hover:opacity-90">Contact</Button>
+                <Button size="sm" className="w-full bg-gradient-primary rounded-full">
+                  Contact
+                </Button>
               </div>
             </div>
           </div>
