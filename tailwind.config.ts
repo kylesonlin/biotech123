@@ -78,8 +78,29 @@ export default {
         'card': 'var(--shadow-card)',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'Consolas', 'monospace'],
+        sans: [
+          "Roboto",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+        condensed: [
+          "Roboto Condensed",
+          "ui-sans-serif", 
+          "system-ui",
+          "sans-serif"
+        ],
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
