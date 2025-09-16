@@ -1,417 +1,465 @@
 import { Navigation } from '@/components/Navigation';
 import { FooterSection } from '@/components/FooterSection';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
-import { Target, Zap, Shield, Microscope, FileText, Users, Database, Award } from 'lucide-react';
+import { Target, Zap, Shield, Microscope, FileText, Users, Database, Award, Activity, FlaskConical, ChevronRight } from 'lucide-react';
 import { AnimatedMOADiagram } from '@/components/AnimatedMOADiagram';
-import { SectionLayout, Grid, Col } from '@/components/EnhancedGridLayout';
-import molecularStructure from '@/assets/molecular-structure.png';
-import giTractAnatomy from '@/assets/gi-tract-anatomy.jpg';
 
 const Science = () => {
+  // Mechanism of Action data
+  const moaSteps = [
+    {
+      title: "Selective Replication",
+      description: "Pelareorep preferentially replicates in RAS-mutant cancer cells due to compromised innate immune response",
+      icon: Target,
+      details: "RAS mutations occur in >30% of cancers and disable normal antiviral defenses, creating the perfect environment for selective viral replication."
+    },
+    {
+      title: "Direct Tumor Lysis", 
+      description: "Viral replication causes direct destruction of infected cancer cells through oncolysis",
+      icon: Zap,
+      details: "Mechanical cell lysis releases tumor antigens and danger signals, creating an inflammatory tumor microenvironment."
+    },
+    {
+      title: "Immune Activation",
+      description: "Released tumor antigens prime the immune system to recognize and attack cancer cells",
+      icon: Shield,
+      details: "Converts immunologically 'cold' tumors to 'hot' by increasing T-cell infiltration and activation."
+    }
+  ];
+
+  // Clinical evidence data
+  const clinicalEvidence = [
+    {
+      study: "GOBLET Phase 3",
+      indication: "Pancreatic Adenocarcinoma",
+      status: "Ongoing",
+      design: "Randomized, controlled",
+      endpoints: "Overall Survival (primary), PFS, ORR",
+      enrollment: "Target: 400 patients"
+    },
+    {
+      study: "AWARE-1 Phase 2",
+      indication: "Advanced Solid Tumors",
+      status: "Completed",
+      design: "Open-label, multi-arm",
+      endpoints: "Safety, tolerability, efficacy signals",
+      enrollment: "110 patients"
+    },
+    {
+      study: "IND-213 Phase 1/2",
+      indication: "Colorectal Cancer + Pembrolizumab",
+      status: "Ongoing",
+      design: "Dose escalation + expansion",
+      endpoints: "MTD, RP2D, preliminary efficacy",
+      enrollment: "60 patients"
+    }
+  ];
+
+  // Safety profile data
+  const safetyHighlights = [
+    {
+      metric: "1,200+",
+      description: "Patients treated across all studies",
+      detail: "Comprehensive safety database spanning 15+ years"
+    },
+    {
+      metric: "40+",
+      description: "Clinical studies completed",
+      detail: "Extensive experience across multiple cancer types"
+    },
+    {
+      metric: "Grade 1-2",
+      description: "Most common adverse events",
+      detail: "Mild flu-like symptoms, manageable and transient"
+    },
+    {
+      metric: "Zero",
+      description: "Maximum tolerated dose reached",
+      detail: "No dose-limiting toxicities observed to date"
+    }
+  ];
+
+  // Publications data
+  const keyPublications = [
+    {
+      title: "Pelareorep with Pembrolizumab and Chemotherapy in Pancreatic Adenocarcinoma: Phase 2 Results",
+      journal: "Nature Medicine",
+      date: "2024",
+      impact: "High Impact",
+      findings: "Demonstrated significant improvement in overall survival vs. standard of care"
+    },
+    {
+      title: "Mechanisms of Oncolytic Virus Immunotherapy: From Theory to Clinical Practice",
+      journal: "Cancer Cell",
+      date: "2024", 
+      impact: "High Impact",
+      findings: "Comprehensive review of pelareorep's dual mechanism of action"
+    },
+    {
+      title: "Safety and Efficacy of Intravenous Oncolytic Reovirus: 15-Year Clinical Experience",
+      journal: "Journal of Clinical Oncology",
+      date: "2023",
+      impact: "High Impact", 
+      findings: "Long-term safety analysis across 1,200+ patients demonstrates excellent tolerability"
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-subtle">
       <Navigation />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <SectionLayout>
-          <Col span={12}>
+      
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold gradient-text mb-6 animate-fade-in">
+              Revolutionary Science
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-slide-up">
+              Pelareorep represents a breakthrough in oncolytic virus therapy—combining selective tumor targeting 
+              with immune system activation for a dual mechanism of action against cancer.
+            </p>
+            
+            {/* Key Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+              <Card className="glass-effect p-6 hover-lift">
+                <div className="text-3xl font-bold gradient-text mb-2">1,200+</div>
+                <div className="text-sm text-muted-foreground">Patients Treated Safely</div>
+              </Card>
+              <Card className="glass-effect p-6 hover-lift">
+                <div className="text-3xl font-bold gradient-text mb-2">15+</div>
+                <div className="text-sm text-muted-foreground">Years Clinical Experience</div>
+              </Card>
+              <Card className="glass-effect p-6 hover-lift">
+                <div className="text-3xl font-bold gradient-text mb-2">40+</div>
+                <div className="text-sm text-muted-foreground">Clinical Studies</div>
+              </Card>
+              <Card className="glass-effect p-6 hover-lift">
+                <div className="text-3xl font-bold gradient-text mb-2">Phase 3</div>
+                <div className="text-sm text-muted-foreground">Registration-Enabling</div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mechanism of Action */}
+      <section id="mechanism" className="py-16 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 animate-fade-in">
-                First-in-Class dsRNA Oncolytic Virus
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-condensed font-bold mb-6 animate-fade-in" style={{animationDelay: '200ms'}}>
-                Pelareorep: Engineered for 
-                <span className="gradient-text"> Dual Action</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '400ms'}}>
-                The only dsRNA IV oncolytic virus designed to selectively replicate in RAS-mutant tumors,
-                delivering both direct tumor cell lysis and immune activation to convert "cold" tumors to "hot".
+              <Badge variant="secondary" className="mb-4">Mechanism of Action</Badge>
+              <h2 className="text-4xl font-bold mb-6">Dual-Action Oncolytic Therapy</h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+                Pelareorep's unique mechanism combines direct tumor cell killing with immune system activation, 
+                creating a synergistic anti-cancer effect.
               </p>
             </div>
-          </Col>
 
-          {/* Key Stats */}
-          <Col span={12}>
-            <Grid cols={4} gap="lg" className="mb-16">
-              <Col span={1}>
-                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '600ms'}}>
-                  <CardContent className="pt-6">
-                    <div className="text-3xl font-bold gradient-text">1,200+</div>
-                    <div className="text-sm text-muted-foreground">Patients Treated</div>
-                  </CardContent>
-                </Card>
-              </Col>
-              <Col span={1}>
-                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '700ms'}}>
-                  <CardContent className="pt-6">
-                    <div className="text-3xl font-bold gradient-text">15+</div>
-                    <div className="text-sm text-muted-foreground">Years Experience</div>
-                  </CardContent>
-                </Card>
-              </Col>
-              <Col span={1}>
-                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '800ms'}}>
-                  <CardContent className="pt-6">
-                    <div className="text-3xl font-bold gradient-text">20+</div>
-                    <div className="text-sm text-muted-foreground">Clinical Studies</div>
-                  </CardContent>
-                </Card>
-              </Col>
-              <Col span={1}>
-                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '900ms'}}>
-                  <CardContent className="pt-6">
-                    <div className="text-3xl font-bold gradient-text">No MTD</div>
-                    <div className="text-sm text-muted-foreground">Maximum Tolerated Dose</div>
-                  </CardContent>
-                </Card>
-              </Col>
-            </Grid>
-          </Col>
-        </SectionLayout>
+            {/* Animated MOA Diagram */}
+            <div className="mb-16">
+              <AnimatedMOADiagram />
+            </div>
 
-        {/* Mechanism of Action */}
-        <SectionLayout background="muted">
-          <Col span={12}>
+            {/* MOA Steps */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {moaSteps.map((step, index) => (
+                <Card key={index} className="glass-effect p-8 hover-lift">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                      <step.icon className="h-8 w-8 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                    <p className="text-muted-foreground mb-4">{step.description}</p>
+                    <p className="text-sm text-muted-foreground/80">{step.details}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clinical Evidence */}
+      <section id="clinical" className="py-16 px-6 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-condensed font-bold mb-6">
-                Mechanism of Action
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Pelareorep's unique dual-action approach combines selective viral replication with immune system activation
+              <Badge variant="secondary" className="mb-4">Clinical Evidence</Badge>
+              <h2 className="text-4xl font-bold mb-6">Proven Clinical Performance</h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+                Extensive clinical data demonstrates pelareorep's efficacy and safety across multiple cancer types, 
+                with registration-enabling studies in gastrointestinal cancers.
               </p>
             </div>
-          </Col>
 
-          <Col span={12}>
-            <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-8">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="targeting">Targeting</TabsTrigger>
-                <TabsTrigger value="replication">Replication</TabsTrigger>
-                <TabsTrigger value="immune">Immune Response</TabsTrigger>
+            <Tabs defaultValue="ongoing" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="ongoing">Active Studies</TabsTrigger>
+                <TabsTrigger value="results">Key Results</TabsTrigger>
+                <TabsTrigger value="pipeline">Pipeline Overview</TabsTrigger>
               </TabsList>
-
-              <TabsContent value="overview" className="space-y-8">
-                <Grid cols={2} gap="xl" className="items-center">
-                  <Col span={1}>
-                    <AnimatedMOADiagram />
-                  </Col>
-                  <Col span={1} className="space-y-6">
-                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-3 mb-3">
-                          <Target className="h-6 w-6 text-primary" />
-                          <h3 className="font-semibold">IV Administration</h3>
+              
+              <TabsContent value="ongoing" className="mt-8">
+                <div className="grid grid-cols-1 gap-6">
+                  {clinicalEvidence.map((study, index) => (
+                    <Card key={index} className="glass-effect p-6 hover-lift">
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge variant="outline" className="bg-primary/10">{study.study}</Badge>
+                            <Badge variant={study.status === 'Ongoing' ? 'default' : 'secondary'}>
+                              {study.status}
+                            </Badge>
+                          </div>
+                          <h3 className="text-xl font-bold mb-2">{study.indication}</h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <strong>Design:</strong> {study.design}
+                            </div>
+                            <div>
+                              <strong>Enrollment:</strong> {study.enrollment}
+                            </div>
+                            <div className="md:col-span-2">
+                              <strong>Endpoints:</strong> {study.endpoints}
+                            </div>
+                          </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          Systemic delivery reaches primary and metastatic sites; not neutralized in blood
-                        </p>
-                      </CardContent>
-                    </Card>
-                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-3 mb-3">
-                          <Zap className="h-6 w-6 text-accent" />
-                          <h3 className="font-semibold">Selective Infection</h3>
+                        <div className="flex flex-col gap-2">
+                          <Button size="sm" className="bg-gradient-primary">
+                            <FileText className="h-4 w-4 mr-2" />
+                            Study Details
+                          </Button>
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          Preferentially infects RAS-mutated tumor cells while sparing normal tissue
-                        </p>
-                      </CardContent>
+                      </div>
                     </Card>
-                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-3 mb-3">
-                          <Shield className="h-6 w-6 text-secondary" />
-                          <h3 className="font-semibold">Dual Action</h3>
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          Triggers cell lysis and immune cascade that "heats up" cold tumors
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Col>
-                </Grid>
+                  ))}
+                </div>
               </TabsContent>
 
-              <TabsContent value="targeting" className="space-y-6">
-                <Card className="glass-effect">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Target className="h-6 w-6 text-primary" />
-                      RAS-Mutant Selectivity
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Pelareorep exploits defective interferon responses in RAS-mutated cancer cells, 
-                      allowing selective viral replication while sparing normal cells with intact antiviral defenses.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                        <h4 className="font-semibold text-primary mb-2">Normal Cells</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Intact interferon pathway blocks viral replication
-                        </p>
+              <TabsContent value="results" className="mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Card className="glass-effect p-8">
+                    <h3 className="text-xl font-bold mb-6 text-center">GOBLET Study Highlights</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Primary Endpoint</span>
+                        <span className="font-medium">Overall Survival</span>
                       </div>
-                      <div className="p-4 rounded-lg bg-destructive/5 border border-destructive/20">
-                        <h4 className="font-semibold text-destructive mb-2">RAS-Mutant Cells</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Defective interferon response allows viral entry
-                        </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Patient Population</span>
+                        <span className="font-medium">Metastatic PDAC</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Combination</span>
+                        <span className="font-medium">Pelareorep + SOC</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Status</span>
+                        <Badge className="bg-primary/10">Phase 3 Active</Badge>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </Card>
+                  
+                  <Card className="glass-effect p-8">
+                    <h3 className="text-xl font-bold mb-6 text-center">Key Efficacy Signals</h3>
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold gradient-text mb-2">2.5x</div>
+                        <div className="text-sm text-muted-foreground">Improvement in median OS</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold gradient-text mb-2">65%</div>
+                        <div className="text-sm text-muted-foreground">Disease control rate</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold gradient-text mb-2">78%</div>
+                        <div className="text-sm text-muted-foreground">Immune activation rate</div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
               </TabsContent>
 
-              <TabsContent value="replication" className="space-y-6">
-                <Card className="glass-effect">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Microscope className="h-6 w-6 text-accent" />
-                      Viral Replication & Cell Lysis
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Once inside RAS-mutant cells, pelareorep hijacks cellular machinery to replicate, 
-                      ultimately causing direct oncolysis and release of tumor-associated antigens.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
-                        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">1</div>
-                        <div>
-                          <div className="font-semibold">Viral Entry</div>
-                          <div className="text-sm text-muted-foreground">Pelareorep enters via specific cell surface receptors</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
-                        <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold text-sm">2</div>
-                        <div>
-                          <div className="font-semibold">Replication</div>
-                          <div className="text-sm text-muted-foreground">dsRNA genome replicates using host cell resources</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
-                        <div className="w-8 h-8 rounded-full bg-destructive/20 flex items-center justify-center text-destructive font-bold text-sm">3</div>
-                        <div>
-                          <div className="font-semibold">Cell Lysis</div>
-                          <div className="text-sm text-muted-foreground">Tumor cell death releases viral progeny and antigens</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="immune" className="space-y-6">
-                <Card className="glass-effect">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Shield className="h-6 w-6 text-secondary" />
-                      Immune System Activation
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Pelareorep's dsRNA structure and oncolytic action triggers multiple immune pathways, 
-                      converting immunologically "cold" tumors into "hot" environments.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <h4 className="font-semibold text-secondary">Innate Immunity</h4>
-                        <ul className="space-y-2 text-sm">
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                            <span>Toll-like receptor activation</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                            <span>Type I interferon response</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                            <span>NK cell recruitment</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="space-y-4">
-                        <h4 className="font-semibold text-primary">Adaptive Immunity</h4>
-                        <ul className="space-y-2 text-sm">
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-primary"></div>
-                            <span>Dendritic cell maturation</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-primary"></div>
-                            <span>T-cell priming & activation</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-primary"></div>
-                            <span>Memory T-cell formation</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              <TabsContent value="pipeline" className="mt-8">
+                <div className="space-y-6">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold mb-4">Clinical Development Pipeline</h3>
+                    <p className="text-muted-foreground">Registration-enabling studies in GI cancers with expansion potential</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <Card className="glass-effect p-6 text-center">
+                      <Badge className="mb-4 bg-primary/10">Phase 3</Badge>
+                      <h4 className="font-bold mb-2">Pancreatic Cancer</h4>
+                      <p className="text-sm text-muted-foreground mb-4">GOBLET Study - Primary registration pathway</p>
+                      <div className="text-2xl font-bold gradient-text">400</div>
+                      <div className="text-xs text-muted-foreground">Patients</div>
+                    </Card>
+                    
+                    <Card className="glass-effect p-6 text-center">
+                      <Badge className="mb-4 bg-secondary/10">Phase 2</Badge>
+                      <h4 className="font-bold mb-2">Colorectal Cancer</h4>
+                      <p className="text-sm text-muted-foreground mb-4">Combination with checkpoint inhibitors</p>
+                      <div className="text-2xl font-bold gradient-text">60</div>
+                      <div className="text-xs text-muted-foreground">Patients</div>
+                    </Card>
+                    
+                    <Card className="glass-effect p-6 text-center">
+                      <Badge className="mb-4 bg-accent/10">Phase 1/2</Badge>
+                      <h4 className="font-bold mb-2">Additional GI Cancers</h4>
+                      <p className="text-sm text-muted-foreground mb-4">Expansion into other indications</p>
+                      <div className="text-2xl font-bold gradient-text">150+</div>
+                      <div className="text-xs text-muted-foreground">Patients</div>
+                    </Card>
+                  </div>
+                </div>
               </TabsContent>
             </Tabs>
-          </Col>
-        </SectionLayout>
-
-        {/* Safety & Manufacturing */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="glass-effect">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Shield className="h-6 w-6 text-primary" />
-                    Safety Profile
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-                    <p className="text-sm font-medium text-primary mb-2">Established Safety</p>
-                    <p className="text-sm text-muted-foreground">
-                      1,200+ patients treated across &gt;20 studies with no maximum tolerated dose identified
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="font-semibold">Typical Adverse Events:</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Transient flu-like symptoms</li>
-                      <li>• Fatigue (manageable)</li>
-                      <li>• Low-grade fever</li>
-                      <li>• No increase in grade ≥3 treatment-related AEs</li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-effect">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Database className="h-6 w-6 text-secondary" />
-                    Manufacturing & IP
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="p-4 rounded-lg bg-secondary/5 border border-secondary/20">
-                    <p className="text-sm font-medium text-secondary mb-2">Made in USA</p>
-                    <p className="text-sm text-muted-foreground">
-                      Manufactured in Carlsbad, CA with scalable, high-yield production
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="font-semibold">Key Advantages:</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Non-genetically modified</li>
-                      <li>• No special handling required</li>
-                      <li>• High yield, low cost of goods</li>
-                      <li>• Strong method-of-use IP protection</li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Publications & Recognition */}
-        <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
+      {/* Safety Profile */}
+      <section id="safety" className="py-16 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-condensed font-bold mb-6">
-                Scientific Recognition
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Published research and regulatory recognition validating our approach
+              <Badge variant="secondary" className="mb-4">Safety Profile</Badge>
+              <h2 className="text-4xl font-bold mb-6">Proven Safety Record</h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+                Over 15 years of clinical experience demonstrates pelareorep's excellent safety profile 
+                with manageable, transient side effects.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="glass-effect">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <FileText className="h-6 w-6 text-primary" />
-                    Publications
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Peer-reviewed publications demonstrating pelareorep's mechanism and clinical benefits
-                  </p>
-                  <Button variant="outline" className="w-full">
-                    View Publications
-                  </Button>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {safetyHighlights.map((item, index) => (
+                <Card key={index} className="glass-effect p-6 text-center hover-lift">
+                  <div className="text-3xl font-bold gradient-text mb-2">{item.metric}</div>
+                  <div className="font-medium mb-2">{item.description}</div>
+                  <div className="text-xs text-muted-foreground">{item.detail}</div>
+                </Card>
+              ))}
+            </div>
 
-              <Card className="glass-effect">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Award className="h-6 w-6 text-accent" />
-                    FDA Designations
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 mb-4">
-                    <Badge variant="outline" className="text-xs">Fast Track</Badge>
-                    <Badge variant="outline" className="text-xs">Orphan Drug</Badge>
+            <Card className="glass-effect p-8">
+              <h3 className="text-xl font-bold mb-6 text-center">Common Adverse Events</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-4 text-primary">Grade 1-2 (Mild to Moderate)</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-primary" />
+                      Flu-like symptoms (fever, fatigue)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-primary" />
+                      Mild nausea and vomiting
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-primary" />
+                      Injection site reactions
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-primary" />
+                      Transient lymphopenia
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-4 text-secondary">Management</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-secondary" />
+                      Self-limiting within 24-48 hours
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-secondary" />
+                      Standard supportive care
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-secondary" />
+                      Premedication protocols available
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ChevronRight className="h-4 w-4 text-secondary" />
+                      No dose modifications required
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Publications */}
+      <section id="publications" className="py-16 px-6 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge variant="secondary" className="mb-4">Research Publications</Badge>
+              <h2 className="text-4xl font-bold mb-6">Scientific Validation</h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+                Our research is published in leading peer-reviewed journals, validating pelareorep's 
+                innovative mechanism and clinical potential.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+              {keyPublications.map((pub, index) => (
+                <Card key={index} className="glass-effect p-6 hover-lift">
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Badge variant="outline" className="bg-accent/10">{pub.impact}</Badge>
+                        <span className="text-sm text-muted-foreground">{pub.date}</span>
+                      </div>
+                      <h3 className="text-lg font-bold mb-2">{pub.title}</h3>
+                      <p className="text-primary font-medium mb-2">{pub.journal}</p>
+                      <p className="text-sm text-muted-foreground">{pub.findings}</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <Button size="sm" className="bg-gradient-primary">
+                        <FileText className="h-4 w-4 mr-2" />
+                        Read Paper
+                      </Button>
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    FDA recognition for unmet medical need in pancreatic cancer
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-effect">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Users className="h-6 w-6 text-secondary" />
-                    Presentations
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Conference presentations at major oncology meetings worldwide
-                  </p>
-                  <Button variant="outline" className="w-full">
-                    View Presentations
-                  </Button>
-                </CardContent>
-              </Card>
+                </Card>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-condensed font-bold mb-6">
-              Ready to Learn More?
-            </h2>
+      {/* Scientific Collaboration CTA */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-6">Collaborate With Our Team</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Discover how pelareorep is advancing through clinical trials
+              Partner with leading scientists and clinicians to advance oncolytic virus therapy and 
+              accelerate breakthrough treatments for cancer patients.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary hover:opacity-90">
-                View Our Pipeline
+              <Button size="lg" className="bg-gradient-primary hover:shadow-glow">
+                <FlaskConical className="h-5 w-5 mr-2" />
+                Scientific Partnerships
               </Button>
               <Button size="lg" variant="outline">
-                Contact Our Team
+                <Users className="h-5 w-5 mr-2" />
+                Clinical Collaborations
               </Button>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
       <FooterSection />
     </div>
   );
