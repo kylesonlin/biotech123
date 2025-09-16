@@ -80,12 +80,12 @@ const makeSeed = (i: number) => (((i * 9301 + 49297) % 233280) / 233280);
 
 export const HelixTracks: React.FC<HelixTracksProps> = ({
   gapVh = 10,
-  y0 = 80, y1 = 40,
-  c1 = -6, c2 = 4,          // slight S-curve by default
-  ampMin = 6, ampMax = 14,  // envelope (min must be >= gap/2 = 5)
+  y0 = 82, y1 = 41,
+  c1 = -10, c2 = 8,         // precise S-curve for DNA alignment
+  ampMin = 9, ampMax = 9,   // constant amplitude for uniform helix
   ampEase1 = 0.35, ampEase2 = 0.35, // bulge near the middle
   cycles = 2.5,
-  phase = 0,
+  phase = 4.5945616035,     // precise phase for crossing alignment
   durationSec = 14,
   countPerTrack = 72,
   sizePx = 5,
