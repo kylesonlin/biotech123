@@ -1,26 +1,23 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Play, TrendingUp } from 'lucide-react';
+// src/components/HeroSection.tsx
 import heroImage from '@/assets/hero-molecular.jpg';
-import HelixTracksV2 from '@/components/HelixTracksV2';
+import HelixTracks from '@/components/HelixTracks';
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Static DNA Background */}
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Double-stranded RNA molecular structures" 
+        <img
+          src={heroImage}
+          alt="Double-stranded RNA molecular structures"
           className="absolute inset-0 w-full h-full object-cover opacity-90"
         />
-        
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
       </div>
 
-      {/* DNA Dual Helix Track Particles - Precise Crossing Alignment */}
-      <HelixTracksV2
+      {/* DNA Dual Helix Track Particles */}
+      <HelixTracks
         gapVh={10}
         y0={82} y1={41}
         c1={-10} c2={8}
@@ -35,10 +32,8 @@ export const HeroSection = () => {
         className="z-10"
       />
 
-      {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 py-24">
-        {/* All content hidden for debug view */}
-      </div>
+      {/* Content (add your real hero copy/buttons here) */}
+      <div className="relative z-20 container mx-auto px-6 py-24" />
     </section>
   );
 };
