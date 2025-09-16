@@ -6,6 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
 import { Target, TrendingUp, Award, Users, Calendar, MapPin, Zap, Shield } from 'lucide-react';
+import { DataVisualization } from '@/components/DataVisualization';
+import { SectionLayout, Grid, Col } from '@/components/EnhancedGridLayout';
+import giTractAnatomy from '@/assets/gi-tract-anatomy.jpg';
+import clinicalTimeline from '@/assets/clinical-timeline-viz.jpg';
 
 const Pipeline = () => {
   return (
@@ -13,54 +17,62 @@ const Pipeline = () => {
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
+        <SectionLayout>
+          <Col span={12}>
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 animate-fade-in">
                 GI-Focused Development
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-condensed font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-condensed font-bold mb-6 animate-fade-in" style={{animationDelay: '200ms'}}>
                 Registration-Enabled 
                 <span className="gradient-text"> Clinical Pipeline</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '400ms'}}>
                 Strategic focus on gastrointestinal cancers with high unmet need, 
                 leveraging biomarkers and pursuing near-term approval pathways.
               </p>
             </div>
+          </Col>
 
-            {/* Pipeline Strategy */}
-            <div className="grid md:grid-cols-3 gap-6 mb-16">
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <Target className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">Registration Focus</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Prioritize studies designed for regulatory approval
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <Shield className="h-12 w-12 mx-auto mb-4 text-accent" />
-                  <h3 className="font-semibold mb-2">Biomarker Driven</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Leverage RAS mutation and other predictive markers
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <Award className="h-12 w-12 mx-auto mb-4 text-secondary" />
-                  <h3 className="font-semibold mb-2">Partnership Ready</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Phase 3-ready programs attractive to partners
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+          {/* Pipeline Strategy */}
+          <Col span={12}>
+            <Grid cols={3} gap="lg" className="mb-16">
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-500 animate-scale-in" style={{animationDelay: '600ms'}}>
+                  <CardContent className="pt-6">
+                    <Target className="h-12 w-12 mx-auto mb-4 text-primary animate-float" />
+                    <h3 className="font-semibold mb-2">Registration Focus</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Prioritize studies designed for regulatory approval
+                    </p>
+                  </CardContent>
+                </Card>
+              </Col>
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-500 animate-scale-in" style={{animationDelay: '700ms'}}>
+                  <CardContent className="pt-6">
+                    <Shield className="h-12 w-12 mx-auto mb-4 text-accent animate-float" style={{animationDelay: '1s'}} />
+                    <h3 className="font-semibold mb-2">Biomarker Driven</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Leverage RAS mutation and other predictive markers
+                    </p>
+                  </CardContent>
+                </Card>
+              </Col>
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-500 animate-scale-in" style={{animationDelay: '800ms'}}>
+                  <CardContent className="pt-6">
+                    <Award className="h-12 w-12 mx-auto mb-4 text-secondary animate-float" style={{animationDelay: '2s'}} />
+                    <h3 className="font-semibold mb-2">Partnership Ready</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Phase 3-ready programs attractive to partners
+                    </p>
+                  </CardContent>
+                </Card>
+              </Col>
+            </Grid>
+          </Col>
+        </SectionLayout>
 
         {/* Main Pipeline */}
         <section className="py-16 px-4 bg-muted/30">
@@ -330,71 +342,23 @@ const Pipeline = () => {
           </div>
         </section>
 
-        {/* Clinical Timeline */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
+        {/* Data Visualization Section */}
+        <SectionLayout background="muted">
+          <Col span={12}>
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-condensed font-bold mb-6">
-                Clinical Development Timeline
+                Clinical Development Dashboard
               </h2>
               <p className="text-xl text-muted-foreground">
-                Strategic milestones and expected data readouts
+                Real-time insights into our pipeline progress and milestones
               </p>
             </div>
-
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-primary"></div>
-              
-              <div className="space-y-8">
-                {/* 2024 */}
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    2024
-                  </div>
-                  <Card className="flex-1 glass-effect">
-                    <CardContent className="pt-6">
-                      <h3 className="font-semibold mb-2">Foundation Year</h3>
-                      <p className="text-sm text-muted-foreground">
-                        SCAC data presentation at ASCO GI, continued enrollment across all programs
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* 2025 */}
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold">
-                    2025
-                  </div>
-                  <Card className="flex-1 glass-effect">
-                    <CardContent className="pt-6">
-                      <h3 className="font-semibold mb-2">Key Data Readouts</h3>
-                      <p className="text-sm text-muted-foreground">
-                        mPDAC Cohort 5 interim analysis, SCAC registration-enabling data, mCRC biomarker validation
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* 2026 */}
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white font-bold">
-                    2026
-                  </div>
-                  <Card className="flex-1 glass-effect">
-                    <CardContent className="pt-6">
-                      <h3 className="font-semibold mb-2">Registration & Partnership</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Potential SCAC BLA filing, mPDAC partnership completion, Phase 3 initiation
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          </Col>
+          
+          <Col span={12}>
+            <DataVisualization />
+          </Col>
+        </SectionLayout>
 
         {/* CTA Section */}
         <section className="py-16 px-4 bg-muted/30">

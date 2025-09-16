@@ -6,7 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Target, Zap, Shield, Microscope, FileText, Users, Database, Award } from 'lucide-react';
+import { AnimatedMOADiagram } from '@/components/AnimatedMOADiagram';
+import { SectionLayout, Grid, Col } from '@/components/EnhancedGridLayout';
 import molecularStructure from '@/assets/molecular-structure.png';
+import giTractAnatomy from '@/assets/gi-tract-anatomy.jpg';
 
 const Science = () => {
   return (
@@ -14,55 +17,65 @@ const Science = () => {
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
+        <SectionLayout>
+          <Col span={12}>
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 animate-fade-in">
                 First-in-Class dsRNA Oncolytic Virus
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-condensed font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-condensed font-bold mb-6 animate-fade-in" style={{animationDelay: '200ms'}}>
                 Pelareorep: Engineered for 
                 <span className="gradient-text"> Dual Action</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '400ms'}}>
                 The only dsRNA IV oncolytic virus designed to selectively replicate in RAS-mutant tumors,
                 delivering both direct tumor cell lysis and immune activation to convert "cold" tumors to "hot".
               </p>
             </div>
+          </Col>
 
-            {/* Key Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <div className="text-3xl font-bold gradient-text">1,200+</div>
-                  <div className="text-sm text-muted-foreground">Patients Treated</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <div className="text-3xl font-bold gradient-text">15+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <div className="text-3xl font-bold gradient-text">20+</div>
-                  <div className="text-sm text-muted-foreground">Clinical Studies</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center glass-effect">
-                <CardContent className="pt-6">
-                  <div className="text-3xl font-bold gradient-text">No MTD</div>
-                  <div className="text-sm text-muted-foreground">Maximum Tolerated Dose</div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+          {/* Key Stats */}
+          <Col span={12}>
+            <Grid cols={4} gap="lg" className="mb-16">
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '600ms'}}>
+                  <CardContent className="pt-6">
+                    <div className="text-3xl font-bold gradient-text">1,200+</div>
+                    <div className="text-sm text-muted-foreground">Patients Treated</div>
+                  </CardContent>
+                </Card>
+              </Col>
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '700ms'}}>
+                  <CardContent className="pt-6">
+                    <div className="text-3xl font-bold gradient-text">15+</div>
+                    <div className="text-sm text-muted-foreground">Years Experience</div>
+                  </CardContent>
+                </Card>
+              </Col>
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '800ms'}}>
+                  <CardContent className="pt-6">
+                    <div className="text-3xl font-bold gradient-text">20+</div>
+                    <div className="text-sm text-muted-foreground">Clinical Studies</div>
+                  </CardContent>
+                </Card>
+              </Col>
+              <Col span={1}>
+                <Card className="text-center glass-effect hover:shadow-glow transition-all duration-300 animate-scale-in" style={{animationDelay: '900ms'}}>
+                  <CardContent className="pt-6">
+                    <div className="text-3xl font-bold gradient-text">No MTD</div>
+                    <div className="text-sm text-muted-foreground">Maximum Tolerated Dose</div>
+                  </CardContent>
+                </Card>
+              </Col>
+            </Grid>
+          </Col>
+        </SectionLayout>
 
         {/* Mechanism of Action */}
-        <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
+        <SectionLayout background="muted">
+          <Col span={12}>
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-condensed font-bold mb-6">
                 Mechanism of Action
@@ -71,7 +84,9 @@ const Science = () => {
                 Pelareorep's unique dual-action approach combines selective viral replication with immune system activation
               </p>
             </div>
+          </Col>
 
+          <Col span={12}>
             <Tabs defaultValue="overview" className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-8">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -81,16 +96,12 @@ const Science = () => {
               </TabsList>
 
               <TabsContent value="overview" className="space-y-8">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <img 
-                      src={molecularStructure} 
-                      alt="Pelareorep molecular structure showing dsRNA oncolytic virus mechanism"
-                      className="w-full h-auto rounded-lg shadow-card"
-                    />
-                  </div>
-                  <div className="space-y-6">
-                    <Card className="glass-effect">
+                <Grid cols={2} gap="xl" className="items-center">
+                  <Col span={1}>
+                    <AnimatedMOADiagram />
+                  </Col>
+                  <Col span={1} className="space-y-6">
+                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
                       <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-3">
                           <Target className="h-6 w-6 text-primary" />
@@ -101,7 +112,7 @@ const Science = () => {
                         </p>
                       </CardContent>
                     </Card>
-                    <Card className="glass-effect">
+                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
                       <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-3">
                           <Zap className="h-6 w-6 text-accent" />
@@ -112,7 +123,7 @@ const Science = () => {
                         </p>
                       </CardContent>
                     </Card>
-                    <Card className="glass-effect">
+                    <Card className="glass-effect hover:shadow-glow transition-all duration-300">
                       <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-3">
                           <Shield className="h-6 w-6 text-secondary" />
@@ -123,8 +134,8 @@ const Science = () => {
                         </p>
                       </CardContent>
                     </Card>
-                  </div>
-                </div>
+                  </Col>
+                </Grid>
               </TabsContent>
 
               <TabsContent value="targeting" className="space-y-6">
@@ -251,8 +262,8 @@ const Science = () => {
                 </Card>
               </TabsContent>
             </Tabs>
-          </div>
-        </section>
+          </Col>
+        </SectionLayout>
 
         {/* Safety & Manufacturing */}
         <section className="py-16 px-4">
