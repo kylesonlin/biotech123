@@ -162,6 +162,26 @@ export default {
             filter: "hue-rotate(10deg) saturate(120%)",
           },
         },
+        "slide-left": {
+          from: {
+            opacity: "0",
+            transform: "translateX(30px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
+        "slide-right": {
+          from: {
+            opacity: "0",
+            transform: "translateX(-30px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -174,6 +194,8 @@ export default {
         "rotate-slow": "rotate-slow 20s linear infinite",
         "molecular-drift": "molecular-drift 8s ease-in-out infinite",
         "gradient-shift": "gradient-shift 3s ease-in-out infinite",
+        "slide-left": "slide-left 0.8s ease-out",
+        "slide-right": "slide-right 0.8s ease-out",
       },
     },
   },

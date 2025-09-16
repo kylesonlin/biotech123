@@ -1,5 +1,9 @@
 import { Navigation } from '@/components/Navigation';
 import { FooterSection } from '@/components/FooterSection';
+import { SEOHead } from '@/components/SEOHead';
+import { ScrollAnimation, StaggeredAnimation } from '@/components/ScrollAnimations';
+import { TiltCard } from '@/components/InteractiveElements';
+import { usePageAnalytics, useBiotechAnalytics } from '@/hooks/usePageAnalytics';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,8 +16,29 @@ import molecularStructure from '@/assets/molecular-structure.png';
 import giTractAnatomy from '@/assets/gi-tract-anatomy.jpg';
 
 const Science = () => {
+  usePageAnalytics();
+  const { trackScienceEngagement } = useBiotechAnalytics();
+
+  const scienceStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalResearch",
+    "name": "Pelareorep ds-RNA Oncolytic Virus Research",
+    "description": "Clinical research on pelareorep, a double-stranded RNA oncolytic virus for gastrointestinal cancer immunotherapy",
+    "sponsor": {
+      "@type": "Organization",
+      "name": "Oncolytics Biotech Inc."
+    },
+    "studySubject": "Gastrointestinal Cancers",
+    "healthCondition": ["Pancreatic Cancer", "Colorectal Cancer", "Anal Carcinoma"]
+  };
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Pelareorep Science & Mechanism of Action | Oncolytics Biotech"
+        description="Discover how pelareorep, our ds-RNA oncolytic virus, selectively targets RAS-mutated cancer cells through dual immunotherapy mechanisms. Proven safety in 1,200+ patients across 15 years of clinical studies."
+        structuredData={scienceStructuredData}
+      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}

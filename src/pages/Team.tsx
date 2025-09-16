@@ -1,11 +1,32 @@
 import { Navigation } from '@/components/Navigation';
 import { FooterSection } from '@/components/FooterSection';
+import { SEOHead } from '@/components/SEOHead';
+import { ScrollAnimation, StaggeredAnimation } from '@/components/ScrollAnimations';
+import { TiltCard } from '@/components/InteractiveElements';
+import { usePageAnalytics } from '@/hooks/usePageAnalytics';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Building, TrendingUp, Award, Users, Mail, Linkedin, ExternalLink } from 'lucide-react';
 
 const Team = () => {
+  usePageAnalytics();
+
+  const leadershipStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Oncolytics Biotech Leadership Team",
+    "description": "Experienced biotech executives with proven track record in deal execution and value creation",
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "Dr. Thomas Heineman",
+        "jobTitle": "Chief Executive Officer & President",
+        "alumniOf": "Harvard Medical School"
+      }
+    ]
+  };
+
   const leadership = [
     {
       name: "Dr. Thomas Heineman",
@@ -88,6 +109,11 @@ const Team = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Leadership Team & Scientific Advisory Board | Oncolytics Biotech"
+        description="Meet our proven leadership team with track record of executing the $2B Ambrx transaction. Experienced dealmakers and scientists positioned for strategic partnerships and value creation."
+        structuredData={leadershipStructuredData}
+      />
       <Navigation />
       <main className="pt-20">
         {/* Hero Section */}
