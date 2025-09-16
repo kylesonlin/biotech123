@@ -15,8 +15,8 @@ interface HelixTracksProps {
 }
 
 export const HelixTracks = ({
-  y0 = 85,
-  y1 = 35,
+  y0 = 90,
+  y1 = 30,
   gapVh = 10,
   amplitude = 12,
   cycles = 2,
