@@ -18,29 +18,75 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* Flow-Through Molecular Particles */}
+      {/* DNA Dual Helix Track Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {/* Main Helix Flow Particles - Top Layer */}
-        <div className="absolute top-20 left-0 w-3 h-3 bg-accent rounded-full will-change-transform" style={{ animation: 'helix-flow-main 12s linear infinite', animationDelay: '0s' }}></div>
-        <div className="absolute top-32 left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" style={{ animation: 'helix-flow-main 15s linear infinite', animationDelay: '4s' }}></div>
-        <div className="absolute top-44 left-0 w-4 h-4 bg-accent-bright rounded-full will-change-transform" style={{ animation: 'helix-flow-main 10s linear infinite', animationDelay: '8s' }}></div>
+        {/* DNA Helix Track A - Clockwise Spiral */}
+        <div 
+          className="absolute left-0 w-3 h-3 bg-accent rounded-full will-change-transform shadow-lg" 
+          style={{ 
+            animation: 'helical-motion-a 30s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 30s ease-in-out infinite',
+            animationDelay: '0s',
+            filter: 'drop-shadow(0 0 8px hsl(var(--accent)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-a 32s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 32s ease-in-out infinite',
+            animationDelay: '8s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--primary-glow)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-4 h-4 bg-accent-bright rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-a 28s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 28s ease-in-out infinite',
+            animationDelay: '16s',
+            filter: 'drop-shadow(0 0 10px hsl(var(--accent-bright)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-a 35s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-a 35s ease-in-out infinite',
+            animationDelay: '24s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--secondary-glow)))'
+          }}
+        ></div>
         
-        {/* Secondary Helix Flow - Middle Layer */}
-        <div className="absolute top-60 left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" style={{ animation: 'helix-flow-secondary 14s linear infinite', animationDelay: '2s' }}></div>
-        <div className="absolute top-72 left-0 w-3 h-3 bg-accent rounded-full will-change-transform" style={{ animation: 'helix-flow-secondary 11s linear infinite', animationDelay: '6s' }}></div>
-        <div className="absolute top-84 left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" style={{ animation: 'helix-flow-secondary 16s linear infinite', animationDelay: '10s' }}></div>
-        
-        {/* Spiral Flow Particles - Dynamic Layer */}
-        <div className="absolute bottom-40 left-0 w-2 h-2 bg-accent-bright rounded-full will-change-transform" style={{ animation: 'spiral-flow 13s linear infinite', animationDelay: '1s' }}></div>
-        <div className="absolute bottom-56 left-0 w-1 h-1 bg-secondary-glow rounded-full will-change-transform" style={{ animation: 'spiral-flow 18s linear infinite', animationDelay: '7s' }}></div>
-        
-        {/* Wave Flow Particles - Smooth Oscillation */}
-        <div className="absolute top-1/2 left-0 w-3 h-3 bg-accent rounded-full will-change-transform" style={{ animation: 'wave-flow 14s linear infinite, pulse-glow 3s ease-in-out infinite', animationDelay: '3s' }}></div>
-        <div className="absolute bottom-32 left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" style={{ animation: 'wave-flow 12s linear infinite, pulse-glow 2.5s ease-in-out infinite', animationDelay: '9s' }}></div>
-        
-        {/* Burst Flow Particles - Fast Movement */}
-        <div className="absolute top-1/3 left-0 w-1 h-1 bg-accent-bright rounded-full will-change-transform" style={{ animation: 'burst-flow 8s linear infinite', animationDelay: '5s' }}></div>
-        <div className="absolute bottom-20 left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" style={{ animation: 'burst-flow 9s linear infinite', animationDelay: '11s' }}></div>
+        {/* DNA Helix Track B - Counter-clockwise Spiral (Phase Offset) */}
+        <div 
+          className="absolute left-0 w-3 h-3 bg-primary rounded-full will-change-transform shadow-lg" 
+          style={{ 
+            animation: 'helical-motion-b 31s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 31s ease-in-out infinite',
+            animationDelay: '4s',
+            filter: 'drop-shadow(0 0 8px hsl(var(--primary)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-b 33s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 33s ease-in-out infinite',
+            animationDelay: '12s',
+            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-3 h-3 bg-secondary-glow rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-b 29s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 29s ease-in-out infinite',
+            animationDelay: '20s',
+            filter: 'drop-shadow(0 0 8px hsl(var(--secondary-glow)))'
+          }}
+        ></div>
+        <div 
+          className="absolute left-0 w-1 h-1 bg-accent-bright rounded-full will-change-transform" 
+          style={{ 
+            animation: 'helical-motion-b 34s cubic-bezier(0.4, 0, 0.2, 1) infinite, sine-oscillation-b 34s ease-in-out infinite',
+            animationDelay: '28s',
+            filter: 'drop-shadow(0 0 4px hsl(var(--accent-bright)))'
+          }}
+        ></div>
       </div>
 
       {/* Content */}
