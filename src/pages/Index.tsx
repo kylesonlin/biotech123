@@ -1,10 +1,9 @@
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
-import { ProofPointsSection } from '@/components/ProofPointsSection';
-import { MissionSection } from '@/components/MissionSection';
-import { SimplifiedScienceSection } from '@/components/SimplifiedScienceSection';
-import { SimplifiedPipelineSection } from '@/components/SimplifiedPipelineSection';
-import { ManagementSection } from '@/components/ManagementSection';
+import { AboutHeroSection } from '@/components/AboutHeroSection';
+import { ScienceHeroSection } from '@/components/ScienceHeroSection';
+import { PipelineHeroSection } from '@/components/PipelineHeroSection';
+import { LeadershipHeroSection } from '@/components/LeadershipHeroSection';
 import { FooterSection } from '@/components/FooterSection';
 
 const Index = () => {
@@ -13,11 +12,10 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <ProofPointsSection />
-        <MissionSection />
-        <SimplifiedScienceSection />
-        <SimplifiedPipelineSection />
-        <ManagementSection />
+        <AboutHeroSection />
+        <ScienceHeroSection />
+        <PipelineHeroSection />
+        <LeadershipHeroSection />
       </main>
       <FooterSection />
     </div>
