@@ -72,7 +72,7 @@ export const Navigation = () => {
         }
       `}
     >
-      <div className="glass-effect rounded-2xl shadow-elegant border border-border/50 p-6 backdrop-blur-xl">
+      <div className="bg-popover rounded-2xl shadow-elegant border border-border/50 p-6">
         {children}
       </div>
     </div>
@@ -268,12 +268,7 @@ export const Navigation = () => {
           </div>
 
           {/* Contact CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link to="/investors">
-              <Button variant="outline" size="sm" className="rounded-full border-2 hover:border-primary hover:shadow-glow transition-all duration-300">
-                Investor Relations
-              </Button>
-            </Link>
+          <div className="hidden lg:flex items-center">
             <Button size="sm" className="bg-gradient-primary hover:shadow-glow rounded-full transition-all duration-300 hover:scale-105">
               Contact
             </Button>
@@ -322,12 +317,7 @@ export const Navigation = () => {
               >
                 Investors
               </Link>
-              <div className="pt-4 space-y-3">
-                <Link to="/investors" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full rounded-full">
-                    Investor Relations
-                  </Button>
-                </Link>
+              <div className="pt-4">
                 <Button size="sm" className="w-full bg-gradient-primary rounded-full">
                   Contact
                 </Button>
