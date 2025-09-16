@@ -46,15 +46,15 @@ export const HeroSection = () => {
 
           {/* Key Stats */}
           <div className="flex flex-wrap gap-6 mb-10">
-            <div className="glass-effect bg-blue-900/75 rounded-lg px-4 py-3 border border-white/10">
+            <div className="glass-effect rounded-lg px-4 py-3 border border-white/10">
               <div className="text-2xl font-bold text-accent-bright">1,100+</div>
               <div className="text-sm text-white/80">Patients Dosed</div>
             </div>
-            <div className="glass-effect bg-blue-900/75 rounded-lg px-4 py-3 border border-white/10">
+            <div className="glass-effect rounded-lg px-4 py-3 border border-white/10">
               <div className="text-2xl font-bold text-accent-bright">15</div>
               <div className="text-sm text-white/80">Years Safety Data</div>
             </div>
-            <div className="glass-effect bg-blue-900/75 rounded-lg px-4 py-3 border border-white/10">
+            <div className="glass-effect rounded-lg px-4 py-3 border border-white/10">
               <div className="text-2xl font-bold text-accent-bright">3</div>
               <div className="text-sm text-white/80">GI Indications</div>
             </div>
