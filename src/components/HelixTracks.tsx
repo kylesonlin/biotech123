@@ -12,8 +12,6 @@ interface HelixTracksProps {
   sizePx?: number;       // dot size (pixels)
   colorFront?: string;   // front color
   colorBack?: string;    // back color
-  frequencyVariation?: number; // frequency modulation strength (0.1-0.3)
-  stretchFactor?: number;      // horizontal stretching at crossings (1.2-2.0)
 }
 
 export const HelixTracks = ({
@@ -27,9 +25,7 @@ export const HelixTracks = ({
   countPerTrack = 150,
   sizePx = 25,
   colorFront = '#00ffff',
-  colorBack = '#ff00ff',
-  frequencyVariation = 0.2,
-  stretchFactor = 1.5
+  colorBack = '#ff00ff'
 }: HelixTracksProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
@@ -84,14 +80,9 @@ export const HelixTracks = ({
         const seed = parseFloat(dot.dataset.seed!);
         const p = (t + seed) % 1;
         
-        // Position calculations with variable frequency modulation
+        // Position calculations
         const x = p * window.innerWidth;
-        
-        // Variable frequency: stretch curves at crossings (when sin approaches 0)
-        const baseCyclePos = cycles * p;
-        const frequencyMod = 1 + frequencyVariation * Math.sin(2 * Math.PI * baseCyclePos * stretchFactor);
-        const theta = 2 * Math.PI * baseCyclePos * frequencyMod + phase;
-        
+        const theta = 2 * Math.PI * cycles * p + phase;
         const yC = yCenter(p);
         const sinValue = Math.sin(theta);
         
@@ -124,7 +115,7 @@ export const HelixTracks = ({
       }
       dots.forEach(dot => dot.remove());
     };
-  }, [y0, y1, gapVh, amplitude, cycles, phase, durationSec, countPerTrack, sizePx, colorFront, colorBack, frequencyVariation, stretchFactor]);
+  }, [y0, y1, gapVh, amplitude, cycles, phase, durationSec, countPerTrack, sizePx, colorFront, colorBack]);
 
   return (
     <div 
