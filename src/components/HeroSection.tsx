@@ -5,42 +5,41 @@ import heroImage from '@/assets/hero-molecular.jpg';
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Multi-Layer DNA Background with Helical Animation */}
+      {/* Static DNA Background */}
       <div className="absolute inset-0 z-0">
-        {/* Base DNA Layer */}
         <img 
           src={heroImage} 
           alt="Double-stranded RNA molecular structures" 
-          className="absolute inset-0 w-full h-full object-cover dna-helix-base"
-        />
-        
-        {/* Mid DNA Layer */}
-        <img 
-          src={heroImage} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover dna-helix-mid opacity-60"
-        />
-        
-        {/* Front DNA Layer */}
-        <img 
-          src={heroImage} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover dna-helix-front opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
         />
         
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
       </div>
 
-      {/* Floating Molecular Elements */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-20 w-4 h-4 bg-accent rounded-full dna-orbit opacity-60"></div>
-        <div className="absolute top-40 right-32 w-6 h-6 bg-accent-bright rounded-full animate-molecular-drift opacity-40"></div>
-        <div className="absolute bottom-32 left-32 w-3 h-3 bg-secondary-glow rounded-full animate-pulse-glow opacity-50"></div>
-        <div className="absolute bottom-40 right-20 w-5 h-5 bg-primary-glow rounded-full dna-orbit opacity-30" style={{animationDelay: '5s'}}></div>
-        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-accent rounded-full dna-orbit opacity-25" style={{animationDelay: '10s'}}></div>
-        <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-primary-glow rounded-full dna-orbit opacity-35" style={{animationDelay: '7s'}}></div>
+      {/* Enhanced Floating Molecular Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        {/* Helical Orbit Particles */}
+        <div className="absolute top-20 left-10 w-3 h-3 bg-accent rounded-full animate-helical-orbit opacity-60"></div>
+        <div className="absolute top-40 right-20 w-2 h-2 bg-accent-bright rounded-full animate-helical-orbit-reverse opacity-80" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-primary-glow rounded-full animate-sine-wave opacity-50"></div>
+        
+        {/* Orbital Path Particles */}
+        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-secondary-glow rounded-full animate-orbital-path opacity-70" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 right-10 w-3 h-3 bg-accent rounded-full animate-orbital-path-reverse opacity-60" style={{ animationDelay: '3s' }}></div>
+        
+        {/* Sine Wave Particles */}
+        <div className="absolute top-60 left-1/2 w-2 h-2 bg-accent-bright rounded-full animate-sine-wave-vertical opacity-60" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-80 right-1/4 w-3 h-3 bg-primary-glow rounded-full animate-sine-wave opacity-40" style={{ animationDelay: '2.5s' }}></div>
+        
+        {/* Pulsing Glow Particles */}
+        <div className="absolute top-32 left-3/4 w-2 h-2 bg-secondary-glow rounded-full animate-pulse-glow opacity-80" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-40 left-20 w-4 h-4 bg-accent rounded-full animate-pulse-glow opacity-30" style={{ animationDelay: '4s' }}></div>
+        
+        {/* Additional Depth Particles */}
+        <div className="absolute top-1/2 left-10 w-1 h-1 bg-accent-bright rounded-full animate-float opacity-90" style={{ animationDelay: '0.8s' }}></div>
+        <div className="absolute bottom-60 right-1/3 w-1 h-1 bg-primary-glow rounded-full animate-float opacity-70" style={{ animationDelay: '3.2s' }}></div>
       </div>
 
       {/* Content */}
