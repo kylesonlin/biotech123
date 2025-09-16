@@ -18,28 +18,29 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* Enhanced Floating Molecular Elements */}
+      {/* Double Helix Floating Molecular Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {/* Helical Orbit Particles */}
-        <div className="absolute top-20 left-10 w-3 h-3 bg-accent rounded-full animate-helical-orbit opacity-60"></div>
-        <div className="absolute top-40 right-20 w-2 h-2 bg-accent-bright rounded-full animate-helical-orbit-reverse opacity-80" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-primary-glow rounded-full animate-sine-wave opacity-50"></div>
+        {/* Double Helix Strand 1 Particles */}
+        <div className="absolute top-20 left-10 w-3 h-3 bg-accent rounded-full opacity-70" style={{ animation: 'double-helix-strand-1 20s linear infinite', animationDelay: '0s' }}></div>
+        <div className="absolute top-40 left-20 w-2 h-2 bg-primary-glow rounded-full opacity-60" style={{ animation: 'double-helix-strand-1 18s linear infinite', animationDelay: '3s' }}></div>
+        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-accent-bright rounded-full opacity-50" style={{ animation: 'double-helix-strand-1 22s linear infinite', animationDelay: '6s' }}></div>
         
-        {/* Orbital Path Particles */}
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-secondary-glow rounded-full animate-orbital-path opacity-70" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-20 right-10 w-3 h-3 bg-accent rounded-full animate-orbital-path-reverse opacity-60" style={{ animationDelay: '3s' }}></div>
+        {/* Double Helix Strand 2 Particles (opposite phase) */}
+        <div className="absolute top-60 right-20 w-2 h-2 bg-secondary-glow rounded-full opacity-80" style={{ animation: 'double-helix-strand-2 20s linear infinite', animationDelay: '0s' }}></div>
+        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-accent rounded-full opacity-65" style={{ animation: 'double-helix-strand-2 18s linear infinite', animationDelay: '4s' }}></div>
+        <div className="absolute bottom-20 right-10 w-2 h-2 bg-primary-glow rounded-full opacity-55" style={{ animation: 'double-helix-strand-2 22s linear infinite', animationDelay: '7s' }}></div>
         
-        {/* Sine Wave Particles */}
-        <div className="absolute top-60 left-1/2 w-2 h-2 bg-accent-bright rounded-full animate-sine-wave-vertical opacity-60" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-80 right-1/4 w-3 h-3 bg-primary-glow rounded-full animate-sine-wave opacity-40" style={{ animationDelay: '2.5s' }}></div>
+        {/* Cylindrical Helix Movement */}
+        <div className="absolute top-80 left-1/2 w-2 h-2 bg-accent-bright rounded-full opacity-70" style={{ animation: 'cylindrical-helix 25s linear infinite', animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-secondary-glow rounded-full opacity-45" style={{ animation: 'cylindrical-helix 23s linear infinite', animationDelay: '8s' }}></div>
         
-        {/* Pulsing Glow Particles */}
-        <div className="absolute top-32 left-3/4 w-2 h-2 bg-secondary-glow rounded-full animate-pulse-glow opacity-80" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute bottom-40 left-20 w-4 h-4 bg-accent rounded-full animate-pulse-glow opacity-30" style={{ animationDelay: '4s' }}></div>
+        {/* Helical Ascent Particles */}
+        <div className="absolute top-32 left-3/4 w-2 h-2 bg-accent rounded-full opacity-75" style={{ animation: 'helical-ascent 16s linear infinite, pulse-glow 3s ease-in-out infinite', animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-20 w-1 h-1 bg-primary-glow rounded-full opacity-85" style={{ animation: 'helix-drift-up-right 19s linear infinite, pulse-glow 2.5s ease-in-out infinite', animationDelay: '5s' }}></div>
         
-        {/* Additional Depth Particles */}
-        <div className="absolute top-1/2 left-10 w-1 h-1 bg-accent-bright rounded-full animate-float opacity-90" style={{ animationDelay: '0.8s' }}></div>
-        <div className="absolute bottom-60 right-1/3 w-1 h-1 bg-primary-glow rounded-full animate-float opacity-70" style={{ animationDelay: '3.2s' }}></div>
+        {/* Additional Drift Particles */}
+        <div className="absolute top-1/2 left-10 w-1 h-1 bg-accent-bright rounded-full opacity-90" style={{ animation: 'helix-drift-up-right 17s linear infinite', animationDelay: '2.5s' }}></div>
+        <div className="absolute bottom-60 right-1/3 w-2 h-2 bg-secondary-glow rounded-full opacity-60" style={{ animation: 'helical-ascent 21s linear infinite', animationDelay: '9s' }}></div>
       </div>
 
       {/* Content */}
