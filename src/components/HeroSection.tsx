@@ -19,29 +19,21 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* DNA Dual Helix Track Particles - X-Warp + Anchor System */}
+      {/* DNA Dual Helix Track Particles - Curved Centerline + Variable Amplitude */}
       <HelixTracks
-        /* rails */
         gapVh={10}
         y0={80} y1={40}
         c1={-8} c2={6}
-
-        /* keep 5 crossings */
+        ampMin={6} ampMax={15}
+        ampEase1={0.33} ampEase2={0.33}
         cycles={2.5}
-        ampVh={9}                 // constant amplitude ≥ 5
-
-        /* map crossings to the crop */
-        anchorX={0.545}           // place the middle crossing right on the bright rung (~54.5%)
-        xOffset={-0.02}           // nudge all crossings left
-        xEase1={0.28}             // skew earlier
-        xEase2={0.36}
-
-        /* motion/look */
+        phase={1.0}
         durationSec={14}
         countPerTrack={80}
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
+        showGuides={true}
         showIntersections={true}
         className="z-10"
       />

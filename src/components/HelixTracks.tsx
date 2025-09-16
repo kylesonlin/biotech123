@@ -14,29 +14,15 @@ type HelixTracksProps = {
   c1?: number; // control-1 vertical offset (vh) near start
   c2?: number; // control-2 vertical offset (vh) near end
 
-  // Constant amplitude (replaces variable envelope system)
-  ampVh?: number;           // constant amplitude (vh) - must be ≥5 to guarantee crossings
-
-  // X-axis warping for precise crossing placement
-  xEase1?: number;          // Bézier control point 1 for horizontal warp (0-1)
-  xEase2?: number;          // Bézier control point 2 for horizontal warp (0-1)
-  xOffset?: number;         // global horizontal shift (-1 to +1 in units of width)
-  anchorX?: number;         // lock middle crossing to specific % of screen width (0-1)
-
-  // Legacy amplitude envelope (deprecated but kept for compatibility)
-  ampMin?: number;          // base amplitude (vh)
-  ampMax?: number;          // peak amplitude (vh)
-  swellCenter?: number;     // 0..1, where the bulge peaks
-  swellWidth?: number;      // 0..1, how wide the bulge spans
-  boostAt?: number;         // 0..1 position to kill a crossing by boosting amplitude
-  boostWidth?: number;      // 0..1 span of the boost
-  boostStrength?: number;   // 0..1 strength of amplitude boost
-  ampEase1?: number;        // cubic-bezier (0..1)
-  ampEase2?: number;        // cubic-bezier (0..1)
+  // Amplitude envelope (vh): min/max and ease shape.
+  ampMin?: number;   // must be >= gap/2 to guarantee crossings
+  ampMax?: number;   // larger in the middle to "pop forward"
+  ampEase1?: number; // cubic-bezier (0..1)
+  ampEase2?: number; // cubic-bezier (0..1)
 
   // Helix
   cycles?: number;   // 2.5 => 5 intersections
-  phase?: number;    // radians (auto-calculated if not provided when using anchorX)
+  phase?: number;    // radians
   durationSec?: number;
 
   // Particles
@@ -64,40 +50,10 @@ function cubicY(p: number, y0: number, y1: number, c1: number, c2: number) {
   );
 }
 
-// Smooth tent-shaped bulge centered at pCenter with width w (0..1).
-function tent(p: number, pCenter: number, w: number) {
-  const left = pCenter - w/2, right = pCenter + w/2;
-  if (p <= left || p >= right) return 0;
-  const t = (p - left) / (right - left); // 0..1
-  return 4 * t * (1 - t);                // 0..1 (peak=1 at center)
-}
-
-type AmpParams = {
-  ampMin: number;       // base amplitude (vh)
-  ampMax: number;       // peak amplitude (vh)
-  swellCenter: number;  // 0..1, where the bulge peaks
-  swellWidth: number;   // 0..1, how wide the bulge spans
-  boostAt?: number;     // 0..1, center of the boost that removes a crossing
-  boostWidth?: number;  // 0..1, boost width
-  boostStrength?: number; // 0..1, how much to boost amplitude (removes crossing)
-};
-
-function amplitudeAt(p: number, cfg: AmpParams) {
-  const { ampMin, ampMax, swellCenter, swellWidth, boostAt, boostWidth = 0.05, boostStrength = 0 } = cfg;
-  const bulge = tent(p, swellCenter, swellWidth);                // 0..1
-  let A = ampMin + (ampMax - ampMin) * bulge;                    // vh
-
-  if (typeof boostAt === "number" && boostWidth > 0 && boostStrength > 0) {
-    // Gaussian-ish boost centered at boostAt - increases amplitude to remove crossing
-    const d = (p - boostAt) / (boostWidth / 2);                  // ±2 → edge
-    const boost = Math.exp(-0.5 * d * d) * boostStrength;       // 0..boostStrength
-    A += boost * ampMax * 0.5;                                   // boost locally to kill intersection
-  }
-  return Math.max(0, A);
-}
-
-// Cubic-bezier (0,0) - (a,0) - (1-b,1) - (1,1); returns y for x=p
+// simple cubic-bezier easing (0,0)->(1,1) returning y for given x=p
+// control points (ax,ay)=(ampEase1,0), (bx,by)=(1-ampEase2,1)
 function bezier01(p: number, a: number, b: number) {
+  // invert x via 3 iterations of Newton-Raphson (good enough)
   const ax = a, ay = 0;
   const bx = 1 - b, by = 1;
   const cx1 = 3 * ax;
@@ -114,20 +70,8 @@ function bezier01(p: number, a: number, b: number) {
     if (dx !== 0) t -= (x - p) / dx;
     t = Math.min(1, Math.max(0, t));
   }
-  return ((cy3 * t + cy2) * t + cy1) * t;
-}
-
-// Inverse: given x in [0,1], returns p s.t. bezier01(p,a,b)=x
-function invBezier01(x: number, a: number, b: number) {
-  let p = x;
-  for (let i = 0; i < 4; i++) {
-    const y = bezier01(p, a, b);
-    const eps = 1e-5;
-    const dy = (bezier01(Math.min(1, p + eps), a, b) - y) / eps;
-    if (dy !== 0) p -= (y - x) / dy;
-    p = Math.min(1, Math.max(0, p));
-  }
-  return p;
+  const y = ((cy3 * t + cy2) * t + cy1) * t;
+  return y;
 }
 
 const makeSeed = (i: number) => (((i * 9301 + 49297) % 233280) / 233280);
@@ -136,20 +80,10 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   gapVh = 10,
   y0 = 80, y1 = 40,
   c1 = -6, c2 = 4,          // slight S-curve by default
-  
-  // New X-warp and anchor system
-  ampVh = 9,                 // constant amplitude (≥5 to guarantee crossings)
-  xEase1 = 0.28, xEase2 = 0.36, xOffset = -0.02,
-  anchorX = 0.54,           // anchor middle crossing to 54% of width
-  
-  // Legacy amplitude envelope (for compatibility)
-  ampMin = 5.2, ampMax = 15,
-  swellCenter = 0.45, swellWidth = 0.60,
-  boostAt, boostWidth = 0.04, boostStrength = 0,
-  ampEase1 = 0.35, ampEase2 = 0.35,
-  
+  ampMin = 6, ampMax = 14,  // envelope (min must be >= gap/2 = 5)
+  ampEase1 = 0.35, ampEase2 = 0.35, // bulge near the middle
   cycles = 2.5,
-  phase,                    // will be auto-calculated if not provided
+  phase = 0,
   durationSec = 14,
   countPerTrack = 72,
   sizePx = 5,
@@ -165,23 +99,6 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   useEffect(() => {
     const layer = layerRef.current!;
     layer.innerHTML = "";
-
-    // Auto-solve phase if not provided, to anchor middle crossing at anchorX
-    let solvedPhase = phase;
-    if (phase === undefined || phase === null) {
-      // Map the desired screen X to the param p using the inverse warp
-      const targetX = Math.min(1, Math.max(0, anchorX - xOffset));
-      const pAnchor = invBezier01(targetX, xEase1, xEase2);
-
-      // Constant amplitude model ⇒ intersections when sin(2πK p + φ) = c
-      const gapHalf = gapVh / 2;
-      const A = ampVh;
-      const c = Math.min(1, gapHalf / A);
-      const ang = Math.asin(c);
-      // Choose the primary branch so the middle crossing is the n=2 solution
-      solvedPhase = (ang - TAU * cycles * pAnchor) % TAU;
-      if (solvedPhase < 0) solvedPhase += TAU;
-    }
 
     // Particles
     const total = countPerTrack * 2;
@@ -206,24 +123,17 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
       for (const d of dots) {
         const track = d.dataset.track as "A" | "B";
         const p = (base + Number(d.dataset.seed)) % 1;
-
-        // horizontal warp
-        const warped = bezier01(p, xEase1, xEase2);     // 0..1
-        const x = Math.min(1, Math.max(0, warped + xOffset));
-        const xvw = x * 100;
+        const xvw = p * 100;
 
         // centerline y at x=p
         const yC = cubicY(p, y0, y1, c1, c2);
 
-        // Use constant amplitude if ampVh is provided, otherwise use legacy envelope
-        const A = ampVh !== undefined ? ampVh : amplitudeAt(p, {
-          ampMin, ampMax,
-          swellCenter, swellWidth,
-          boostAt, boostWidth, boostStrength
-        });
+        // amplitude envelope at x=p
+        const env = bezier01(p, ampEase1, ampEase2);   // 0..1
+        const A = ampMin + (ampMax - ampMin) * env;
 
         // helix angle
-        const theta = TAU * cycles * p + solvedPhase;
+        const theta = TAU * cycles * p + phase;
 
         // tracks hugging the centerline with constant gap +/- A*sin
         const yA = yC - gapVh/2 + A * Math.sin(theta);
@@ -250,9 +160,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     return () => cancelAnimationFrame(raf);
   }, [
     gapVh, y0, y1, c1, c2,
-    ampVh, xEase1, xEase2, xOffset, anchorX,
-    ampMin, ampMax, swellCenter, swellWidth,
-    boostAt, boostWidth, boostStrength,
+    ampMin, ampMax, ampEase1, ampEase2,
     cycles, phase,
     durationSec, countPerTrack, sizePx,
     colorFront, colorBack
@@ -282,15 +190,10 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     if (showGuides) {
       for (let i = 0; i <= 100; i++) {
         const p = i/100;
-        const warped = bezier01(p, xEase1, xEase2);
-        const x = Math.min(1, Math.max(0, warped + xOffset));
-        const xvw = x * 100;
+        const xvw = p * 100;
         const yC = cubicY(p, y0, y1, c1, c2);
-        const A = ampVh !== undefined ? ampVh : amplitudeAt(p, {
-          ampMin, ampMax,
-          swellCenter, swellWidth,
-          boostAt, boostWidth, boostStrength
-        });
+        const env = bezier01(p, ampEase1, ampEase2);
+        const A = ampMin + (ampMax - ampMin)*env;
         addDot(xvw, yC, "guide-center");
         addDot(xvw, yC - gapVh/2 + A, "guide-lane");
         addDot(xvw, yC + gapVh/2 - A, "guide-lane");
@@ -299,69 +202,34 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
 
     // exact intersections when sin(...) = gap/(2A(p))
     if (showIntersections) {
-      // Auto-solve phase for intersections if not provided
-      let intersectionPhase = phase;
-      if (phase === undefined || phase === null) {
-        const targetX = Math.min(1, Math.max(0, anchorX - xOffset));
-        const pAnchor = invBezier01(targetX, xEase1, xEase2);
-        const gapHalf = gapVh / 2;
-        const A = ampVh !== undefined ? ampVh : 9;
-        const c = Math.min(1, gapHalf / A);
-        const ang = Math.asin(c);
-        intersectionPhase = (ang - TAU * cycles * pAnchor) % TAU;
-        if (intersectionPhase < 0) intersectionPhase += TAU;
-      }
-
       const c = gapVh / 2;
       const ts: number[] = [];
       for (let i = 0; i <= 500; i++) { // numeric search, fine for setup
         const p = i/500;
-        const A = ampVh !== undefined ? ampVh : amplitudeAt(p, {
-          ampMin, ampMax,
-          swellCenter, swellWidth,
-          boostAt, boostWidth, boostStrength
-        });
+        const env = bezier01(p, ampEase1, ampEase2);
+        const A = ampMin + (ampMax - ampMin)*env;
         const s = c / A; if (s > 1) continue;
         // solve theta = asin(s) - phase + 2πn  OR  π - asin(s) - phase + 2πn
         const asinS = Math.asin(s);
         const K = cycles;
         const roots = [
-          (asinS - intersectionPhase) / (TAU*K),
-          (Math.PI - asinS - intersectionPhase) / (TAU*K),
+          (asinS - phase) / (TAU*K),
+          (Math.PI - asinS - phase) / (TAU*K),
         ];
         roots.forEach(t => { if (t >= 0 && t <= 1) ts.push(t); });
       }
       ts.sort((a,b)=>a-b);
       // de-dupe
       const uniq = ts.filter((t,i,a)=> i===0 || Math.abs(t-a[i-1])>1e-3).slice(0,5);
-      
-      // Optional: log intersection positions
-      if (uniq.length > 0) {
-        console.table(
-          uniq.map((t, i) => {
-            const warped = bezier01(t, xEase1, xEase2);
-            const x = Math.min(1, Math.max(0, warped + xOffset));
-            return {
-              index: i + 1,
-              p: +t.toFixed(6),
-              x_pct: +(x*100).toFixed(3),
-              time_s: +(t*durationSec).toFixed(3),
-            };
-          })
-        );
-      }
-      
       uniq.forEach(t => {
-        const warped = bezier01(t, xEase1, xEase2);
-        const x = Math.min(1, Math.max(0, warped + xOffset));
-        const xvw = x * 100;
+        const xvw = t * 100;
         const yC = cubicY(t, y0, y1, c1, c2);
         addDot(xvw, yC, "guide-xing");
       });
     }
 
     return () => { g.remove(); guidesRef.current = null; };
-  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampVh, xEase1, xEase2, xOffset, anchorX, ampMin, ampMax, swellCenter, swellWidth, boostAt, boostWidth, boostStrength, cycles, phase, durationSec]);
+  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, ampEase1, ampEase2, cycles, phase]);
 
   return <div className={`helix-layer ${className}`} ref={layerRef} aria-hidden />;
 };
