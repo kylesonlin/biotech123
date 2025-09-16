@@ -14,9 +14,18 @@ type HelixTracksProps = {
   c1?: number; // control-1 vertical offset (vh) near start
   c2?: number; // control-2 vertical offset (vh) near end
 
-  // Amplitude envelope (vh): min/max and ease shape.
-  ampMin?: number;   // must be >= gap/2 to guarantee crossings
-  ampMax?: number;   // larger in the middle to "pop forward"
+  // Amplitude envelope (vh): min/max and swell positioning
+  ampMin?: number;       // base amplitude (vh)
+  ampMax?: number;       // peak amplitude (vh)
+  swellCenter?: number;  // 0..1, where the bulge peaks
+  swellWidth?: number;   // 0..1, how wide the bulge spans
+  
+  // Optional notch to remove specific crossings
+  notchAt?: number;      // 0..1, center of the notch that removes a crossing
+  notchWidth?: number;   // 0..1, notch width
+  notchDepth?: number;   // 0..1, how deep the notch cuts (1 = full cut)
+
+  // Legacy amplitude (deprecated but kept for compatibility)
   ampEase1?: number; // cubic-bezier (0..1)
   ampEase2?: number; // cubic-bezier (0..1)
 
@@ -50,10 +59,40 @@ function cubicY(p: number, y0: number, y1: number, c1: number, c2: number) {
   );
 }
 
-// simple cubic-bezier easing (0,0)->(1,1) returning y for given x=p
-// control points (ax,ay)=(ampEase1,0), (bx,by)=(1-ampEase2,1)
+// Smooth tent-shaped bulge centered at pCenter with width w (0..1).
+function tent(p: number, pCenter: number, w: number) {
+  const left = pCenter - w/2, right = pCenter + w/2;
+  if (p <= left || p >= right) return 0;
+  const t = (p - left) / (right - left); // 0..1
+  return 4 * t * (1 - t);                // 0..1 (peak=1 at center)
+}
+
+type AmpParams = {
+  ampMin: number;       // base amplitude (vh)
+  ampMax: number;       // peak amplitude (vh)
+  swellCenter: number;  // 0..1, where the bulge peaks
+  swellWidth: number;   // 0..1, how wide the bulge spans
+  notchAt?: number;     // 0..1, center of the notch that removes a crossing
+  notchWidth?: number;  // 0..1, notch width
+  notchDepth?: number;  // 0..1, how deep the notch cuts (1 = full cut)
+};
+
+function amplitudeAt(p: number, cfg: AmpParams) {
+  const { ampMin, ampMax, swellCenter, swellWidth, notchAt, notchWidth = 0.05, notchDepth = 0 } = cfg;
+  const bulge = tent(p, swellCenter, swellWidth);                // 0..1
+  let A = ampMin + (ampMax - ampMin) * bulge;                    // vh
+
+  if (typeof notchAt === "number" && notchWidth > 0 && notchDepth > 0) {
+    // Gaussian-ish notch centered at notchAt
+    const d = (p - notchAt) / (notchWidth / 2);                  // ±2 → edge
+    const cut = Math.exp(-0.5 * d * d) * notchDepth;            // 0..notchDepth
+    A *= (1 - cut);                                             // reduce locally
+  }
+  return Math.max(0, A);
+}
+
+// Legacy bezier function for backward compatibility
 function bezier01(p: number, a: number, b: number) {
-  // invert x via 3 iterations of Newton-Raphson (good enough)
   const ax = a, ay = 0;
   const bx = 1 - b, by = 1;
   const cx1 = 3 * ax;
@@ -80,8 +119,10 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
   gapVh = 10,
   y0 = 80, y1 = 40,
   c1 = -6, c2 = 4,          // slight S-curve by default
-  ampMin = 6, ampMax = 14,  // envelope (min must be >= gap/2 = 5)
-  ampEase1 = 0.35, ampEase2 = 0.35, // bulge near the middle
+  ampMin = 5.2, ampMax = 15,  // new defaults for better control
+  swellCenter = 0.45, swellWidth = 0.60,  // swell positioning
+  notchAt, notchWidth = 0.04, notchDepth = 0,  // notch (off by default)
+  ampEase1 = 0.35, ampEase2 = 0.35, // legacy compatibility
   cycles = 2.5,
   phase = 0,
   durationSec = 14,
@@ -129,8 +170,11 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
         const yC = cubicY(p, y0, y1, c1, c2);
 
         // amplitude envelope at x=p
-        const env = bezier01(p, ampEase1, ampEase2);   // 0..1
-        const A = ampMin + (ampMax - ampMin) * env;
+        const A = amplitudeAt(p, {
+          ampMin, ampMax,
+          swellCenter, swellWidth,
+          notchAt, notchWidth, notchDepth
+        });
 
         // helix angle
         const theta = TAU * cycles * p + phase;
@@ -160,7 +204,8 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     return () => cancelAnimationFrame(raf);
   }, [
     gapVh, y0, y1, c1, c2,
-    ampMin, ampMax, ampEase1, ampEase2,
+    ampMin, ampMax, swellCenter, swellWidth,
+    notchAt, notchWidth, notchDepth,
     cycles, phase,
     durationSec, countPerTrack, sizePx,
     colorFront, colorBack
@@ -192,8 +237,11 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
         const p = i/100;
         const xvw = p * 100;
         const yC = cubicY(p, y0, y1, c1, c2);
-        const env = bezier01(p, ampEase1, ampEase2);
-        const A = ampMin + (ampMax - ampMin)*env;
+        const A = amplitudeAt(p, {
+          ampMin, ampMax,
+          swellCenter, swellWidth,
+          notchAt, notchWidth, notchDepth
+        });
         addDot(xvw, yC, "guide-center");
         addDot(xvw, yC - gapVh/2 + A, "guide-lane");
         addDot(xvw, yC + gapVh/2 - A, "guide-lane");
@@ -206,8 +254,11 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
       const ts: number[] = [];
       for (let i = 0; i <= 500; i++) { // numeric search, fine for setup
         const p = i/500;
-        const env = bezier01(p, ampEase1, ampEase2);
-        const A = ampMin + (ampMax - ampMin)*env;
+        const A = amplitudeAt(p, {
+          ampMin, ampMax,
+          swellCenter, swellWidth,
+          notchAt, notchWidth, notchDepth
+        });
         const s = c / A; if (s > 1) continue;
         // solve theta = asin(s) - phase + 2πn  OR  π - asin(s) - phase + 2πn
         const asinS = Math.asin(s);
@@ -221,6 +272,19 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
       ts.sort((a,b)=>a-b);
       // de-dupe
       const uniq = ts.filter((t,i,a)=> i===0 || Math.abs(t-a[i-1])>1e-3).slice(0,5);
+      
+      // Optional: log intersection positions
+      if (uniq.length > 0) {
+        console.table(
+          uniq.map((t, i) => ({
+            index: i + 1,
+            p: +t.toFixed(6),
+            x_pct: +(t*100).toFixed(3),
+            time_s: +(t*durationSec).toFixed(3),
+          }))
+        );
+      }
+      
       uniq.forEach(t => {
         const xvw = t * 100;
         const yC = cubicY(t, y0, y1, c1, c2);
@@ -229,7 +293,7 @@ export const HelixTracks: React.FC<HelixTracksProps> = ({
     }
 
     return () => { g.remove(); guidesRef.current = null; };
-  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, ampEase1, ampEase2, cycles, phase]);
+  }, [showGuides, showIntersections, gapVh, y0, y1, c1, c2, ampMin, ampMax, swellCenter, swellWidth, notchAt, notchWidth, notchDepth, cycles, phase]);
 
   return <div className={`helix-layer ${className}`} ref={layerRef} aria-hidden />;
 };

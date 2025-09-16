@@ -24,16 +24,20 @@ export const HeroSection = () => {
         gapVh={10}
         y0={80} y1={40}
         c1={-8} c2={6}
-        ampMin={6} ampMax={15}
-        ampEase1={0.33} ampEase2={0.33}
+        ampMin={5.2}
+        ampMax={16}
+        swellCenter={0.40}
+        swellWidth={0.62}
+        notchAt={0.52}
+        notchWidth={0.05}
+        notchDepth={0.85}
         cycles={2.5}
-        phase={1.0}
+        phase={-0.12}
         durationSec={14}
         countPerTrack={80}
         sizePx={5}
         colorFront="hsl(var(--accent))"
         colorBack="hsl(var(--accent) / 0.35)"
-        showGuides={true}
         showIntersections={true}
         className="z-10"
       />
