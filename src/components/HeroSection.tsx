@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play, TrendingUp } from 'lucide-react';
 import heroImage from '@/assets/hero-molecular.jpg';
+import HelixTracks from '@/components/HelixTracks';
 
 export const HeroSection = () => {
   return (
@@ -18,162 +19,20 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
-      {/* DNA Dual Helix Track Particles - Two clustered waves per track */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {/* DNA Helix Track A - Clockwise Spiral */}
-        {/* Cluster 1 - First wave */}
-        <div 
-          className="absolute left-0 w-3 h-3 bg-accent rounded-full will-change-transform shadow-lg" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '0s',
-            filter: 'drop-shadow(0 0 8px hsl(var(--accent)))',
-            opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-5 h-5 bg-accent-bright rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '1s',
-            filter: 'drop-shadow(0 0 12px hsl(var(--accent-bright)))',
-            opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-4 h-4 bg-primary rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '2s',
-            filter: 'drop-shadow(0 0 10px hsl(var(--primary)))',
-            opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-3 h-3 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '3s',
-            filter: 'drop-shadow(0 0 8px hsl(var(--primary-glow)))',
-            opacity: '1'
-          }}
-        ></div>
-        
-        {/* Cluster 2 - Second wave */}
-        <div 
-          className="absolute left-0 w-2 h-2 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '0.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--primary-glow)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-secondary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '1.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--secondary-glow)))',
-            opacity: '0.8'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-1 h-1 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '2.5s',
-            filter: 'drop-shadow(0 0 4px hsl(var(--accent)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-accent-bright rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-a 35s linear infinite',
-            animationDelay: '3.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--accent-bright)))',
-            opacity: '0.8'
-          }}
-        ></div>
-        
-        {/* DNA Helix Track B - Counter-clockwise Spiral */}
-        {/* Cluster 1 - First wave */}
-        <div 
-          className="absolute left-0 w-3 h-3 bg-secondary-glow rounded-full will-change-transform shadow-lg" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '0s',
-            filter: 'drop-shadow(0 0 8px hsl(var(--secondary-glow)))',
-            opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-5 h-5 bg-accent-bright rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '1s',
-            filter: 'drop-shadow(0 0 12px hsl(var(--accent-bright)))',
-            opacity: '1'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-3 h-3 bg-secondary rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '2s',
-            filter: 'drop-shadow(0 0 8px hsl(var(--secondary)))',
-            opacity: '0.8'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-4 h-4 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '3s',
-            filter: 'drop-shadow(0 0 10px hsl(var(--primary-glow)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        
-        {/* Cluster 2 - Second wave */}
-        <div 
-          className="absolute left-0 w-4 h-4 bg-primary rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '0.5s',
-            filter: 'drop-shadow(0 0 10px hsl(var(--primary)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '1.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
-            opacity: '0.8'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-1 h-1 bg-primary-glow rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '2.5s',
-            filter: 'drop-shadow(0 0 4px hsl(var(--primary-glow)))',
-            opacity: '0.9'
-          }}
-        ></div>
-        <div 
-          className="absolute left-0 w-2 h-2 bg-accent rounded-full will-change-transform" 
-          style={{ 
-            animation: 'helical-diagonal-b 35s linear infinite',
-            animationDelay: '3.5s',
-            filter: 'drop-shadow(0 0 6px hsl(var(--accent)))',
-            opacity: '1'
-          }}
-        ></div>
-      </div>
+      {/* DNA Dual Helix Track Particles - Mathematically Perfect 5 Intersections */}
+      <HelixTracks
+        startA={75} endA={35}
+        startB={85} endB={45}
+        ampVh={9}
+        cycles={2.5}
+        phase={0}
+        durationSec={14}
+        countPerTrack={32}
+        sizePx={5}
+        colorFront="hsl(var(--accent))"
+        colorBack="hsl(var(--accent) / 0.35)"
+        className="z-10"
+      />
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 py-24">
