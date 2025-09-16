@@ -219,7 +219,6 @@
   .hero-glow {
     box-shadow: var(--shadow-glow);
   }
-
 }
 
 @layer utilities {
