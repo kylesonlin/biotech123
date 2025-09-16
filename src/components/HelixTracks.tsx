@@ -22,10 +22,10 @@ export const HelixTracks = ({
   cycles = 2.5,
   phase = 4.59,
   durationSec = 14,
-  countPerTrack = 150,
-  sizePx = 25,
-  colorFront = '#00ffff',
-  colorBack = '#ff00ff'
+  countPerTrack = 80,
+  sizePx = 5,
+  colorFront = 'hsl(var(--accent))',
+  colorBack = 'hsl(var(--accent) / 0.35)'
 }: HelixTracksProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
@@ -90,10 +90,10 @@ export const HelixTracks = ({
           ? yC - gapVh / 2 + amplitude * sinValue
           : yC + gapVh / 2 - amplitude * sinValue;
 
-        // Depth effect - ENHANCED FOR VISIBILITY
+        // Depth effect
         const depth = (Math.cos(theta) + 1) / 2;
-        const scale = 1; // Removed scaling for consistent visibility
-        const alpha = 0.8 + 0.2 * depth; // Much more opaque
+        const scale = 0.85 + 0.55 * depth;
+        const alpha = 0.35 + 0.65 * depth;
         const color = depth >= 0.5 ? colorFront : colorBack;
 
         // Apply styles
