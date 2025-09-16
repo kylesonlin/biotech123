@@ -161,16 +161,17 @@
 
   /* DNA Strand Animations */
   .dna-spiral {
-    animation: dna-spiral 40s linear infinite, dna-float 8s ease-in-out infinite, dna-pulse 6s ease-in-out infinite;
-    will-change: transform, opacity;
+    animation: dna-spiral 15s linear infinite, dna-float 6s ease-in-out infinite;
+    will-change: transform, filter;
+    transform-origin: center center;
   }
 
   .dna-spiral-fast {
-    animation: dna-spiral 20s linear infinite, dna-float 6s ease-in-out infinite, dna-pulse 4s ease-in-out infinite;
+    animation: dna-spiral 8s linear infinite, dna-float 4s ease-in-out infinite;
   }
 
   .dna-spiral-slow {
-    animation: dna-spiral 60s linear infinite, dna-float 12s ease-in-out infinite, dna-pulse 8s ease-in-out infinite;
+    animation: dna-spiral 25s linear infinite, dna-float 10s ease-in-out infinite;
   }
 
   .dna-orbit {
@@ -227,24 +228,24 @@
   /* DNA Strand Animation Keyframes */
   @keyframes dna-spiral {
     0% { 
-      transform: rotate(0deg) scale(1) translateX(0px); 
-      opacity: 0.8; 
+      transform: rotate(0deg) scale(1) translateX(0px) translateY(0px); 
+      filter: brightness(1) hue-rotate(0deg); 
     }
     25% { 
-      transform: rotate(90deg) scale(1.02) translateX(2px); 
-      opacity: 0.9; 
+      transform: rotate(90deg) scale(1.05) translateX(8px) translateY(-4px); 
+      filter: brightness(1.1) hue-rotate(15deg); 
     }
     50% { 
-      transform: rotate(180deg) scale(1.04) translateX(0px); 
-      opacity: 1; 
+      transform: rotate(180deg) scale(1.08) translateX(0px) translateY(6px); 
+      filter: brightness(1.15) hue-rotate(30deg); 
     }
     75% { 
-      transform: rotate(270deg) scale(1.02) translateX(-2px); 
-      opacity: 0.9; 
+      transform: rotate(270deg) scale(1.05) translateX(-8px) translateY(-2px); 
+      filter: brightness(1.1) hue-rotate(15deg); 
     }
     100% { 
-      transform: rotate(360deg) scale(1) translateX(0px); 
-      opacity: 0.8; 
+      transform: rotate(360deg) scale(1) translateX(0px) translateY(0px); 
+      filter: brightness(1) hue-rotate(0deg); 
     }
   }
 
@@ -253,10 +254,10 @@
       transform: translateY(0px) translateX(0px); 
     }
     33% { 
-      transform: translateY(-3px) translateX(2px); 
+      transform: translateY(-12px) translateX(8px); 
     }
     66% { 
-      transform: translateY(2px) translateX(-1px); 
+      transform: translateY(8px) translateX(-6px); 
     }
   }
 
