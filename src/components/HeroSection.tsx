@@ -10,12 +10,12 @@ export const HeroSection = () => {
         <img 
           src={heroImage} 
           alt="Double-stranded RNA molecular structures" 
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
         />
         
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
       </div>
 
       {/* Enhanced Floating Molecular Elements */}
