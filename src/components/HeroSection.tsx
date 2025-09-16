@@ -10,7 +10,7 @@ export const HeroSection = () => {
         <img 
           src={heroImage} 
           alt="Double-stranded RNA molecular structures" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover dna-spiral"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent"></div>
@@ -18,10 +18,12 @@ export const HeroSection = () => {
 
       {/* Floating Molecular Elements */}
       <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-20 w-4 h-4 bg-accent rounded-full animate-float opacity-60"></div>
+        <div className="absolute top-20 left-20 w-4 h-4 bg-accent rounded-full dna-orbit opacity-60"></div>
         <div className="absolute top-40 right-32 w-6 h-6 bg-accent-bright rounded-full animate-molecular-drift opacity-40"></div>
         <div className="absolute bottom-32 left-32 w-3 h-3 bg-secondary-glow rounded-full animate-pulse-glow opacity-50"></div>
-        <div className="absolute bottom-40 right-20 w-5 h-5 bg-primary-glow rounded-full animate-float opacity-30"></div>
+        <div className="absolute bottom-40 right-20 w-5 h-5 bg-primary-glow rounded-full dna-orbit opacity-30" style={{animationDelay: '5s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-accent rounded-full dna-orbit opacity-25" style={{animationDelay: '10s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-primary-glow rounded-full dna-orbit opacity-35" style={{animationDelay: '7s'}}></div>
       </div>
 
       {/* Content */}

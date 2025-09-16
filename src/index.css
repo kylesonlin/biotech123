@@ -159,6 +159,30 @@
     animation: rotate-slow 20s linear infinite;
   }
 
+  /* DNA Strand Animations */
+  .dna-spiral {
+    animation: dna-spiral 40s linear infinite, dna-float 8s ease-in-out infinite, dna-pulse 6s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .dna-spiral-fast {
+    animation: dna-spiral 20s linear infinite, dna-float 6s ease-in-out infinite, dna-pulse 4s ease-in-out infinite;
+  }
+
+  .dna-spiral-slow {
+    animation: dna-spiral 60s linear infinite, dna-float 12s ease-in-out infinite, dna-pulse 8s ease-in-out infinite;
+  }
+
+  .dna-orbit {
+    animation: dna-orbit 15s linear infinite, float 8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dna-spiral, .dna-spiral-fast, .dna-spiral-slow, .dna-orbit {
+      animation: none;
+    }
+  }
+
   .gradient-text {
     background: var(--gradient-hero);
     -webkit-background-clip: text;
@@ -198,5 +222,59 @@
     25% { transform: translate(10px, -10px) rotate(90deg); }
     50% { transform: translate(-5px, 10px) rotate(180deg); }
     75% { transform: translate(-10px, -5px) rotate(270deg); }
+  }
+
+  /* DNA Strand Animation Keyframes */
+  @keyframes dna-spiral {
+    0% { 
+      transform: rotate(0deg) scale(1) translateX(0px); 
+      opacity: 0.8; 
+    }
+    25% { 
+      transform: rotate(90deg) scale(1.02) translateX(2px); 
+      opacity: 0.9; 
+    }
+    50% { 
+      transform: rotate(180deg) scale(1.04) translateX(0px); 
+      opacity: 1; 
+    }
+    75% { 
+      transform: rotate(270deg) scale(1.02) translateX(-2px); 
+      opacity: 0.9; 
+    }
+    100% { 
+      transform: rotate(360deg) scale(1) translateX(0px); 
+      opacity: 0.8; 
+    }
+  }
+
+  @keyframes dna-float {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px); 
+    }
+    33% { 
+      transform: translateY(-3px) translateX(2px); 
+    }
+    66% { 
+      transform: translateY(2px) translateX(-1px); 
+    }
+  }
+
+  @keyframes dna-pulse {
+    0%, 100% { 
+      filter: brightness(1) contrast(1); 
+    }
+    50% { 
+      filter: brightness(1.1) contrast(1.05); 
+    }
+  }
+
+  @keyframes dna-orbit {
+    0% { 
+      transform: rotate(0deg) translateX(30px) rotate(0deg); 
+    }
+    100% { 
+      transform: rotate(360deg) translateX(30px) rotate(-360deg); 
+    }
   }
 }
