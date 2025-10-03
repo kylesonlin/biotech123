@@ -20,7 +20,7 @@ export const Navigation = () => {
               </div>
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text">Oncolytics Biotech</h1>
+              <h1 className="text-xl font-serif font-bold gradient-text">Oncolytics Biotech</h1>
               <p className="text-xs text-muted-foreground font-mono">NASDAQ: ONCY</p>
             </div>
           </Link>

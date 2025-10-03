@@ -1,326 +1,232 @@
 import { Navigation } from '@/components/Navigation';
 import { FooterSection } from '@/components/FooterSection';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, Target, Award, Brain, Shield, Mail, Lightbulb, Microscope, Globe } from 'lucide-react';
+import { Target, Lightbulb, Users, Globe, Shield, Award } from 'lucide-react';
 
 const About = () => {
-  // Executive leadership data
   const executiveTeam = [
-    {
-      name: "Dr. Matt Coffey",
-      title: "President & CEO",
-      affiliation: "Oncolytics Biotech Inc.",
-      expertise: "Oncolytic virotherapy, strategic leadership",
-      background: "20+ years in biotechnology leadership, former roles at Pfizer and Roche",
-      achievements: "Led multiple successful drug development programs",
-      education: "PhD Molecular Biology, MBA"
-    },
-    {
-      name: "Kirk Look",
-      title: "Chief Financial Officer",
-      affiliation: "Oncolytics Biotech Inc.",
-      expertise: "Corporate finance, strategic planning",
-      background: "15+ years in biotech finance, former CFO at multiple public companies",
-      achievements: "Managed over $200M in financing transactions",
-      education: "CPA, MBA Finance"
-    }
+    { name: "Thomas Heineman, M.D.", title: "Chief Executive Officer", initials: "TH" },
+    { name: "Kirk Look", title: "Chief Financial Officer", initials: "KL" },
+    { name: "George Gill, M.D.", title: "Chief Medical Officer", initials: "GG" },
+    { name: "Andrew de Guttadauro", title: "Chief Business Officer", initials: "AG" },
+    { name: "Mary Ann Nawrocki", title: "VP Clinical Operations", initials: "MN" },
+    { name: "Stephanie Richardson", title: "VP Product Development", initials: "SR" },
   ];
 
-  // Scientific Advisory Board data
-  const scientificAdvisoryBoard = [
-    {
-      name: "Dr. John Bell",
-      title: "Senior Scientist",
-      affiliation: "Ottawa Hospital Research Institute",
-      expertise: "Oncolytic viruses, immunotherapy, translational research",
-      credentials: "200+ publications, pioneer in oncolytic virus field"
-    },
-    {
-      name: "Dr. Dirk Schadendorf",
-      title: "Professor of Dermatology",
-      affiliation: "University Hospital Essen, Germany",
-      expertise: "Melanoma, immunotherapy, clinical trials",
-      credentials: "Leading EU oncologist, 300+ publications"
-    },
-    {
-      name: "Dr. Yuman Fong",
-      title: "Chair of Surgery",
-      affiliation: "City of Hope Medical Center",
-      expertise: "Surgical oncology, hepatobiliary surgery, oncolytic viruses",
-      credentials: "World-renowned surgeon, 400+ publications"
-    }
+  const scientificAdvisors = [
+    { name: "Dr. John Bell", affiliation: "Ottawa Hospital Research Institute", expertise: "Oncolytic Viruses" },
+    { name: "Dr. Dirk Schadendorf", affiliation: "University Hospital Essen", expertise: "Melanoma & Immunotherapy" },
+    { name: "Dr. Yuman Fong", affiliation: "City of Hope Medical Center", expertise: "Surgical Oncology" },
+    { name: "Dr. Howard Kaufman", affiliation: "Mass General Hospital", expertise: "Cancer Immunotherapy" },
   ];
 
-  // FAQ data integrated contextually
-  const companyFAQs = [
+  const values = [
     {
-      question: "What makes Oncolytics unique in the oncology space?",
-      answer: "We are the only company with a systemically delivered oncolytic virus (pelareorep) in late-stage clinical development, with over 15 years of safety data and a registration-enabled program in GI cancers."
+      icon: Target,
+      title: "Strategic Focus",
+      description: "Concentrated on GI cancers where our platform can deliver maximum patient impact and value creation."
     },
     {
-      question: "What is our competitive advantage?",
-      answer: "Our differentiated MOA combines selective tumor replication, immune system activation, and proven safety profile. We have the longest safety track record in the oncolytic virus field."
+      icon: Lightbulb,
+      title: "Scientific Innovation",
+      description: "Pioneering the dual-action approach combining direct tumor lysis with immune system activation."
     },
     {
-      question: "What are our key value creation milestones?",
-      answer: "Phase 3 GOBLET study readout, potential partnership agreements, regulatory submissions, and expansion into additional indications."
+      icon: Shield,
+      title: "Patient Safety First",
+      description: "15 years of clinical experience with exceptional safety profile across 1,200+ patients."
+    },
+    {
+      icon: Globe,
+      title: "Global Collaboration",
+      description: "Partnering with leading institutions and researchers worldwide to advance cancer treatment."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold gradient-text mb-6 animate-fade-in">
+      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-primary/5 to-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <Badge variant="secondary" className="mb-4">About Oncolytics</Badge>
+            <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-6">
               Pioneering Cancer Innovation
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-slide-up">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Building the leading GI tumor immunotherapy platform through breakthrough science, 
               visionary leadership, and unwavering commitment to patient outcomes.
             </p>
-            
-            {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <Card className="glass-effect p-6 hover-lift">
-                <div className="text-3xl font-bold gradient-text mb-2">15+</div>
-                <div className="text-sm text-muted-foreground">Years of Clinical Experience</div>
-              </Card>
-              <Card className="glass-effect p-6 hover-lift">
-                <div className="text-3xl font-bold gradient-text mb-2">1,200+</div>
-                <div className="text-sm text-muted-foreground">Patients Treated Safely</div>
-              </Card>
-              <Card className="glass-effect p-6 hover-lift">
-                <div className="text-3xl font-bold gradient-text mb-2">40+</div>
-                <div className="text-sm text-muted-foreground">Clinical Studies Completed</div>
-              </Card>
-            </div>
+          </div>
+
+          {/* Key Stats */}
+          <div className="grid md:grid-cols-4 gap-6 mb-16">
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="text-4xl font-serif font-bold text-primary mb-2">15+</div>
+              <div className="text-sm text-muted-foreground">Years Clinical Experience</div>
+            </Card>
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="text-4xl font-serif font-bold text-primary mb-2">1,200+</div>
+              <div className="text-sm text-muted-foreground">Patients Treated</div>
+            </Card>
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="text-4xl font-serif font-bold text-primary mb-2">40+</div>
+              <div className="text-sm text-muted-foreground">Clinical Studies</div>
+            </Card>
+            <Card className="p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="text-4xl font-serif font-bold text-primary mb-2">3</div>
+              <div className="text-sm text-muted-foreground">GI Indications</div>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Company Story */}
-      <section id="story" className="py-16 px-6">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <Badge variant="secondary" className="mb-4">Our Story</Badge>
-                <h2 className="text-4xl font-bold mb-6">Transforming Cancer Treatment Through Innovation</h2>
-                <p className="text-muted-foreground mb-6">
-                  Founded on the principle that breakthrough science can change patient lives, Oncolytics Biotech 
-                  has spent over two decades perfecting pelareorep—a first-in-class oncolytic virus that selectively 
-                  targets cancer cells while activating the immune system.
-                </p>
-                <p className="text-muted-foreground mb-8">
-                  Our unique mechanism of action combines direct tumor lysis with immune activation, creating a 
-                  synergistic effect that has shown promise across multiple cancer types, with particular strength 
-                  in gastrointestinal tumors.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Badge variant="outline"><Lightbulb className="h-3 w-3 mr-1" />Innovation</Badge>
-                  <Badge variant="outline"><Shield className="h-3 w-3 mr-1" />Safety First</Badge>
-                  <Badge variant="outline"><Globe className="h-3 w-3 mr-1" />Global Impact</Badge>
-                </div>
-              </div>
-              <div className="relative">
-                <Card className="glass-effect p-8">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
-                        <Microscope className="h-6 w-6 text-primary-foreground" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Scientific Excellence</h4>
-                        <p className="text-sm text-muted-foreground">World-class research and development</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-secondary rounded-lg flex items-center justify-center">
-                        <Target className="h-6 w-6 text-secondary-foreground" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Patient Focus</h4>
-                        <p className="text-sm text-muted-foreground">Every decision driven by patient outcomes</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-accent rounded-lg flex items-center justify-center">
-                        <Award className="h-6 w-6 text-accent-foreground" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold">Proven Track Record</h4>
-                        <p className="text-sm text-muted-foreground">15+ years of clinical success</p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership Section with Tabs */}
-      <section id="leadership" className="py-16 px-6 bg-muted/30">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Badge variant="secondary" className="mb-4">Leadership</Badge>
-              <h2 className="text-4xl font-bold mb-6">Exceptional Leadership Driving Innovation</h2>
-              <p className="text-muted-foreground max-w-3xl mx-auto">
-                Our team combines decades of industry experience with cutting-edge scientific expertise 
-                to advance breakthrough cancer treatments.
+      {/* Mission Section */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-serif text-4xl font-bold text-foreground mb-6">
+                Our Mission
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                To revolutionize cancer treatment by harnessing the power of oncolytic virotherapy, 
+                delivering therapies that combine direct tumor destruction with immune system activation 
+                to provide meaningful, lasting benefits to patients with gastrointestinal cancers.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We are committed to advancing pelareorep as a cornerstone therapy in GI oncology, 
+                backed by rigorous science, exceptional safety data, and strategic clinical development.
               </p>
             </div>
-
-            <Tabs defaultValue="executive" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="executive">Executive Team</TabsTrigger>
-                <TabsTrigger value="advisory">Scientific Advisory Board</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="executive" className="mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {executiveTeam.map((member, index) => (
-                    <Card key={index} className="glass-effect p-6 hover-lift">
-                      <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center">
-                          <Users className="h-8 w-8 text-primary-foreground" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                          <p className="text-primary font-medium mb-2">{member.title}</p>
-                          <p className="text-sm text-muted-foreground mb-4">{member.background}</p>
-                          <div className="space-y-2 text-sm">
-                            <div><strong>Expertise:</strong> {member.expertise}</div>
-                            <div><strong>Key Achievements:</strong> {member.achievements}</div>
-                            <div><strong>Education:</strong> {member.education}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="advisory" className="mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {scientificAdvisoryBoard.map((member, index) => (
-                    <Card key={index} className="glass-effect p-6 hover-lift">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                          <Brain className="h-8 w-8 text-secondary-foreground" />
-                        </div>
-                        <h3 className="text-lg font-bold mb-2">{member.name}</h3>
-                        <p className="text-primary font-medium mb-1">{member.title}</p>
-                        <p className="text-sm text-muted-foreground mb-4">{member.affiliation}</p>
-                        <div className="space-y-2 text-sm text-left">
-                          <div><strong>Expertise:</strong> {member.expertise}</div>
-                          <div><strong>Credentials:</strong> {member.credentials}</div>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
+            <Card className="p-8 bg-gradient-to-br from-primary/5 to-accent/5 border-2">
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-6">Why GI Cancers?</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                  </div>
+                  <p className="text-muted-foreground">Pancreatic cancer has a 5-year survival rate of only 10%</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                  </div>
+                  <p className="text-muted-foreground">High RAS mutation rates (&gt;90% in pancreatic cancer)</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                  </div>
+                  <p className="text-muted-foreground">Limited treatment options and urgent unmet medical need</p>
+                </li>
+              </ul>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Mission & Values */}
-      <section id="mission" className="py-16 px-6">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <Badge variant="secondary" className="mb-4">Mission & Values</Badge>
-              <h2 className="text-4xl font-bold mb-6">Driven by Purpose, Guided by Values</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="glass-effect p-8 text-center hover-lift">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Target className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground">
-                  To develop and commercialize breakthrough oncolytic virus therapies that transform 
-                  cancer treatment and improve patient lives globally.
-                </p>
-              </Card>
-              
-              <Card className="glass-effect p-8 text-center hover-lift">
-                <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Lightbulb className="h-8 w-8 text-secondary-foreground" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Innovation</h3>
-                <p className="text-muted-foreground">
-                  Pioneering novel therapeutic approaches through rigorous science and 
-                  breakthrough research methodologies.
-                </p>
-              </Card>
-              
-              <Card className="glass-effect p-8 text-center hover-lift">
-                <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="h-8 w-8 text-accent-foreground" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Integrity</h3>
-                <p className="text-muted-foreground">
-                  Maintaining the highest standards of scientific rigor, regulatory compliance, 
-                  and ethical conduct in all our endeavors.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" className="py-16 px-6 bg-muted/30">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <Badge variant="secondary" className="mb-4">Frequently Asked Questions</Badge>
-              <h2 className="text-4xl font-bold mb-6">Key Questions About Oncolytics</h2>
-            </div>
-            
-            <div className="space-y-6">
-              {companyFAQs.map((faq, index) => (
-                <Card key={index} className="glass-effect p-6">
-                  <h3 className="text-lg font-semibold mb-4 text-primary">{faq.question}</h3>
-                  <p className="text-muted-foreground">{faq.answer}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-16 px-6">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to Learn More?</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Connect with our team to discuss partnership opportunities and learn more about our innovative approach to cancer treatment.
+      {/* Values Section */}
+      <section className="py-20 px-6 bg-gradient-to-b from-background to-primary/5">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Our Core Values
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide our mission to transform cancer treatment
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-glow">
-                <Mail className="h-5 w-5 mr-2" />
-                Contact Leadership
-              </Button>
-              <Button size="lg" variant="outline">
-                <Brain className="h-5 w-5 mr-2" />
-                Scientific Inquiries
-              </Button>
-            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {values.map((value) => (
+              <Card key={value.title} className="p-8 hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <value.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-foreground mb-3">
+                      {value.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Section */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Executive Leadership
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Seasoned leaders with proven track records in biotechnology
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {executiveTeam.map((member) => (
+              <Card key={member.name} className="p-8 hover:shadow-xl transition-all duration-300 text-center group">
+                <div className="flex justify-center mb-6">
+                  <Avatar className="w-24 h-24 border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300">
+                    <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-primary-foreground text-xl font-serif font-bold">
+                      {member.initials}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {member.title}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Scientific Advisory Board */}
+      <section className="py-20 px-6 bg-gradient-to-b from-background to-primary/5">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Scientific Advisory Board
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              World-renowned experts guiding our scientific strategy
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {scientificAdvisors.map((advisor) => (
+              <Card key={advisor.name} className="p-6 hover:shadow-xl transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-foreground mb-1">
+                      {advisor.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-2">{advisor.affiliation}</p>
+                    <Badge variant="secondary" className="text-xs">{advisor.expertise}</Badge>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
