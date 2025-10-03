@@ -3,8 +3,35 @@ import { Separator } from '@/components/ui/separator';
 import { Building, Mail, Phone, MapPin, FileText, TrendingUp } from 'lucide-react';
 
 export const FooterSection = () => {
+  const partners = [
+    'AMBRX',
+    'NIH',
+    '3M',
+    'GreenCross',
+    'IQVIA',
+    'Takeda',
+    'Pharmacyclics',
+    'Genzyme',
+  ];
+
   return (
     <footer className="bg-primary text-primary-foreground">
+      {/* Partner Logos Strip */}
+      <div className="border-b border-primary-foreground/20 py-8">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {partners.map((partner) => (
+              <div 
+                key={partner} 
+                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors font-semibold text-lg"
+              >
+                {partner}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-6 py-16">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-4 gap-8 mb-12">
@@ -17,7 +44,7 @@ export const FooterSection = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Oncolytics Biotech Inc.</h3>
+                <h3 className="text-xl font-serif font-bold">Oncolytics Biotech Inc.</h3>
                 <p className="text-sm text-primary-foreground/80 font-mono">NASDAQ: ONCY</p>
               </div>
             </div>
@@ -43,19 +70,19 @@ export const FooterSection = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+            <h4 className="font-serif font-semibold mb-4">Company</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#mission" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('mission')?.scrollIntoView({ behavior: 'smooth' }); }}>Our Mission</a></li>
-              <li><a href="#science" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('science')?.scrollIntoView({ behavior: 'smooth' }); }}>Science</a></li>
-              <li><a href="#pipeline" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('pipeline')?.scrollIntoView({ behavior: 'smooth' }); }}>Pipeline</a></li>
-              <li><a href="#management" className="text-primary-foreground/80 hover:text-accent transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('management')?.scrollIntoView({ behavior: 'smooth' }); }}>Management</a></li>
+              <li><a href="/about" className="text-primary-foreground/80 hover:text-accent transition-colors">About Us</a></li>
+              <li><a href="/science" className="text-primary-foreground/80 hover:text-accent transition-colors">Science</a></li>
+              <li><a href="/pipeline" className="text-primary-foreground/80 hover:text-accent transition-colors">Pipeline</a></li>
+              <li><a href="/team" className="text-primary-foreground/80 hover:text-accent transition-colors">Team</a></li>
               <li><a href="/scientific-advisory-board" className="text-primary-foreground/80 hover:text-accent transition-colors">Advisory Board</a></li>
             </ul>
           </div>
 
           {/* Investors */}
           <div>
-            <h4 className="font-semibold mb-4">Investors</h4>
+            <h4 className="font-serif font-semibold mb-4">Investors</h4>
             <ul className="space-y-3 text-sm">
               <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">Stock Information</a></li>
               <li><a href="/investors" className="text-primary-foreground/80 hover:text-accent transition-colors">SEC Filings</a></li>

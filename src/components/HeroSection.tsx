@@ -5,7 +5,7 @@ import { HelixTracks } from '@/components/HelixTracks';
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-start justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -13,92 +13,83 @@ export const HeroSection = () => {
           alt="Double-stranded RNA molecular structures" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20"></div>
       </div>
 
       {/* DNA Helix Particle Animation */}
       <HelixTracks />
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 pt-32 pb-24">
-        <div className="max-w-4xl">
-          {/* Stock Ticker */}
-          <div className="inline-flex items-center space-x-2 bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-full px-4 py-2 mb-8">
-            <TrendingUp className="w-4 h-4 text-accent" />
-            <span className="text-sm font-mono text-accent-bright">NASDAQ: ONCY</span>
-            <span className="text-xs text-accent/80">• Live</span>
-          </div>
+      <div className="relative z-20 container mx-auto px-6 py-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column: Main Content */}
+            <div>
+              {/* Stock Ticker */}
+              <div className="inline-flex items-center space-x-2 bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-full px-4 py-2 mb-8">
+                <TrendingUp className="w-4 h-4 text-accent" />
+                <span className="text-sm font-mono text-accent-bright">NASDAQ: ONCY</span>
+                <span className="text-xs text-accent/80">• Live</span>
+              </div>
 
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            First-in-class
-            <span className="block gradient-text bg-gradient-accent bg-clip-text text-transparent">
-              GI Immunotherapy Platform
-            </span>
-          </h1>
+              {/* Main Headline - Playfair Display Serif */}
+              <h1 className="font-serif text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                First-In-Class
+                <span className="block text-accent-bright mt-2">
+                  GI Immunotherapy Platform
+                </span>
+              </h1>
 
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl leading-relaxed">
-            <strong>Pelareorep</strong> is a double-stranded RNA oncolytic virus designed to 
-            selectively replicate in RAS-mutant tumors—delivering dual action: 
-            direct tumor cell lysis and immune activation.
-          </p>
+              {/* Subheadline */}
+              <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+                <strong>Pelareorep</strong> is a double-stranded RNA oncolytic virus designed to 
+                selectively replicate in RAS-mutant tumors—delivering dual action: 
+                direct tumor cell lysis and immune activation.
+              </p>
 
-          {/* Proof Bar */}
-          <div className="flex flex-wrap gap-4 text-sm text-white/90 mb-8">
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
-              IV delivery
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
-              Not neutralized in blood
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
-              Dosed in 1,200+ patients
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent-bright"></div>
-              Safety profile established
-            </span>
-          </div>
-
-          {/* Key Stats */}
-          <div className="flex flex-wrap gap-6 mb-10">
-            <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
-              <div className="text-2xl font-bold text-accent-bright">1,200+</div>
-              <div className="text-sm text-white/80">Patients Treated</div>
+              {/* Call to Action Button */}
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-primary font-semibold px-8 py-6 text-lg"
+              >
+                Explore Our Science
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
-            <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
-              <div className="text-2xl font-bold text-accent-bright">No MTD</div>
-              <div className="text-sm text-white/80">Identified</div>
-            </div>
-            <div className="glass-effect bg-blue-900/50 rounded-lg px-4 py-3 border border-white/10">
-              <div className="text-2xl font-bold text-accent-bright">3</div>
-              <div className="text-sm text-white/80">GI Indications</div>
-            </div>
-          </div>
 
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              size="lg" 
-              className="bg-gradient-accent hover:opacity-90 text-primary font-semibold px-8 py-6 text-lg"
-              onClick={() => window.location.href = '/science'}
-            >
-              Explore Our Science
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-white border-white/30 hover:bg-white/10 px-8 py-6 text-lg"
-              onClick={() => window.location.href = '/pipeline'}
-            >
-              View the Pipeline
-            </Button>
+            {/* Right Column: Stats Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Large Stat - 1,200+ Patients */}
+              <div className="col-span-2 glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <div className="text-6xl font-serif font-bold text-accent-bright mb-2">1,200+</div>
+                <div className="text-xl text-white/90">Patients Treated</div>
+              </div>
+
+              {/* 20+ Clinical Studies */}
+              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">20+</div>
+                <div className="text-base text-white/90">Clinical Studies</div>
+              </div>
+
+              {/* NO MTD */}
+              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">NO</div>
+                <div className="text-base text-white/90">MTD</div>
+              </div>
+
+              {/* 3 GI Indications */}
+              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">3</div>
+                <div className="text-base text-white/90">GI Indications</div>
+              </div>
+
+              {/* 15 Years */}
+              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">15</div>
+                <div className="text-base text-white/90">Years Clinical Development</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

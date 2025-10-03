@@ -71,6 +71,7 @@ export default {
         'gradient-accent': 'var(--gradient-accent)',
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
       },
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',
@@ -78,29 +79,22 @@ export default {
         'card': 'var(--shadow-card)',
       },
       fontFamily: {
+        serif: [
+          'Playfair Display',
+          'Georgia',
+          'serif',
+        ],
         sans: [
-          "Roboto",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Helvetica Neue",
-          "Arial",
-          "Noto Sans",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
         ],
-        condensed: [
-          "Roboto Condensed",
-          "ui-sans-serif", 
-          "system-ui",
-          "sans-serif"
+        mono: [
+          'JetBrains Mono',
+          'ui-monospace',
+          'monospace',
         ],
-        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
