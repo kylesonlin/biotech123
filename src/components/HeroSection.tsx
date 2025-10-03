@@ -2,8 +2,17 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 import heroImage from '@/assets/hero-molecular.jpg';
 import { HelixTracks } from '@/components/HelixTracks';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useCountUp } from '@/hooks/useCountUp';
 
 export const HeroSection = () => {
+  const { ref: statsRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  
+  const patientsCount = useCountUp({ end: 1200, duration: 2500, isVisible });
+  const studiesCount = useCountUp({ end: 20, duration: 2000, isVisible });
+  const indicationsCount = useCountUp({ end: 3, duration: 1500, isVisible });
+  const yearsCount = useCountUp({ end: 15, duration: 2000, isVisible });
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -59,34 +68,34 @@ export const HeroSection = () => {
             </div>
 
             {/* Right Column: Stats Cards */}
-            <div className="grid grid-cols-2 gap-4">
+            <div ref={statsRef} className="grid grid-cols-2 gap-4">
               {/* Large Stat - 1,200+ Patients */}
-              <div className="col-span-2 glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <div className="text-6xl font-serif font-bold text-accent-bright mb-2">1,200+</div>
+              <div className={`col-span-2 glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="text-6xl font-serif font-bold text-accent-bright mb-2">{patientsCount.toLocaleString()}+</div>
                 <div className="text-xl text-white/90">Patients Treated</div>
               </div>
 
               {/* 20+ Clinical Studies */}
-              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">20+</div>
+              <div className={`glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">{studiesCount}+</div>
                 <div className="text-base text-white/90">Clinical Studies</div>
               </div>
 
               {/* NO MTD */}
-              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <div className={`glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="text-4xl font-serif font-bold text-accent-bright mb-2">NO</div>
                 <div className="text-base text-white/90">MTD</div>
               </div>
 
               {/* 3 GI Indications */}
-              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">3</div>
+              <div className={`glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">{indicationsCount}</div>
                 <div className="text-base text-white/90">GI Indications</div>
               </div>
 
               {/* 15 Years */}
-              <div className="glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">15</div>
+              <div className={`glass-effect bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transition-all duration-700 delay-[400ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="text-4xl font-serif font-bold text-accent-bright mb-2">{yearsCount}</div>
                 <div className="text-base text-white/90">Years Clinical Development</div>
               </div>
             </div>

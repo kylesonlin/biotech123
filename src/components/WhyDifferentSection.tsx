@@ -1,7 +1,10 @@
 import { Card } from '@/components/ui/card';
 import { Zap, Shield, Target } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const WhyDifferentSection = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   const pillars = [
     {
       icon: Zap,
@@ -21,16 +24,16 @@ export const WhyDifferentSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section ref={ref} className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-center text-foreground mb-16">
+          <h2 className={`font-serif text-5xl md:text-6xl font-bold text-center text-foreground mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Why We're Different
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {pillars.map((pillar) => (
-              <Card key={pillar.title} className="p-8 hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+            {pillars.map((pillar, index) => (
+              <Card key={pillar.title} className={`p-8 hover:shadow-lg hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/20 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: `${index * 150}ms` }}>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                     <pillar.icon className="w-8 h-8 text-primary" />

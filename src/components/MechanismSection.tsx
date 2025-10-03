@@ -1,7 +1,10 @@
 import { Card } from '@/components/ui/card';
 import { Target, Copy, Skull, Activity } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const MechanismSection = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   const steps = [
     {
       number: '01',
@@ -34,11 +37,11 @@ export const MechanismSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-primary/5">
+    <section ref={ref} className="py-24 bg-gradient-to-b from-background to-primary/5">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="mb-16">
+          <div className={`mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-6">
               Pelareorep: Targeting and Immunity
             </h2>
@@ -63,7 +66,8 @@ export const MechanismSection = () => {
             {steps.map((step, index) => (
               <Card 
                 key={step.number} 
-                className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 relative overflow-hidden group"
+                className={`p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/30 relative overflow-hidden group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Step Number Background */}
                 <div className="absolute top-4 right-4 text-6xl font-serif font-bold text-primary/10 group-hover:text-primary/20 transition-colors">

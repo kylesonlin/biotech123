@@ -5,8 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import anatomyDiagram1 from '@/assets/anatomy-diagram-1.png';
 import anatomyDiagram2 from '@/assets/anatomy-diagram-2.png';
 import anatomyDiagram3 from '@/assets/anatomy-diagram-3.png';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const TreatmentsSection = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   const treatments = [
     {
       title: 'PANCREATIC CANCER',
@@ -35,11 +38,11 @@ export const TreatmentsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section ref={ref} className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-6">
               Our Treatments
             </h2>
@@ -51,10 +54,11 @@ export const TreatmentsSection = () => {
 
           {/* Treatment Cards */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {treatments.map((treatment) => (
+            {treatments.map((treatment, index) => (
               <Card 
                 key={treatment.title} 
-                className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 group"
+                className={`overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/30 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Anatomy Image */}
                 <div className="relative h-48 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center overflow-hidden">

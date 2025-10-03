@@ -1,8 +1,11 @@
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import molecularBg from '@/assets/molecular-structure.png';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const TeamSection = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   const team = [
     {
       name: 'Thomas Heineman, M.D.',
@@ -37,7 +40,7 @@ export const TeamSection = () => {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section ref={ref} className="relative py-24 overflow-hidden">
       {/* Molecular Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <img 
@@ -50,15 +53,16 @@ export const TeamSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-center text-foreground mb-16">
+          <h2 className={`font-serif text-5xl md:text-6xl font-bold text-center text-foreground mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Our Team
           </h2>
 
           <div className="grid md:grid-cols-3 gap-12">
-            {team.map((member) => (
+            {team.map((member, index) => (
               <Card 
                 key={member.name} 
-                className="p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 text-center group"
+                className={`p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/20 text-center group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {/* Circular Avatar */}
                 <div className="flex justify-center mb-6">
